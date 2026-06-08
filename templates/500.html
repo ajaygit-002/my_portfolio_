@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}500 – Server Error{% endblock %}
+
+{% block body %}
+<section class="error-section">
+    <div class="container">
+        <div class="error-content">
+            <h1 class="error-code">5<span class="text-gradient">0</span>0</h1>
+            <div class="error-glitch" data-text="SERVER ERROR">SERVER ERROR</div>
+            <p class="error-message">Something went wrong on our end. We're working on fixing it. Please try again later.</p>
+            <a href="{{ url_for('index') }}" class="btn btn-primary-glow">
+                <i class="bi bi-house-fill"></i> Back to Home
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
