@@ -599,6 +599,7 @@ img { max-width: 100%; height: auto; }
     border: 2px solid transparent;
     background: var(--gradient) border-box;
     -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     animation: ringRotate 6s linear infinite;
