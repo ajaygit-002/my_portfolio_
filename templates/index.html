@@ -5,7 +5,7 @@
 <nav class="navbar navbar-expand-lg fixed-top" id="mainNavbar">
     <div class="container nav-container">
         <a class="navbar-brand brand-logo" href="#">
-            <span class="brand-bracket">&lt;</span>Ajay<span class="brand-dot">.</span>W<span class="brand-bracket">/&gt;</span>
+            <span class="brand-bracket">&lt;</span>Ajay<span class="brand-dot">.</span>S<span class="brand-bracket">/&gt;</span>
         </a>
 
         <div class="nav-right-group">
@@ -51,7 +51,7 @@
                     <span class="greeting-wave">👋</span> Hello, I'm
                 </p>
                 <h1 class="hero-name">
-                    Ajay <span class="name-highlight">W</span>
+                    Ajay <span class="name-highlight">S</span>
                 </h1>
                 <div class="hero-typewriter">
                     <span class="typewriter-prefix">I'm a&nbsp;</span>
@@ -654,7 +654,7 @@
             <div class="row g-4 align-items-center">
                 <div class="col-lg-4">
                     <a class="footer-brand" href="#">
-                        <span class="brand-bracket">&lt;</span>Ajay<span class="brand-dot">.</span>W<span class="brand-bracket">/&gt;</span>
+                        <span class="brand-bracket">&lt;</span>Ajay<span class="brand-dot">.</span>S<span class="brand-bracket">/&gt;</span>
                     </a>
                     <p class="footer-desc">Crafting digital experiences with code, creativity, and caffeine.</p>
                 </div>
@@ -680,10 +680,69 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; {{ 2026 }} Ajay W. All rights reserved. Built with <i class="bi bi-heart-fill text-gradient"></i> &amp; Flask</p>
+            <p>&copy; {{ 2026 }} Ajay S. All rights reserved. Built with <i class="bi bi-heart-fill text-gradient"></i> &amp; Flask</p>
         </div>
     </div>
 </footer>
+
+<!-- ═══════════════════════════ CHATBOT ═══════════════════════════ -->
+<!-- Floating Chat Button -->
+<button id="chatToggle" class="chatbot-toggle" aria-label="Open chat assistant">
+    <i class="bi bi-chat-left-text-fill"></i>
+</button>
+
+<!-- Chat Window -->
+<div id="chatWindow" class="chatbot-window glass-card">
+    <div class="chatbot-header">
+        <div class="chatbot-header-info">
+            <div class="chatbot-header-avatar">
+                <i class="bi bi-stars"></i>
+            </div>
+            <div class="chatbot-header-status">
+                <h4><span class="brand-bracket">&lt;</span>Ajay<span class="brand-dot">.</span>S<span class="brand-bracket">/&gt;</span></h4>
+                <span>Online</span>
+            </div>
+        </div>
+        <button id="chatClose" class="chatbot-close" aria-label="Close chat">
+            <i class="bi bi-x-lg"></i>
+        </button>
+    </div>
+    
+    <div class="chatbot-body" id="chatMessages">
+        <!-- Welcome Message -->
+        <div class="chat-message bot">
+            <div class="message-bubble">
+                Hello! 👋 I'm the **&lt;Ajay.S/&gt;** AI portfolio assistant. Feel free to ask me about:
+                <ul>
+                    <li>His background and focus</li>
+                    <li>Core skills and tools</li>
+                    <li>Featured projects</li>
+                    <li>How to get in touch</li>
+                </ul>
+            </div>
+            <div class="message-time">Just now</div>
+        </div>
+    </div>
+    
+    <div class="chatbot-footer">
+        <!-- Quick Suggestions -->
+        <div class="chatbot-suggestions">
+            <button class="chat-suggestion-chip" data-message="Tell me about Ajay">About him</button>
+            <button class="chat-suggestion-chip" data-message="What projects have you worked on?">Projects</button>
+            <button class="chat-suggestion-chip" data-message="What are your core skills?">Skills</button>
+            <button class="chat-suggestion-chip" data-message="How can I contact Ajay?">Contact</button>
+        </div>
+        
+        <form id="chatForm">
+            <div class="chatbot-input-group">
+                <input type="text" id="chatInput" placeholder="Ask about Ajay..." required autocomplete="off">
+                <button type="submit" class="chatbot-send-btn" aria-label="Send message">
+                    <i class="bi bi-send-fill"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
 
 <!-- Back to Top -->
 <button id="backToTop" class="back-to-top" aria-label="Back to top">

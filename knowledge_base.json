@@ -1,0 +1,77 @@
+{
+  "about": {
+    "name": "Ajay S",
+    "role": "Full-Stack Developer",
+    "bio": "Passionate Full-Stack Developer crafting elegant, high-performance web applications with Python, Flask, and modern frontend technologies. Turning complex problems into simple, beautiful, and intuitive solutions.",
+    "education": "B.Tech in Computer Science",
+    "location": "India",
+    "languages": ["English", "Hindi"],
+    "focus": "Full-Stack Web Development"
+  },
+  "skills": {
+    "languages": ["Python", "JavaScript", "SQL"],
+    "frontend": ["HTML5", "CSS3", "Bootstrap"],
+    "backend": ["Flask", "Django", "Pandas", "NumPy"],
+    "database": ["MySQL", "SQLite"],
+    "tools": ["Git", "GitHub"]
+  },
+  "projects": [
+    {
+      "name": "Task Management App",
+      "description": "Full-stack task manager with user auth, CRUD operations, and a dynamic dashboard built with Flask & SQLite.",
+      "technologies": ["Flask", "Python", "SQLite", "Bootstrap"]
+    },
+    {
+      "name": "Data Analytics Dashboard",
+      "description": "Interactive data visualization dashboard using Pandas, NumPy, and Chart.js for real-time analytical insights.",
+      "technologies": ["Python", "Pandas", "NumPy", "Chart.js"]
+    },
+    {
+      "name": "E-Commerce Platform",
+      "description": "Modern e-commerce store with product management, shopping cart, payment integration, and admin panel.",
+      "technologies": ["Flask", "MySQL", "JavaScript", "Bootstrap"]
+    },
+    {
+      "name": "Sentiment Analyzer",
+      "description": "ML-powered sentiment analysis tool that classifies text into positive, negative, or neutral categories.",
+      "technologies": ["Python", "Scikit-learn", "Flask", "NLP"]
+    },
+    {
+      "name": "Web Scraping Suite",
+      "description": "Automated web scraping toolkit with scheduling, data extraction pipelines, and export to CSV/JSON.",
+      "technologies": ["Python", "BeautifulSoup", "Selenium", "Pandas"]
+    },
+    {
+      "name": "Real-Time Chat App",
+      "description": "Real-time messaging application with rooms, typing indicators, and online status using WebSockets.",
+      "technologies": ["Flask", "SocketIO", "JavaScript", "SQLite"]
+    }
+  ],
+  "experience": [
+    {
+      "period": "2025 – Present",
+      "role": "Freelance Full-Stack Developer",
+      "details": "Building custom web solutions for clients worldwide. Specializing in Flask, Python automation, and responsive front-end development."
+    },
+    {
+      "period": "2024 – 2025",
+      "role": "Web Development Intern",
+      "details": "Worked on full-stack projects, built REST APIs, and collaborated with senior developers to deploy production applications."
+    },
+    {
+      "period": "2023 – 2024",
+      "role": "Python Training Program",
+      "details": "Completed an intensive training covering Python core, data structures, algorithms, and web development with Flask and Django."
+    }
+  ],
+  "contact": {
+    "email": "ajay.s@example.com",
+    "phone": "+91 98765 43210",
+    "location": "India",
+    "socials": {
+      "github": "#",
+      "linkedin": "#",
+      "twitter": "#"
+    }
+  }
+}
