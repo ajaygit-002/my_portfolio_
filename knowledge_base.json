@@ -1,71 +1,98 @@
 {
   "about": {
     "name": "Ajay S",
-    "role": "Full-Stack Developer",
-    "bio": "Passionate Full-Stack Developer crafting elegant, high-performance web applications with Python, Flask, and modern frontend technologies. Turning complex problems into simple, beautiful, and intuitive solutions.",
+    "role": "AI Engineer & Agentic AI Developer",
+    "bio": "AI Engineer specializing in Agentic AI systems, Retrieval-Augmented Generation (RAG) architectures, and Model Context Protocol (MCP) integrations. I design and deploy intelligent multi-agent systems that solve real-world problems with cutting-edge AI infrastructure.",
     "education": "B.Tech in Computer Science",
     "location": "India",
     "languages": ["English", "Hindi"],
-    "focus": "Full-Stack Web Development"
+    "focus": "Agentic AI, RAG Systems & MCP Development"
   },
   "skills": {
-    "languages": ["Python", "JavaScript", "SQL"],
-    "frontend": ["HTML5", "CSS3", "Bootstrap"],
-    "backend": ["Flask", "Django", "Pandas", "NumPy"],
-    "database": ["MySQL", "SQLite"],
-    "tools": ["Git", "GitHub"]
+    "ai_ml": ["LangChain", "LlamaIndex", "CrewAI", "AutoGen", "OpenAI API", "Gemini API", "Hugging Face", "PyTorch", "Scikit-learn"],
+    "backend": ["Python", "FastAPI", "Flask", "Django", "Node.js"],
+    "frontend": ["React", "Next.js", "TypeScript", "JavaScript", "HTML5", "CSS3", "Tailwind CSS"],
+    "databases": ["PostgreSQL", "MongoDB", "Pinecone", "ChromaDB", "Redis", "Weaviate"],
+    "devops_tools": ["Docker", "Git", "GitHub Actions", "AWS", "GCP", "Vercel", "Linux"]
   },
   "projects": [
     {
-      "name": "Task Management App",
-      "description": "Full-stack task manager with user auth, CRUD operations, and a dynamic dashboard built with Flask & SQLite.",
-      "technologies": ["Flask", "Python", "SQLite", "Bootstrap"]
+      "name": "Multi-Agent AI System",
+      "description": "Orchestrated autonomous AI agent swarm using CrewAI and AutoGen for complex task decomposition, planning, and execution with tool-use capabilities.",
+      "technologies": ["CrewAI", "AutoGen", "LangChain", "Python", "FastAPI"]
     },
     {
-      "name": "Data Analytics Dashboard",
-      "description": "Interactive data visualization dashboard using Pandas, NumPy, and Chart.js for real-time analytical insights.",
-      "technologies": ["Python", "Pandas", "NumPy", "Chart.js"]
+      "name": "RAG Knowledge Engine",
+      "description": "Enterprise-grade retrieval-augmented generation pipeline with hybrid search, semantic chunking, reranking, and multi-modal document processing.",
+      "technologies": ["LangChain", "ChromaDB", "OpenAI", "FastAPI", "React"]
     },
     {
-      "name": "E-Commerce Platform",
-      "description": "Modern e-commerce store with product management, shopping cart, payment integration, and admin panel.",
-      "technologies": ["Flask", "MySQL", "JavaScript", "Bootstrap"]
+      "name": "MCP Server Toolkit",
+      "description": "Production-ready Model Context Protocol server suite enabling AI assistants to interact with databases, APIs, and file systems through standardized tool interfaces.",
+      "technologies": ["MCP SDK", "TypeScript", "Python", "PostgreSQL", "Docker"]
     },
     {
-      "name": "Sentiment Analyzer",
-      "description": "ML-powered sentiment analysis tool that classifies text into positive, negative, or neutral categories.",
-      "technologies": ["Python", "Scikit-learn", "Flask", "NLP"]
+      "name": "AI Code Reviewer",
+      "description": "Intelligent code review assistant using LLM-powered analysis for detecting bugs, security vulnerabilities, and suggesting architectural improvements.",
+      "technologies": ["Gemini API", "Python", "FastAPI", "React", "GitHub API"]
     },
     {
-      "name": "Web Scraping Suite",
-      "description": "Automated web scraping toolkit with scheduling, data extraction pipelines, and export to CSV/JSON.",
-      "technologies": ["Python", "BeautifulSoup", "Selenium", "Pandas"]
+      "name": "Conversational AI Dashboard",
+      "description": "Real-time analytics dashboard for monitoring multi-agent AI systems with conversation tracking, token usage, and performance metrics.",
+      "technologies": ["Next.js", "Python", "WebSockets", "PostgreSQL", "Chart.js"]
     },
     {
-      "name": "Real-Time Chat App",
-      "description": "Real-time messaging application with rooms, typing indicators, and online status using WebSockets.",
-      "technologies": ["Flask", "SocketIO", "JavaScript", "SQLite"]
+      "name": "Intelligent Document Processor",
+      "description": "Multi-modal document understanding pipeline with OCR, table extraction, summarization, and semantic search across thousands of documents.",
+      "technologies": ["LlamaIndex", "PyTorch", "Hugging Face", "Pinecone", "FastAPI"]
     }
   ],
   "experience": [
     {
       "period": "2025 – Present",
-      "role": "Freelance Full-Stack Developer",
-      "details": "Building custom web solutions for clients worldwide. Specializing in Flask, Python automation, and responsive front-end development."
+      "role": "AI Engineer & Agentic AI Developer",
+      "details": "Designing and deploying autonomous multi-agent AI systems, building production RAG pipelines, and developing MCP server integrations for enterprise clients."
     },
     {
       "period": "2024 – 2025",
-      "role": "Web Development Intern",
-      "details": "Worked on full-stack projects, built REST APIs, and collaborated with senior developers to deploy production applications."
+      "role": "ML Engineer Intern",
+      "details": "Built end-to-end ML pipelines, fine-tuned LLMs for domain-specific tasks, and developed REST APIs for AI model serving with FastAPI and Docker."
     },
     {
       "period": "2023 – 2024",
-      "role": "Python Training Program",
-      "details": "Completed an intensive training covering Python core, data structures, algorithms, and web development with Flask and Django."
+      "role": "AI/ML Training Program",
+      "details": "Completed intensive training in deep learning, NLP, computer vision, and modern AI frameworks including PyTorch, Hugging Face, and LangChain."
+    },
+    {
+      "period": "2022 – 2023",
+      "role": "Full-Stack Developer",
+      "details": "Built web applications with Python, Flask, and React. Developed REST APIs and worked with SQL/NoSQL databases."
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Google Cloud Professional Machine Learning Engineer",
+      "issuer": "Google Cloud",
+      "year": "2025"
+    },
+    {
+      "name": "AWS Certified Machine Learning – Specialty",
+      "issuer": "Amazon Web Services",
+      "year": "2024"
+    },
+    {
+      "name": "LangChain for LLM Application Development",
+      "issuer": "DeepLearning.AI",
+      "year": "2024"
+    },
+    {
+      "name": "Deep Learning Specialization",
+      "issuer": "DeepLearning.AI / Coursera",
+      "year": "2023"
     }
   ],
   "contact": {
-    "email": "ajay.s@example.com",
+    "email": "ajay.w@example.com",
     "phone": "+91 98765 43210",
     "location": "India",
     "socials": {

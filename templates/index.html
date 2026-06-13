@@ -1,67 +1,87 @@
 {% extends "base.html" %}
 
 {% block body %}
+<!-- SVG Gradient Definition for skill rings -->
+<svg width="0" height="0" style="position:absolute">
+    <defs>
+        <linearGradient id="skillGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#00E5FF"/>
+            <stop offset="100%" stop-color="#8B5CF6"/>
+        </linearGradient>
+    </defs>
+</svg>
+
 <!-- ══════════════════════════ NAVBAR ══════════════════════════ -->
-<nav class="navbar navbar-expand-lg fixed-top" id="mainNavbar">
-    <div class="container nav-container">
-        <a class="navbar-brand brand-logo" href="#">
+<nav class="navbar" id="mainNavbar">
+    <div class="nav-container">
+        <a class="brand-logo" href="#">
             <span class="brand-bracket">&lt;</span>Ajay<span class="brand-dot">.</span>S<span class="brand-bracket">/&gt;</span>
         </a>
-        <div class="nav-right-group">
-            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-                <i class="bi bi-moon-stars-fill theme-icon-dark"></i>
-                <i class="bi bi-sun-fill theme-icon-light"></i>
+        <ul class="nav-links" id="navLinks">
+            <li><a class="nav-link active" href="#home">Home</a></li>
+            <li><a class="nav-link" href="#about">About</a></li>
+            <li><a class="nav-link" href="#skills">Skills</a></li>
+            <li><a class="nav-link" href="#projects">Projects</a></li>
+            <li><a class="nav-link" href="#dashboard">Metrics</a></li>
+            <li><a class="nav-link" href="#experience">Timeline</a></li>
+            <li><a class="nav-link" href="#certifications">Certs</a></li>
+            <li><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
             </button>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="toggler-line"></span>
-                <span class="toggler-line"></span>
-                <span class="toggler-line"></span>
-            </button>
-        </div>
-        <div class="collapse navbar-collapse" id="navbarContent">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-                <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
-                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-            </ul>
         </div>
     </div>
 </nav>
 
 <!-- ══════════════════════════ HERO ══════════════════════════ -->
 <section id="home" class="hero-section">
-    <canvas id="particleCanvas" class="particle-canvas"></canvas>
+    <canvas id="heroCanvas"></canvas>
     <div class="hero-gradient-orb hero-orb-1"></div>
     <div class="hero-gradient-orb hero-orb-2"></div>
     <div class="hero-gradient-orb hero-orb-3"></div>
 
-    <div class="container hero-container">
-        <div class="row align-items-center justify-content-center min-vh-100">
-            <div class="col-lg-10 hero-left text-center" data-aos="fade-up" data-aos-duration="1000">
-                <p class="hero-greeting"><span class="greeting-wave">👋</span> Hello, I'm</p>
-                <h1 class="hero-name">Ajay <span class="name-highlight">S</span></h1>
-                <div class="hero-typewriter" style="justify-content: center;">
-                    <span class="typewriter-prefix">I'm a&nbsp;</span>
-                    <span class="typewriter-text" id="typewriter"></span>
-                    <span class="typewriter-cursor">|</span>
+    <div class="hero-container">
+        <div class="hero-content">
+            <div class="hero-badge reveal-up">
+                <span class="pulse-dot"></span>
+                Available for AI Projects
+            </div>
+            <h1 class="hero-name reveal-up">
+                AI Engineer &<br><span class="name-highlight">Agentic AI</span> Developer
+            </h1>
+            <div class="hero-typewriter reveal-up">
+                <span class="typewriter-prefix">I build&nbsp;</span>
+                <span class="typewriter-text" id="typewriter"></span>
+                <span class="typewriter-cursor">|</span>
+            </div>
+            <p class="hero-description reveal-up">
+                Designing autonomous multi-agent AI systems, production RAG pipelines,
+                and MCP server integrations that push the boundaries of what AI can do.
+            </p>
+            <div class="hero-cta reveal-up">
+                <a href="#projects" class="btn-primary-glow"><i class="bi bi-rocket-takeoff-fill"></i> View Projects</a>
+                <a href="{{ url_for('static', filename='resume/resume.pdf') }}" class="btn-outline-glow" download><i class="bi bi-download"></i> Download Resume</a>
+            </div>
+            <div class="social-links reveal-up">
+                <a href="#" class="social-icon" aria-label="GitHub"><i class="bi bi-github"></i></a>
+                <a href="#" class="social-icon" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                <a href="#" class="social-icon" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+                <a href="#" class="social-icon" aria-label="Email"><i class="bi bi-envelope-fill"></i></a>
+            </div>
+            <div class="hero-stats reveal-up">
+                <div class="hero-stat">
+                    <div class="hero-stat-number"><span data-target="15">0</span>+</div>
+                    <div class="hero-stat-label">AI Projects</div>
                 </div>
-                <p class="hero-description" style="max-width: 700px; margin-left: auto; margin-right: auto;">
-                    Passionate Full-Stack Developer crafting elegant, high-performance web
-                    applications with Python, Flask, and modern frontend technologies. Turning
-                    complex problems into simple, beautiful, and intuitive solutions.
-                </p>
-                <div class="hero-cta" style="justify-content: center;">
-                    <a href="#projects" class="btn btn-primary-glow"><i class="bi bi-grid-3x3-gap-fill"></i> View Projects</a>
-                    <a href="{{ url_for('static', filename='resume/resume.pdf') }}" class="btn btn-outline-glow" download><i class="bi bi-download"></i> Download Resume</a>
+                <div class="hero-stat">
+                    <div class="hero-stat-number"><span data-target="8">0</span>+</div>
+                    <div class="hero-stat-label">RAG Pipelines</div>
                 </div>
-                <div class="hero-socials" style="justify-content: center;">
-                    <a href="#" class="social-icon" aria-label="GitHub"><i class="bi bi-github"></i></a>
-                    <a href="#" class="social-icon" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
-                    <a href="#" class="social-icon" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
-                    <a href="#" class="social-icon" aria-label="Email"><i class="bi bi-envelope-fill"></i></a>
+                <div class="hero-stat">
+                    <div class="hero-stat-number"><span data-target="5">0</span>+</div>
+                    <div class="hero-stat-label">MCP Servers</div>
                 </div>
             </div>
         </div>
@@ -69,62 +89,59 @@
 </section>
 
 <!-- ══════════════════════════ ABOUT ══════════════════════════ -->
-<section id="about" class="section about-section">
+<section id="about" class="section section-alt">
+    <div class="section-glow" style="background:var(--violet);top:10%;right:-10%"></div>
     <div class="container">
-        <div class="section-header" data-aos="fade-up">
-            <span class="section-tag"><i class="bi bi-person-vcard"></i> Get To Know Me</span>
-            <h2 class="section-title">About <span class="text-gradient">Me</span></h2>
-            <div class="section-divider"></div>
+        <div class="section-header">
+            <span class="section-tag reveal-up"><i class="bi bi-person-vcard"></i> Get To Know Me</span>
+            <h2 class="section-title reveal-up">About <span class="text-gradient">Me</span></h2>
+            <div class="section-divider reveal-up"></div>
         </div>
-        <div class="row g-5 align-items-start">
-            <div class="col-lg-6" data-aos="fade-right" data-aos-duration="800">
-                <div class="about-content">
-                    <h3 class="about-subtitle">Full-Stack Developer &amp; Tech Enthusiast</h3>
-                    <p>I'm a passionate developer with a strong foundation in Python and modern web technologies. I love building scalable, efficient, and visually stunning web applications that make a difference.</p>
-                    <p>Currently focused on expanding my expertise in full-stack development, I enjoy working with Flask, Django, and JavaScript to create seamless user experiences backed by robust architectures.</p>
-                    <p>When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, and solving coding challenges to sharpen my problem-solving skills.</p>
-                    <div class="about-details">
-                        <div class="detail-item">
-                            <i class="bi bi-mortarboard-fill"></i>
-                            <div><strong>Education</strong><span>B.Tech in Computer Science</span></div>
-                        </div>
-                        <div class="detail-item">
-                            <i class="bi bi-geo-alt-fill"></i>
-                            <div><strong>Location</strong><span>India</span></div>
-                        </div>
-                        <div class="detail-item">
-                            <i class="bi bi-translate"></i>
-                            <div><strong>Languages</strong><span>English, Hindi</span></div>
-                        </div>
-                        <div class="detail-item">
-                            <i class="bi bi-lightning-charge-fill"></i>
-                            <div><strong>Focus</strong><span>Full-Stack Web Development</span></div>
-                        </div>
+        <div class="about-grid">
+            <div class="about-content reveal-left">
+                <h3>AI Engineer & Agentic AI Specialist</h3>
+                <p>I'm an AI Engineer with deep expertise in building autonomous multi-agent systems, production-grade RAG architectures, and MCP (Model Context Protocol) integrations. I specialize in turning cutting-edge AI research into deployable, scalable solutions.</p>
+                <p>My work spans the full AI stack — from designing intelligent agent orchestration with CrewAI and AutoGen, to building high-performance vector search pipelines with LangChain and ChromaDB, to creating standardized tool interfaces via MCP servers.</p>
+                <p>I'm passionate about the future of AI-native applications and believe that autonomous, tool-using agents will fundamentally transform how we build software.</p>
+                <div class="about-details">
+                    <div class="detail-item">
+                        <i class="bi bi-mortarboard-fill"></i>
+                        <div><strong>Education</strong><span>B.Tech in Computer Science</span></div>
+                    </div>
+                    <div class="detail-item">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        <div><strong>Location</strong><span>India</span></div>
+                    </div>
+                    <div class="detail-item">
+                        <i class="bi bi-translate"></i>
+                        <div><strong>Languages</strong><span>English, Hindi</span></div>
+                    </div>
+                    <div class="detail-item">
+                        <i class="bi bi-lightning-charge-fill"></i>
+                        <div><strong>Focus</strong><span>Agentic AI & RAG Systems</span></div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6" data-aos="fade-left" data-aos-duration="800">
-                <div class="about-stats-grid">
-                    <div class="stat-card glass-card" data-aos="zoom-in" data-aos-delay="100">
-                        <div class="stat-icon"><i class="bi bi-code-slash"></i></div>
-                        <div class="stat-number" data-target="25">0</div>
-                        <div class="stat-label">Projects Completed</div>
-                    </div>
-                    <div class="stat-card glass-card" data-aos="zoom-in" data-aos-delay="200">
-                        <div class="stat-icon"><i class="bi bi-stack"></i></div>
-                        <div class="stat-number" data-target="15">0</div>
-                        <div class="stat-label">Technologies Learned</div>
-                    </div>
-                    <div class="stat-card glass-card" data-aos="zoom-in" data-aos-delay="300">
-                        <div class="stat-icon"><i class="bi bi-github"></i></div>
-                        <div class="stat-number" data-target="30">0</div>
-                        <div class="stat-label">GitHub Repositories</div>
-                    </div>
-                    <div class="stat-card glass-card" data-aos="zoom-in" data-aos-delay="400">
-                        <div class="stat-icon"><i class="bi bi-trophy-fill"></i></div>
-                        <div class="stat-number" data-target="200">0</div>
-                        <div class="stat-label">Challenges Solved</div>
-                    </div>
+            <div class="about-stats-grid reveal-right">
+                <div class="stat-card glass-card">
+                    <div class="stat-icon"><i class="bi bi-robot"></i></div>
+                    <div class="stat-number" data-target="15">0</div>
+                    <div class="stat-label">AI Projects</div>
+                </div>
+                <div class="stat-card glass-card">
+                    <div class="stat-icon"><i class="bi bi-braces-asterisk"></i></div>
+                    <div class="stat-number" data-target="25">0</div>
+                    <div class="stat-label">Technologies</div>
+                </div>
+                <div class="stat-card glass-card">
+                    <div class="stat-icon"><i class="bi bi-github"></i></div>
+                    <div class="stat-number" data-target="30">0</div>
+                    <div class="stat-label">Repositories</div>
+                </div>
+                <div class="stat-card glass-card">
+                    <div class="stat-icon"><i class="bi bi-trophy-fill"></i></div>
+                    <div class="stat-number" data-target="200">0</div>
+                    <div class="stat-label">Problems Solved</div>
                 </div>
             </div>
         </div>
@@ -132,296 +149,437 @@
 </section>
 
 <!-- ══════════════════════════ SKILLS ══════════════════════════ -->
-<section id="skills" class="section skills-section">
+<section id="skills" class="section">
+    <div class="section-glow" style="background:var(--cyan);bottom:10%;left:-10%"></div>
     <div class="container">
-        <div class="section-header" data-aos="fade-up">
-            <span class="section-tag"><i class="bi bi-tools"></i> What I Know</span>
-            <h2 class="section-title">My <span class="text-gradient">Skills</span></h2>
-            <div class="section-divider"></div>
+        <div class="section-header">
+            <span class="section-tag reveal-up"><i class="bi bi-cpu"></i> Tech Stack</span>
+            <h2 class="section-title reveal-up">Skills & <span class="text-gradient">Technologies</span></h2>
+            <div class="section-divider reveal-up"></div>
         </div>
-        <div class="skill-tabs" data-aos="fade-up" data-aos-delay="100">
+        <div class="skill-tabs reveal-up">
             <button class="skill-tab active" data-category="all">All</button>
-            <button class="skill-tab" data-category="languages">Languages</button>
-            <button class="skill-tab" data-category="frontend">Frontend</button>
+            <button class="skill-tab" data-category="ai_ml">AI / ML</button>
             <button class="skill-tab" data-category="backend">Backend</button>
-            <button class="skill-tab" data-category="database">Database</button>
-            <button class="skill-tab" data-category="tools">Tools</button>
+            <button class="skill-tab" data-category="frontend">Frontend</button>
+            <button class="skill-tab" data-category="databases">Databases</button>
+            <button class="skill-tab" data-category="devops">DevOps</button>
         </div>
-        <div class="skills-grid" data-aos="fade-up" data-aos-delay="200">
-            <!-- Languages -->
-            <div class="skill-card glass-card" data-category="languages">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/python.svg') }}" alt="Python"></div>
-                <h4>Python</h4>
-                <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
-                <span class="skill-percent">90%</span>
+        <div class="skills-grid">
+            <!-- AI/ML -->
+            <div class="skill-card glass-card reveal-scale" data-category="ai_ml">
+                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/langchain.svg') }}" alt="LangChain"></div>
+                <h4>LangChain</h4>
+                <div class="skill-progress"><svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="92"/></svg><span class="skill-percent">92%</span></div>
             </div>
-            <div class="skill-card glass-card" data-category="languages">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/javascript.svg') }}" alt="JavaScript"></div>
-                <h4>JavaScript</h4>
-                <div class="skill-bar"><div class="skill-fill" data-width="75"></div></div>
-                <span class="skill-percent">75%</span>
+            <div class="skill-card glass-card reveal-scale" data-category="ai_ml">
+                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/llamaindex.svg') }}" alt="LlamaIndex"></div>
+                <h4>LlamaIndex</h4>
+                <div class="skill-progress"><svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="88"/></svg><span class="skill-percent">88%</span></div>
             </div>
-            <div class="skill-card glass-card" data-category="languages">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/sql.svg') }}" alt="SQL"></div>
-                <h4>SQL</h4>
-                <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
-                <span class="skill-percent">80%</span>
+            <div class="skill-card glass-card reveal-scale" data-category="ai_ml">
+                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/crewai.svg') }}" alt="CrewAI"></div>
+                <h4>CrewAI</h4>
+                <div class="skill-progress"><svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="90"/></svg><span class="skill-percent">90%</span></div>
             </div>
-            <!-- Frontend -->
-            <div class="skill-card glass-card" data-category="frontend">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/html5.svg') }}" alt="HTML5"></div>
-                <h4>HTML5</h4>
-                <div class="skill-bar"><div class="skill-fill" data-width="95"></div></div>
-                <span class="skill-percent">95%</span>
+            <div class="skill-card glass-card reveal-scale" data-category="ai_ml">
+                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/autogen.svg') }}" alt="AutoGen"></div>
+                <h4>AutoGen</h4>
+                <div class="skill-progress"><svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="85"/></svg><span class="skill-percent">85%</span></div>
             </div>
-            <div class="skill-card glass-card" data-category="frontend">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/css3.svg') }}" alt="CSS3"></div>
-                <h4>CSS3</h4>
-                <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
-                <span class="skill-percent">90%</span>
+            <div class="skill-card glass-card reveal-scale" data-category="ai_ml">
+                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/openai.svg') }}" alt="OpenAI API"></div>
+                <h4>OpenAI API</h4>
+                <div class="skill-progress"><svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="93"/></svg><span class="skill-percent">93%</span></div>
             </div>
-            <div class="skill-card glass-card" data-category="frontend">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/bootstrap.svg') }}" alt="Bootstrap"></div>
-                <h4>Bootstrap</h4>
-                <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
-                <span class="skill-percent">85%</span>
+            <div class="skill-card glass-card reveal-scale" data-category="ai_ml">
+                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/gemini.svg') }}" alt="Gemini API"></div>
+                <h4>Gemini API</h4>
+                <div class="skill-progress"><svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="90"/></svg><span class="skill-percent">90%</span></div>
+            </div>
+            <div class="skill-card glass-card reveal-scale" data-category="ai_ml">
+                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/huggingface.svg') }}" alt="Hugging Face"></div>
+                <h4>Hugging Face</h4>
+                <div class="skill-progress"><svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="82"/></svg><span class="skill-percent">82%</span></div>
+            </div>
+            <div class="skill-card glass-card reveal-scale" data-category="ai_ml">
+                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/pytorch.svg') }}" alt="PyTorch"></div>
+                <h4>PyTorch</h4>
+                <div class="skill-progress"><svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="78"/></svg><span class="skill-percent">78%</span></div>
+            </div>
+            <div class="skill-card glass-card reveal-scale" data-category="ai_ml">
+                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/scikit.svg') }}" alt="Scikit-learn"></div>
+                <h4>Scikit-learn</h4>
+                <div class="skill-progress"><svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="85"/></svg><span class="skill-percent">85%</span></div>
             </div>
             <!-- Backend -->
-            <div class="skill-card glass-card" data-category="backend">
+            <div class="skill-card glass-card reveal-scale" data-category="backend">
+                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/python.svg') }}" alt="Python"></div>
+                <h4>Python</h4>
+                <div class="skill-progress"><svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="95"/></svg><span class="skill-percent">95%</span></div>
+            </div>
+            <div class="skill-card glass-card reveal-scale" data-category="backend">
+                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/fastapi.svg') }}" alt="FastAPI"></div>
+                <h4>FastAPI</h4>
+                <div class="skill-progress"><svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="90"/></svg><span class="skill-percent">90%</span></div>
+            </div>
+            <div class="skill-card glass-card reveal-scale" data-category="backend">
                 <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/flask.svg') }}" alt="Flask"></div>
                 <h4>Flask</h4>
-                <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
-                <span class="skill-percent">85%</span>
+                <div class="skill-progress"><svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="88"/></svg><span class="skill-percent">88%</span></div>
             </div>
-            <div class="skill-card glass-card" data-category="backend">
+            <div class="skill-card glass-card reveal-scale" data-category="backend">
                 <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/django.svg') }}" alt="Django"></div>
                 <h4>Django</h4>
-                <div class="skill-bar"><div class="skill-fill" data-width="70"></div></div>
-                <span class="skill-percent">70%</span>
+                <div class="skill-progress"><svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="75"/></svg><span class="skill-percent">75%</span></div>
             </div>
-            <div class="skill-card glass-card" data-category="backend">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/pandas.svg') }}" alt="Pandas"></div>
-                <h4>Pandas</h4>
-                <div class="skill-bar"><div class="skill-fill" data-width="75"></div></div>
-                <span class="skill-percent">75%</span>
+            <div class="skill-card glass-card reveal-scale" data-category="backend">
+                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/nodejs.svg') }}" alt="Node.js"></div>
+                <h4>Node.js</h4>
+                <div class="skill-progress"><svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="72"/></svg><span class="skill-percent">72%</span></div>
             </div>
-            <div class="skill-card glass-card" data-category="backend">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/numpy.svg') }}" alt="NumPy"></div>
-                <h4>NumPy</h4>
-                <div class="skill-bar"><div class="skill-fill" data-width="70"></div></div>
-                <span class="skill-percent">70%</span>
+            <!-- Frontend -->
+            <div class="skill-card glass-card reveal-scale" data-category="frontend">
+                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/react.svg') }}" alt="React"></div>
+                <h4>React</h4>
+                <div class="skill-progress"><svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="85"/></svg><span class="skill-percent">85%</span></div>
             </div>
-            <!-- Database -->
-            <div class="skill-card glass-card" data-category="database">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/mysql.svg') }}" alt="MySQL"></div>
-                <h4>MySQL</h4>
-                <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
-                <span class="skill-percent">80%</span>
+            <div class="skill-card glass-card reveal-scale" data-category="frontend">
+                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/nextjs.svg') }}" alt="Next.js"></div>
+                <h4>Next.js</h4>
+                <div class="skill-progress"><svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="80"/></svg><span class="skill-percent">80%</span></div>
             </div>
-            <div class="skill-card glass-card" data-category="database">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/sqlite.svg') }}" alt="SQLite"></div>
-                <h4>SQLite</h4>
-                <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
-                <span class="skill-percent">85%</span>
+            <div class="skill-card glass-card reveal-scale" data-category="frontend">
+                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/typescript.svg') }}" alt="TypeScript"></div>
+                <h4>TypeScript</h4>
+                <div class="skill-progress"><svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="82"/></svg><span class="skill-percent">82%</span></div>
             </div>
-            <!-- Tools -->
-            <div class="skill-card glass-card" data-category="tools">
+            <div class="skill-card glass-card reveal-scale" data-category="frontend">
+                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/javascript.svg') }}" alt="JavaScript"></div>
+                <h4>JavaScript</h4>
+                <div class="skill-progress"><svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="88"/></svg><span class="skill-percent">88%</span></div>
+            </div>
+            <div class="skill-card glass-card reveal-scale" data-category="frontend">
+                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/html5.svg') }}" alt="HTML5"></div>
+                <h4>HTML5</h4>
+                <div class="skill-progress"><svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="95"/></svg><span class="skill-percent">95%</span></div>
+            </div>
+            <div class="skill-card glass-card reveal-scale" data-category="frontend">
+                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/css3.svg') }}" alt="CSS3"></div>
+                <h4>CSS3</h4>
+                <div class="skill-progress"><svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="92"/></svg><span class="skill-percent">92%</span></div>
+            </div>
+            <div class="skill-card glass-card reveal-scale" data-category="frontend">
+                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/tailwind.svg') }}" alt="Tailwind CSS"></div>
+                <h4>Tailwind CSS</h4>
+                <div class="skill-progress"><svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="85"/></svg><span class="skill-percent">85%</span></div>
+            </div>
+            <!-- Databases -->
+            <div class="skill-card glass-card reveal-scale" data-category="databases">
+                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/postgresql.svg') }}" alt="PostgreSQL"></div>
+                <h4>PostgreSQL</h4>
+                <div class="skill-progress"><svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="85"/></svg><span class="skill-percent">85%</span></div>
+            </div>
+            <div class="skill-card glass-card reveal-scale" data-category="databases">
+                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/mongodb.svg') }}" alt="MongoDB"></div>
+                <h4>MongoDB</h4>
+                <div class="skill-progress"><svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="80"/></svg><span class="skill-percent">80%</span></div>
+            </div>
+            <div class="skill-card glass-card reveal-scale" data-category="databases">
+                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/pinecone.svg') }}" alt="Pinecone"></div>
+                <h4>Pinecone</h4>
+                <div class="skill-progress"><svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="88"/></svg><span class="skill-percent">88%</span></div>
+            </div>
+            <div class="skill-card glass-card reveal-scale" data-category="databases">
+                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/chromadb.svg') }}" alt="ChromaDB"></div>
+                <h4>ChromaDB</h4>
+                <div class="skill-progress"><svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="90"/></svg><span class="skill-percent">90%</span></div>
+            </div>
+            <div class="skill-card glass-card reveal-scale" data-category="databases">
+                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/redis.svg') }}" alt="Redis"></div>
+                <h4>Redis</h4>
+                <div class="skill-progress"><svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="78"/></svg><span class="skill-percent">78%</span></div>
+            </div>
+            <div class="skill-card glass-card reveal-scale" data-category="databases">
+                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/weaviate.svg') }}" alt="Weaviate"></div>
+                <h4>Weaviate</h4>
+                <div class="skill-progress"><svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="75"/></svg><span class="skill-percent">75%</span></div>
+            </div>
+            <!-- DevOps -->
+            <div class="skill-card glass-card reveal-scale" data-category="devops">
+                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/docker.svg') }}" alt="Docker"></div>
+                <h4>Docker</h4>
+                <div class="skill-progress"><svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="85"/></svg><span class="skill-percent">85%</span></div>
+            </div>
+            <div class="skill-card glass-card reveal-scale" data-category="devops">
                 <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/git.svg') }}" alt="Git"></div>
                 <h4>Git</h4>
-                <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
-                <span class="skill-percent">85%</span>
+                <div class="skill-progress"><svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="90"/></svg><span class="skill-percent">90%</span></div>
             </div>
-            <div class="skill-card glass-card" data-category="tools">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/github.svg') }}" alt="GitHub"></div>
-                <h4>GitHub</h4>
-                <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
-                <span class="skill-percent">85%</span>
+            <div class="skill-card glass-card reveal-scale" data-category="devops">
+                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/github.svg') }}" alt="GitHub Actions"></div>
+                <h4>GitHub Actions</h4>
+                <div class="skill-progress"><svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="82"/></svg><span class="skill-percent">82%</span></div>
+            </div>
+            <div class="skill-card glass-card reveal-scale" data-category="devops">
+                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/aws.svg') }}" alt="AWS"></div>
+                <h4>AWS</h4>
+                <div class="skill-progress"><svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="78"/></svg><span class="skill-percent">78%</span></div>
+            </div>
+            <div class="skill-card glass-card reveal-scale" data-category="devops">
+                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/linux.svg') }}" alt="Linux"></div>
+                <h4>Linux</h4>
+                <div class="skill-progress"><svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="80"/></svg><span class="skill-percent">80%</span></div>
             </div>
         </div>
     </div>
 </section>
 
 <!-- ══════════════════════════ PROJECTS ══════════════════════════ -->
-<section id="projects" class="section projects-section">
+<section id="projects" class="section section-alt">
+    <div class="section-glow" style="background:var(--indigo);top:20%;left:-15%"></div>
     <div class="container">
-        <div class="section-header" data-aos="fade-up">
-            <span class="section-tag"><i class="bi bi-rocket-takeoff-fill"></i> My Work</span>
-            <h2 class="section-title">Featured <span class="text-gradient">Projects</span></h2>
-            <div class="section-divider"></div>
+        <div class="section-header">
+            <span class="section-tag reveal-up"><i class="bi bi-rocket-takeoff-fill"></i> My Work</span>
+            <h2 class="section-title reveal-up">Featured <span class="text-gradient">Projects</span></h2>
+            <div class="section-divider reveal-up"></div>
         </div>
-        <div class="projects-toolbar" data-aos="fade-up" data-aos-delay="100">
+        <div class="projects-toolbar reveal-up">
             <div class="search-box">
                 <i class="bi bi-search"></i>
                 <input type="text" id="projectSearch" placeholder="Search projects..." aria-label="Search projects">
             </div>
             <div class="filter-tags">
                 <button class="filter-tag active" data-filter="all">All</button>
-                <button class="filter-tag" data-filter="python">Python</button>
-                <button class="filter-tag" data-filter="flask">Flask</button>
-                <button class="filter-tag" data-filter="web">Web Dev</button>
-                <button class="filter-tag" data-filter="data">Data Analysis</button>
+                <button class="filter-tag" data-filter="agentic">Agentic AI</button>
+                <button class="filter-tag" data-filter="rag">RAG</button>
+                <button class="filter-tag" data-filter="mcp">MCP</button>
+                <button class="filter-tag" data-filter="fullstack">Full-Stack</button>
                 <button class="filter-tag" data-filter="ml">ML / AI</button>
             </div>
         </div>
         <div class="projects-grid" id="projectsGrid">
-            <div class="project-card glass-card" data-category="flask web" data-aos="fade-up" data-aos-delay="100">
+            <div class="project-card glass-card reveal-up" data-category="agentic ml">
                 <div class="project-image">
-                    <div class="project-placeholder-img" style="--hue: 250"><i class="bi bi-kanban-fill"></i></div>
+                    <div class="project-placeholder-img" style="--hue: 260"><i class="bi bi-robot"></i></div>
                     <div class="project-overlay">
                         <a href="#" class="project-link" aria-label="GitHub"><i class="bi bi-github"></i></a>
                         <a href="#" class="project-link" aria-label="Live Demo"><i class="bi bi-box-arrow-up-right"></i></a>
                     </div>
                 </div>
                 <div class="project-body">
-                    <h4>Task Management App</h4>
-                    <p>Full-stack task manager with user auth, CRUD operations, and a dynamic dashboard built with Flask &amp; SQLite.</p>
-                    <div class="project-tags"><span>Flask</span><span>Python</span><span>SQLite</span><span>Bootstrap</span></div>
+                    <h4>Multi-Agent AI System</h4>
+                    <p>Orchestrated autonomous AI agent swarm using CrewAI and AutoGen for complex task decomposition, planning, and execution.</p>
+                    <div class="project-tags"><span>CrewAI</span><span>AutoGen</span><span>LangChain</span><span>Python</span></div>
                 </div>
             </div>
-            <div class="project-card glass-card" data-category="python data" data-aos="fade-up" data-aos-delay="200">
+            <div class="project-card glass-card reveal-up" data-category="rag ml">
                 <div class="project-image">
-                    <div class="project-placeholder-img" style="--hue: 170"><i class="bi bi-graph-up-arrow"></i></div>
+                    <div class="project-placeholder-img" style="--hue: 180"><i class="bi bi-database-fill-gear"></i></div>
                     <div class="project-overlay">
                         <a href="#" class="project-link" aria-label="GitHub"><i class="bi bi-github"></i></a>
                         <a href="#" class="project-link" aria-label="Live Demo"><i class="bi bi-box-arrow-up-right"></i></a>
                     </div>
                 </div>
                 <div class="project-body">
-                    <h4>Data Analytics Dashboard</h4>
-                    <p>Interactive data visualization dashboard using Pandas, NumPy, and Chart.js for real-time analytical insights.</p>
-                    <div class="project-tags"><span>Python</span><span>Pandas</span><span>NumPy</span><span>Chart.js</span></div>
+                    <h4>RAG Knowledge Engine</h4>
+                    <p>Enterprise-grade retrieval-augmented generation pipeline with hybrid search, semantic chunking, and reranking.</p>
+                    <div class="project-tags"><span>LangChain</span><span>ChromaDB</span><span>OpenAI</span><span>FastAPI</span></div>
                 </div>
             </div>
-            <div class="project-card glass-card" data-category="web flask" data-aos="fade-up" data-aos-delay="300">
+            <div class="project-card glass-card reveal-up" data-category="mcp fullstack">
                 <div class="project-image">
-                    <div class="project-placeholder-img" style="--hue: 320"><i class="bi bi-cart4"></i></div>
+                    <div class="project-placeholder-img" style="--hue: 200"><i class="bi bi-plug-fill"></i></div>
                     <div class="project-overlay">
                         <a href="#" class="project-link" aria-label="GitHub"><i class="bi bi-github"></i></a>
                         <a href="#" class="project-link" aria-label="Live Demo"><i class="bi bi-box-arrow-up-right"></i></a>
                     </div>
                 </div>
                 <div class="project-body">
-                    <h4>E-Commerce Platform</h4>
-                    <p>Modern e-commerce store with product management, shopping cart, payment integration, and admin panel.</p>
-                    <div class="project-tags"><span>Flask</span><span>MySQL</span><span>JavaScript</span><span>Bootstrap</span></div>
+                    <h4>MCP Server Toolkit</h4>
+                    <p>Production-ready Model Context Protocol server suite enabling AI assistants to interact with databases and APIs.</p>
+                    <div class="project-tags"><span>MCP SDK</span><span>TypeScript</span><span>Python</span><span>Docker</span></div>
                 </div>
             </div>
-            <div class="project-card glass-card" data-category="python ml" data-aos="fade-up" data-aos-delay="100">
+            <div class="project-card glass-card reveal-up" data-category="ml fullstack">
                 <div class="project-image">
-                    <div class="project-placeholder-img" style="--hue: 30"><i class="bi bi-robot"></i></div>
+                    <div class="project-placeholder-img" style="--hue: 300"><i class="bi bi-code-square"></i></div>
                     <div class="project-overlay">
                         <a href="#" class="project-link" aria-label="GitHub"><i class="bi bi-github"></i></a>
                         <a href="#" class="project-link" aria-label="Live Demo"><i class="bi bi-box-arrow-up-right"></i></a>
                     </div>
                 </div>
                 <div class="project-body">
-                    <h4>Sentiment Analyzer</h4>
-                    <p>ML-powered sentiment analysis tool that classifies text into positive, negative, or neutral categories.</p>
-                    <div class="project-tags"><span>Python</span><span>Scikit-learn</span><span>Flask</span><span>NLP</span></div>
+                    <h4>AI Code Reviewer</h4>
+                    <p>Intelligent code review assistant using LLM-powered analysis for detecting bugs and security vulnerabilities.</p>
+                    <div class="project-tags"><span>Gemini API</span><span>Python</span><span>FastAPI</span><span>React</span></div>
                 </div>
             </div>
-            <div class="project-card glass-card" data-category="python" data-aos="fade-up" data-aos-delay="200">
+            <div class="project-card glass-card reveal-up" data-category="fullstack agentic">
                 <div class="project-image">
-                    <div class="project-placeholder-img" style="--hue: 200"><i class="bi bi-cloud-arrow-down-fill"></i></div>
+                    <div class="project-placeholder-img" style="--hue: 140"><i class="bi bi-speedometer2"></i></div>
                     <div class="project-overlay">
                         <a href="#" class="project-link" aria-label="GitHub"><i class="bi bi-github"></i></a>
                         <a href="#" class="project-link" aria-label="Live Demo"><i class="bi bi-box-arrow-up-right"></i></a>
                     </div>
                 </div>
                 <div class="project-body">
-                    <h4>Web Scraping Suite</h4>
-                    <p>Automated web scraping toolkit with scheduling, data extraction pipelines, and export to CSV/JSON.</p>
-                    <div class="project-tags"><span>Python</span><span>BeautifulSoup</span><span>Selenium</span><span>Pandas</span></div>
+                    <h4>Conversational AI Dashboard</h4>
+                    <p>Real-time analytics dashboard for monitoring multi-agent AI systems with conversation tracking and metrics.</p>
+                    <div class="project-tags"><span>Next.js</span><span>Python</span><span>WebSockets</span><span>PostgreSQL</span></div>
                 </div>
             </div>
-            <div class="project-card glass-card" data-category="flask web" data-aos="fade-up" data-aos-delay="300">
+            <div class="project-card glass-card reveal-up" data-category="rag ml">
                 <div class="project-image">
-                    <div class="project-placeholder-img" style="--hue: 280"><i class="bi bi-chat-dots-fill"></i></div>
+                    <div class="project-placeholder-img" style="--hue: 30"><i class="bi bi-file-earmark-text-fill"></i></div>
                     <div class="project-overlay">
                         <a href="#" class="project-link" aria-label="GitHub"><i class="bi bi-github"></i></a>
                         <a href="#" class="project-link" aria-label="Live Demo"><i class="bi bi-box-arrow-up-right"></i></a>
                     </div>
                 </div>
                 <div class="project-body">
-                    <h4>Real-Time Chat App</h4>
-                    <p>Real-time messaging application with rooms, typing indicators, and online status using WebSockets.</p>
-                    <div class="project-tags"><span>Flask</span><span>SocketIO</span><span>JavaScript</span><span>SQLite</span></div>
+                    <h4>Intelligent Document Processor</h4>
+                    <p>Multi-modal document understanding pipeline with OCR, table extraction, summarization, and semantic search.</p>
+                    <div class="project-tags"><span>LlamaIndex</span><span>PyTorch</span><span>HuggingFace</span><span>Pinecone</span></div>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ══════════════════════════ EXPERIENCE ══════════════════════════ -->
-<section id="experience" class="section experience-section">
+<!-- ══════════════════════════ AI DASHBOARD ══════════════════════════ -->
+<section id="dashboard" class="section">
+    <div class="section-glow" style="background:var(--violet);bottom:5%;right:-10%"></div>
     <div class="container">
-        <div class="section-header" data-aos="fade-up">
-            <span class="section-tag"><i class="bi bi-briefcase-fill"></i> My Journey</span>
-            <h2 class="section-title">Experience &amp; <span class="text-gradient">Timeline</span></h2>
-            <div class="section-divider"></div>
+        <div class="section-header">
+            <span class="section-tag reveal-up"><i class="bi bi-bar-chart-line-fill"></i> AI Metrics</span>
+            <h2 class="section-title reveal-up">Performance <span class="text-gradient">Dashboard</span></h2>
+            <div class="section-divider reveal-up"></div>
         </div>
-        <div class="timeline">
-            <div class="timeline-line"></div>
-            <div class="timeline-item" data-aos="fade-right" data-aos-duration="800">
-                <div class="timeline-dot"><i class="bi bi-laptop"></i></div>
-                <div class="timeline-card glass-card">
-                    <span class="timeline-date">2025 – Present</span>
-                    <h4>Freelance Full-Stack Developer</h4>
-                    <p>Building custom web solutions for clients worldwide. Specializing in Flask, Python automation, and responsive front-end development.</p>
-                    <div class="timeline-tags"><span>Flask</span><span>Python</span><span>JavaScript</span></div>
+        <div class="dashboard-grid">
+            <div class="dashboard-card glass-card reveal-scale">
+                <div class="dashboard-icon cyan"><i class="bi bi-cpu-fill"></i></div>
+                <div class="dashboard-number" data-target="12">0<span>+</span></div>
+                <div class="dashboard-label">AI Models Deployed</div>
+            </div>
+            <div class="dashboard-card glass-card reveal-scale">
+                <div class="dashboard-icon violet"><i class="bi bi-diagram-3-fill"></i></div>
+                <div class="dashboard-number" data-target="8">0<span>+</span></div>
+                <div class="dashboard-label">RAG Pipelines Built</div>
+            </div>
+            <div class="dashboard-card glass-card reveal-scale">
+                <div class="dashboard-icon indigo"><i class="bi bi-braces"></i></div>
+                <div class="dashboard-number" data-target="50">0<span>K</span></div>
+                <div class="dashboard-label">Lines of AI Code</div>
+            </div>
+            <div class="dashboard-card glass-card reveal-scale">
+                <div class="dashboard-icon pink"><i class="bi bi-plug-fill"></i></div>
+                <div class="dashboard-number" data-target="5">0<span>+</span></div>
+                <div class="dashboard-label">MCP Servers</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════ EXPERIENCE TIMELINE ══════════════════════════ -->
+<section id="experience" class="section section-alt">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag reveal-up"><i class="bi bi-clock-history"></i> My Journey</span>
+            <h2 class="section-title reveal-up">Experience <span class="text-gradient">Timeline</span></h2>
+            <div class="section-divider reveal-up"></div>
+        </div>
+        <div class="timeline-wrapper reveal-up">
+            <div class="timeline-track" id="timelineTrack">
+                <div class="timeline-card-wrapper">
+                    <div class="timeline-card glass-card">
+                        <span class="timeline-date">2025 – Present</span>
+                        <h4>AI Engineer & Agentic AI Developer</h4>
+                        <p>Designing and deploying autonomous multi-agent AI systems, building production RAG pipelines, and developing MCP server integrations for enterprise clients.</p>
+                        <div class="timeline-tags"><span>CrewAI</span><span>LangChain</span><span>MCP</span><span>FastAPI</span></div>
+                    </div>
+                </div>
+                <div class="timeline-card-wrapper">
+                    <div class="timeline-card glass-card">
+                        <span class="timeline-date">2024 – 2025</span>
+                        <h4>ML Engineer Intern</h4>
+                        <p>Built end-to-end ML pipelines, fine-tuned LLMs for domain-specific tasks, and developed REST APIs for AI model serving with FastAPI and Docker.</p>
+                        <div class="timeline-tags"><span>PyTorch</span><span>FastAPI</span><span>Docker</span><span>AWS</span></div>
+                    </div>
+                </div>
+                <div class="timeline-card-wrapper">
+                    <div class="timeline-card glass-card">
+                        <span class="timeline-date">2023 – 2024</span>
+                        <h4>AI/ML Training Program</h4>
+                        <p>Completed intensive training in deep learning, NLP, computer vision, and modern AI frameworks including PyTorch, Hugging Face, and LangChain.</p>
+                        <div class="timeline-tags"><span>Deep Learning</span><span>NLP</span><span>PyTorch</span><span>HuggingFace</span></div>
+                    </div>
+                </div>
+                <div class="timeline-card-wrapper">
+                    <div class="timeline-card glass-card">
+                        <span class="timeline-date">2022 – 2023</span>
+                        <h4>Full-Stack Developer</h4>
+                        <p>Built web applications with Python, Flask, and React. Developed REST APIs and worked with SQL/NoSQL databases for production deployments.</p>
+                        <div class="timeline-tags"><span>Python</span><span>Flask</span><span>React</span><span>PostgreSQL</span></div>
+                    </div>
                 </div>
             </div>
-            <div class="timeline-item" data-aos="fade-left" data-aos-duration="800">
-                <div class="timeline-dot"><i class="bi bi-building"></i></div>
-                <div class="timeline-card glass-card">
-                    <span class="timeline-date">2024 – 2025</span>
-                    <h4>Web Development Intern</h4>
-                    <p>Worked on full-stack projects, built REST APIs, and collaborated with senior developers to deploy production applications.</p>
-                    <div class="timeline-tags"><span>Django</span><span>REST API</span><span>MySQL</span></div>
-                </div>
+        </div>
+        <div class="timeline-scroll-hint reveal-up">
+            <i class="bi bi-arrow-right"></i> Scroll to explore timeline
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════ CERTIFICATIONS ══════════════════════════ -->
+<section id="certifications" class="section">
+    <div class="section-glow" style="background:var(--cyan);top:20%;right:-10%"></div>
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag reveal-up"><i class="bi bi-award-fill"></i> Credentials</span>
+            <h2 class="section-title reveal-up">Certifications & <span class="text-gradient">Achievements</span></h2>
+            <div class="section-divider reveal-up"></div>
+        </div>
+        <div class="certs-grid">
+            <div class="cert-card glass-card reveal-up">
+                <div class="cert-icon"><i class="bi bi-cloud-fill"></i></div>
+                <h4>Google Cloud Professional Machine Learning Engineer</h4>
+                <div class="cert-issuer">Google Cloud</div>
+                <div class="cert-year">2025</div>
             </div>
-            <div class="timeline-item" data-aos="fade-right" data-aos-duration="800">
-                <div class="timeline-dot"><i class="bi bi-mortarboard-fill"></i></div>
-                <div class="timeline-card glass-card">
-                    <span class="timeline-date">2023 – 2024</span>
-                    <h4>Python Training Program</h4>
-                    <p>Completed an intensive training covering Python core, data structures, algorithms, and web development with Flask and Django.</p>
-                    <div class="timeline-tags"><span>Python</span><span>DSA</span><span>Flask</span></div>
-                </div>
+            <div class="cert-card glass-card reveal-up">
+                <div class="cert-icon"><i class="bi bi-cloud-haze2-fill"></i></div>
+                <h4>AWS Certified Machine Learning – Specialty</h4>
+                <div class="cert-issuer">Amazon Web Services</div>
+                <div class="cert-year">2024</div>
             </div>
-            <div class="timeline-item" data-aos="fade-left" data-aos-duration="800">
-                <div class="timeline-dot"><i class="bi bi-star-fill"></i></div>
-                <div class="timeline-card glass-card">
-                    <span class="timeline-date">2023</span>
-                    <h4>Open Source Contributor</h4>
-                    <p>Started contributing to open-source projects on GitHub, improving documentation, fixing bugs, and adding features.</p>
-                    <div class="timeline-tags"><span>Git</span><span>GitHub</span><span>Open Source</span></div>
-                </div>
+            <div class="cert-card glass-card reveal-up">
+                <div class="cert-icon"><i class="bi bi-link-45deg"></i></div>
+                <h4>LangChain for LLM Application Development</h4>
+                <div class="cert-issuer">DeepLearning.AI</div>
+                <div class="cert-year">2024</div>
             </div>
-            <div class="timeline-item" data-aos="fade-right" data-aos-duration="800">
-                <div class="timeline-dot"><i class="bi bi-code-square"></i></div>
-                <div class="timeline-card glass-card">
-                    <span class="timeline-date">2022</span>
-                    <h4>Started Coding Journey</h4>
-                    <p>Began learning programming with Python and HTML/CSS. Built first projects and discovered my passion for web development.</p>
-                    <div class="timeline-tags"><span>Python</span><span>HTML</span><span>CSS</span></div>
-                </div>
+            <div class="cert-card glass-card reveal-up">
+                <div class="cert-icon"><i class="bi bi-cpu"></i></div>
+                <h4>Deep Learning Specialization</h4>
+                <div class="cert-issuer">DeepLearning.AI / Coursera</div>
+                <div class="cert-year">2023</div>
             </div>
         </div>
     </div>
 </section>
 
 <!-- ══════════════════════════ CONTACT ══════════════════════════ -->
-<section id="contact" class="section contact-section">
+<section id="contact" class="section section-alt contact-section">
     <div class="container">
-        <div class="section-header" data-aos="fade-up">
-            <span class="section-tag"><i class="bi bi-envelope-paper-fill"></i> Say Hello</span>
-            <h2 class="section-title">Get In <span class="text-gradient">Touch</span></h2>
-            <div class="section-divider"></div>
+        <div class="section-header">
+            <span class="section-tag reveal-up"><i class="bi bi-envelope-paper-fill"></i> Let's Connect</span>
+            <h2 class="section-title reveal-up">Get In <span class="text-gradient">Touch</span></h2>
+            <div class="section-divider reveal-up"></div>
         </div>
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
-        <div class="flash-messages" data-aos="fade-up">
+        <div class="flash-messages">
             {% for category, message in messages %}
             <div class="flash-msg flash-{{ category }}">
                 <i class="bi {% if category == 'success' %}bi-check-circle-fill{% else %}bi-exclamation-triangle-fill{% endif %}"></i>
@@ -432,70 +590,66 @@
         </div>
         {% endif %}
         {% endwith %}
-        <div class="row g-5">
-            <div class="col-lg-5" data-aos="fade-right" data-aos-duration="800">
-                <div class="contact-info">
-                    <h3>Let's build something <span class="text-gradient">amazing</span> together.</h3>
-                    <p>Have a project in mind, want to collaborate, or just want to say hi? Feel free to reach out!</p>
-                    <div class="contact-details">
-                        <div class="contact-item glass-card">
-                            <div class="contact-icon"><i class="bi bi-envelope-fill"></i></div>
-                            <div><strong>Email</strong><span>ajay.w@example.com</span></div>
-                        </div>
-                        <div class="contact-item glass-card">
-                            <div class="contact-icon"><i class="bi bi-telephone-fill"></i></div>
-                            <div><strong>Phone</strong><span>+91 98765 43210</span></div>
-                        </div>
-                        <div class="contact-item glass-card">
-                            <div class="contact-icon"><i class="bi bi-geo-alt-fill"></i></div>
-                            <div><strong>Location</strong><span>India</span></div>
-                        </div>
+        <div class="contact-grid">
+            <div class="contact-info reveal-left">
+                <h3>Let's build the future of <span class="text-gradient">AI</span> together.</h3>
+                <p>Have an AI project in mind, need a RAG pipeline, or want to explore agentic systems? I'd love to hear from you.</p>
+                <div class="contact-details">
+                    <div class="contact-item glass-card">
+                        <div class="contact-icon"><i class="bi bi-envelope-fill"></i></div>
+                        <div><strong>Email</strong><span>ajay.w@example.com</span></div>
                     </div>
-                    <div class="contact-socials">
-                        <a href="#" class="social-icon" aria-label="GitHub"><i class="bi bi-github"></i></a>
-                        <a href="#" class="social-icon" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
-                        <a href="#" class="social-icon" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
-                        <a href="#" class="social-icon" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                    <div class="contact-item glass-card">
+                        <div class="contact-icon"><i class="bi bi-telephone-fill"></i></div>
+                        <div><strong>Phone</strong><span>+91 98765 43210</span></div>
+                    </div>
+                    <div class="contact-item glass-card">
+                        <div class="contact-icon"><i class="bi bi-geo-alt-fill"></i></div>
+                        <div><strong>Location</strong><span>India</span></div>
                     </div>
                 </div>
+                <div class="contact-socials">
+                    <a href="#" class="social-icon" aria-label="GitHub"><i class="bi bi-github"></i></a>
+                    <a href="#" class="social-icon" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                    <a href="#" class="social-icon" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+                    <a href="#" class="social-icon" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                </div>
             </div>
-            <div class="col-lg-7" data-aos="fade-left" data-aos-duration="800">
+            <div class="reveal-right">
                 <form class="contact-form glass-card" action="{{ url_for('contact') }}" method="POST" id="contactForm">
-                    <div class="row g-4">
-                        <div class="col-md-6">
+                    <div class="form-row">
+                        <div class="form-group">
                             <div class="form-floating-custom">
                                 <input type="text" id="fullName" name="full_name" placeholder=" " required minlength="2">
                                 <label for="fullName">Full Name</label>
                                 <span class="form-line"></span>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="form-group">
                             <div class="form-floating-custom">
                                 <input type="email" id="email" name="email" placeholder=" " required>
                                 <label for="email">Email Address</label>
                                 <span class="form-line"></span>
                             </div>
                         </div>
-                        <div class="col-12">
-                            <div class="form-floating-custom">
-                                <input type="text" id="subject" name="subject" placeholder=" " required minlength="3">
-                                <label for="subject">Subject</label>
-                                <span class="form-line"></span>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-floating-custom">
-                                <textarea id="message" name="message" rows="5" placeholder=" " required minlength="10"></textarea>
-                                <label for="message">Your Message</label>
-                                <span class="form-line"></span>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <button type="submit" class="btn btn-primary-glow btn-submit">
-                                <span>Send Message</span><i class="bi bi-arrow-right"></i>
-                            </button>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-floating-custom">
+                            <input type="text" id="subject" name="subject" placeholder=" " required minlength="3">
+                            <label for="subject">Subject</label>
+                            <span class="form-line"></span>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <div class="form-floating-custom">
+                            <textarea id="message" name="message" rows="5" placeholder=" " required minlength="10"></textarea>
+                            <label for="message">Your Message</label>
+                            <span class="form-line"></span>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-primary-glow btn-submit">
+                        <span>Send Message</span><i class="bi bi-arrow-right"></i>
+                    </button>
                 </form>
             </div>
         </div>
@@ -505,47 +659,45 @@
 <!-- ══════════════════════════ FOOTER ══════════════════════════ -->
 <footer class="footer-section">
     <div class="container">
-        <div class="footer-top">
-            <div class="row g-4 align-items-center">
-                <div class="col-lg-4">
-                    <a class="footer-brand" href="#">
-                        <span class="brand-bracket">&lt;</span>Ajay<span class="brand-dot">.</span>S<span class="brand-bracket">/&gt;</span>
-                    </a>
-                    <p class="footer-desc">Crafting digital experiences with code, creativity, and caffeine.</p>
-                </div>
-                <div class="col-lg-4">
-                    <h5 class="footer-heading">Quick Links</h5>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#skills">Skills</a></li>
-                        <li><a href="#projects">Projects</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-4">
-                    <h5 class="footer-heading">Connect</h5>
-                    <div class="footer-socials">
-                        <a href="#" aria-label="GitHub"><i class="bi bi-github"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-                    </div>
+        <div class="footer-grid">
+            <div>
+                <a class="footer-brand" href="#">
+                    <span class="brand-bracket">&lt;</span>Ajay<span class="brand-dot">.</span>S<span class="brand-bracket">/&gt;</span>
+                </a>
+                <p class="footer-desc">Building the future of AI — one agent, one pipeline, one server at a time.</p>
+            </div>
+            <div>
+                <h5 class="footer-heading">Quick Links</h5>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="footer-heading">Connect</h5>
+                <div class="footer-socials">
+                    <a href="#" aria-label="GitHub"><i class="bi bi-github"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Ajay S. All rights reserved. Built with <i class="bi bi-heart-fill text-gradient"></i> &amp; Flask</p>
+            <p>&copy; 2026 Ajay S. All rights reserved. Built with <i class="bi bi-heart-fill text-gradient"></i> & AI</p>
         </div>
     </div>
 </footer>
 
 <!-- ══════════════════════════ CHATBOT ══════════════════════════ -->
-<button id="chatToggle" class="chatbot-toggle" aria-label="Open chat assistant">
+<button id="chatToggle" class="chatbot-toggle" aria-label="Open AI assistant">
     <i class="bi bi-chat-left-text-fill"></i>
 </button>
 
-<div id="chatWindow" class="chatbot-window glass-card">
+<div id="chatWindow" class="chatbot-window">
     <div class="chatbot-header">
         <div class="chatbot-header-info">
             <div class="chatbot-header-avatar"><i class="bi bi-stars"></i></div>
@@ -559,12 +711,12 @@
     <div class="chatbot-body" id="chatMessages">
         <div class="chat-message bot">
             <div class="message-bubble">
-                Hello! 👋 I'm the <strong>&lt;Ajay.S/&gt;</strong> AI assistant. Ask me about:
+                Hey! 👋 I'm the <strong>&lt;Ajay.S/&gt;</strong> AI assistant. Ask me about:
                 <ul>
-                    <li>His background and focus</li>
-                    <li>Core skills and tools</li>
-                    <li>Featured projects</li>
-                    <li>How to get in touch</li>
+                    <li>AI engineering expertise</li>
+                    <li>RAG & agentic AI projects</li>
+                    <li>Skills and technologies</li>
+                    <li>How to collaborate</li>
                 </ul>
             </div>
             <div class="message-time">Just now</div>
@@ -572,14 +724,14 @@
     </div>
     <div class="chatbot-footer">
         <div class="chatbot-suggestions">
-            <button class="chat-suggestion-chip" data-message="Tell me about Ajay">About him</button>
-            <button class="chat-suggestion-chip" data-message="What projects have you worked on?">Projects</button>
+            <button class="chat-suggestion-chip" data-message="Tell me about Ajay's AI work">AI Work</button>
+            <button class="chat-suggestion-chip" data-message="What RAG projects have you built?">RAG Projects</button>
             <button class="chat-suggestion-chip" data-message="What are your core skills?">Skills</button>
-            <button class="chat-suggestion-chip" data-message="How can I contact Ajay?">Contact</button>
+            <button class="chat-suggestion-chip" data-message="How can I hire Ajay?">Hire Me</button>
         </div>
         <form id="chatForm">
             <div class="chatbot-input-group">
-                <input type="text" id="chatInput" placeholder="Ask about Ajay..." required autocomplete="off">
+                <input type="text" id="chatInput" placeholder="Ask about AI, RAG, MCP..." required autocomplete="off">
                 <button type="submit" class="chatbot-send-btn" aria-label="Send message"><i class="bi bi-send-fill"></i></button>
             </div>
         </form>

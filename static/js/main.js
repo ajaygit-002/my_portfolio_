@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════════════════════
-   PORTFOLIO – Main JavaScript
-   Particles · Typewriter · Counters · Filters · Animations
+   PORTFOLIO – Cinematic Animation Engine
+   GSAP + ScrollTrigger · Three.js Particles · Lenis Smooth Scroll
    ═══════════════════════════════════════════════════════════════ */
 
 (function () {
@@ -8,130 +8,205 @@
 
     const $ = (sel, ctx = document) => ctx.querySelector(sel);
     const $$ = (sel, ctx = document) => ctx.querySelectorAll(sel);
-    const isTouchDevice = () => "ontouchstart" in window;
+    const isTouchDevice = () => "ontouchstart" in window || navigator.maxTouchPoints > 0;
 
     /* ── Loading Screen ────────────────────────────────────── */
     window.addEventListener("load", () => {
         const loader = $("#loader");
         if (loader) {
-            setTimeout(() => loader.classList.add("hidden"), 600);
-            setTimeout(() => (loader.style.display = "none"), 1200);
+            setTimeout(() => loader.classList.add("hidden"), 800);
+            setTimeout(() => (loader.style.display = "none"), 1600);
         }
         initAll();
     });
 
     function initAll() {
-        initAOS();
-        initParticles();
+        initLenis();
+        initThreeParticles();
         initTypewriter();
         initNavbar();
-        initThemeToggle();
         initCustomCursor();
         initBackToTop();
+        initGSAPAnimations();
         initCounters();
-        initSkillBars();
+        initSkillRings();
         initSkillTabs();
         initProjectFilter();
         initProjectSearch();
         initSmoothScroll();
         initTiltEffect();
+        initTimelineScroll();
     }
 
-    /* ── AOS Init ──────────────────────────────────────────── */
-    function initAOS() {
-        if (typeof AOS !== "undefined") {
-            AOS.init({ duration: 800, easing: "ease-out-cubic", once: true, offset: 80 });
+    /* ── Lenis Smooth Scroll ──────────────────────────────── */
+    let lenis;
+    function initLenis() {
+        if (typeof Lenis === "undefined") return;
+        try {
+            lenis = new Lenis({
+                duration: 1.2,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                orientation: "vertical",
+                gestureOrientation: "vertical",
+                smoothWheel: true,
+            });
+
+            function raf(time) {
+                lenis.raf(time);
+                requestAnimationFrame(raf);
+            }
+            requestAnimationFrame(raf);
+
+            // Connect Lenis with GSAP ScrollTrigger
+            if (typeof gsap !== "undefined" && gsap.registerPlugin) {
+                lenis.on("scroll", () => {
+                    if (typeof ScrollTrigger !== "undefined") {
+                        ScrollTrigger.update();
+                    }
+                });
+            }
+        } catch (e) {
+            console.warn("Lenis init failed:", e);
         }
     }
 
-    /* ── Particle Canvas ───────────────────────────────────── */
-    function initParticles() {
-        const canvas = $("#particleCanvas");
-        if (!canvas) return;
+    /* ── Three.js Particle Field ──────────────────────────── */
+    function initThreeParticles() {
+        const canvas = $("#heroCanvas");
+        if (!canvas || typeof THREE === "undefined") return;
 
-        const ctx = canvas.getContext("2d");
-        let particles = [];
-        const mouse = { x: null, y: null };
-        const COUNT = 60;
-        const LINK_DIST = 120;
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, canvas.offsetWidth / canvas.offsetHeight, 0.1, 1000);
+        camera.position.z = 50;
 
-        const resize = () => {
-            canvas.width = canvas.offsetWidth;
-            canvas.height = canvas.offsetHeight;
-        };
+        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+        renderer.setSize(canvas.offsetWidth, canvas.offsetHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-        class Particle {
-            constructor() { this.reset(); }
-            reset() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.5;
-                this.vy = (Math.random() - 0.5) * 0.5;
-                this.r = Math.random() * 2 + 0.5;
-                this.a = Math.random() * 0.5 + 0.1;
-            }
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-                if (mouse.x !== null) {
-                    const dx = this.x - mouse.x;
-                    const dy = this.y - mouse.y;
-                    if (Math.hypot(dx, dy) < 100) {
-                        this.x += dx * 0.01;
-                        this.y += dy * 0.01;
-                    }
-                }
-            }
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(99,102,241,${this.a})`;
-                ctx.fill();
-            }
+        // Particles
+        const COUNT = 300;
+        const positions = new Float32Array(COUNT * 3);
+        const colors = new Float32Array(COUNT * 3);
+        const sizes = new Float32Array(COUNT);
+
+        const cyanColor = new THREE.Color(0x00E5FF);
+        const violetColor = new THREE.Color(0x8B5CF6);
+        const indigoColor = new THREE.Color(0x6366F1);
+        const palette = [cyanColor, violetColor, indigoColor];
+
+        for (let i = 0; i < COUNT; i++) {
+            positions[i * 3] = (Math.random() - 0.5) * 100;
+            positions[i * 3 + 1] = (Math.random() - 0.5) * 100;
+            positions[i * 3 + 2] = (Math.random() - 0.5) * 50;
+
+            const color = palette[Math.floor(Math.random() * palette.length)];
+            colors[i * 3] = color.r;
+            colors[i * 3 + 1] = color.g;
+            colors[i * 3 + 2] = color.b;
+
+            sizes[i] = Math.random() * 2 + 0.5;
         }
 
-        function init() {
-            resize();
-            particles = Array.from({ length: COUNT }, () => new Particle());
-        }
+        const geometry = new THREE.BufferGeometry();
+        geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+        geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
+        geometry.setAttribute("size", new THREE.BufferAttribute(sizes, 1));
 
-        function drawLinks() {
-            for (let i = 0; i < particles.length; i++) {
-                for (let j = i + 1; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const dist = Math.hypot(dx, dy);
-                    if (dist < LINK_DIST) {
-                        ctx.beginPath();
-                        ctx.strokeStyle = `rgba(99,102,241,${0.08 * (1 - dist / LINK_DIST)})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.stroke();
-                    }
-                }
-            }
-        }
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach((p) => { p.update(); p.draw(); });
-            drawLinks();
-            requestAnimationFrame(animate);
-        }
-
-        canvas.addEventListener("mousemove", (e) => {
-            const r = canvas.getBoundingClientRect();
-            mouse.x = e.clientX - r.left;
-            mouse.y = e.clientY - r.top;
+        const material = new THREE.PointsMaterial({
+            size: 1.5,
+            vertexColors: true,
+            transparent: true,
+            opacity: 0.6,
+            sizeAttenuation: true,
+            blending: THREE.AdditiveBlending,
         });
-        canvas.addEventListener("mouseleave", () => { mouse.x = mouse.y = null; });
-        window.addEventListener("resize", resize);
 
-        init();
+        const points = new THREE.Points(geometry, material);
+        scene.add(points);
+
+        // Lines between nearby particles
+        const linePositions = [];
+        const LINE_DIST = 12;
+
+        function updateLines() {
+            const pos = geometry.attributes.position.array;
+            linePositions.length = 0;
+
+            for (let i = 0; i < COUNT; i++) {
+                for (let j = i + 1; j < COUNT; j++) {
+                    const dx = pos[i * 3] - pos[j * 3];
+                    const dy = pos[i * 3 + 1] - pos[j * 3 + 1];
+                    const dz = pos[i * 3 + 2] - pos[j * 3 + 2];
+                    const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+
+                    if (dist < LINE_DIST) {
+                        linePositions.push(
+                            pos[i * 3], pos[i * 3 + 1], pos[i * 3 + 2],
+                            pos[j * 3], pos[j * 3 + 1], pos[j * 3 + 2]
+                        );
+                    }
+                }
+            }
+        }
+
+        updateLines();
+
+        const lineGeo = new THREE.BufferGeometry();
+        lineGeo.setAttribute("position", new THREE.Float32BufferAttribute(linePositions, 3));
+        const lineMat = new THREE.LineBasicMaterial({
+            color: 0x00E5FF,
+            transparent: true,
+            opacity: 0.06,
+            blending: THREE.AdditiveBlending,
+        });
+        const lines = new THREE.LineSegments(lineGeo, lineMat);
+        scene.add(lines);
+
+        // Mouse interaction
+        const mouse = { x: 0, y: 0 };
+        canvas.addEventListener("mousemove", (e) => {
+            const rect = canvas.getBoundingClientRect();
+            mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+            mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+        });
+
+        // Animation loop
+        let time = 0;
+        function animate() {
+            requestAnimationFrame(animate);
+            time += 0.001;
+
+            const pos = geometry.attributes.position.array;
+            for (let i = 0; i < COUNT; i++) {
+                pos[i * 3 + 1] += Math.sin(time + i * 0.1) * 0.015;
+                pos[i * 3] += Math.cos(time + i * 0.05) * 0.01;
+            }
+            geometry.attributes.position.needsUpdate = true;
+
+            points.rotation.y = mouse.x * 0.1;
+            points.rotation.x = mouse.y * 0.05;
+            lines.rotation.y = mouse.x * 0.1;
+            lines.rotation.x = mouse.y * 0.05;
+
+            // Update lines periodically
+            if (Math.floor(time * 1000) % 60 === 0) {
+                updateLines();
+                lineGeo.setAttribute("position", new THREE.Float32BufferAttribute(linePositions, 3));
+            }
+
+            renderer.render(scene, camera);
+        }
+
         animate();
+
+        // Resize handler
+        window.addEventListener("resize", () => {
+            const w = canvas.offsetWidth;
+            const h = canvas.offsetHeight;
+            camera.aspect = w / h;
+            camera.updateProjectionMatrix();
+            renderer.setSize(w, h);
+        });
     }
 
     /* ── Typewriter ────────────────────────────────────────── */
@@ -140,8 +215,12 @@
         if (!el) return;
 
         const words = [
-            "Full-Stack Developer", "Python Enthusiast", "Flask Developer",
-            "UI/UX Lover", "Open Source Contributor", "Problem Solver",
+            "Agentic AI Systems",
+            "RAG Pipelines",
+            "MCP Server Integrations",
+            "Multi-Agent Orchestration",
+            "AI-Native Applications",
+            "Production ML Systems",
         ];
         let wordIdx = 0, charIdx = 0, deleting = false;
 
@@ -150,9 +229,9 @@
             charIdx += deleting ? -1 : 1;
             el.textContent = word.substring(0, charIdx);
 
-            let delay = deleting ? 40 : 80;
+            let delay = deleting ? 35 : 70;
             if (!deleting && charIdx === word.length) {
-                delay = 2000;
+                delay = 2200;
                 deleting = true;
             } else if (deleting && charIdx === 0) {
                 deleting = false;
@@ -169,42 +248,35 @@
         const navbar = $("#mainNavbar");
         const navLinks = $$(".nav-link");
         const sections = $$("section[id]");
+        const navToggle = $("#navToggle");
+        const navLinksContainer = $("#navLinks");
 
+        // Scroll behavior
         window.addEventListener("scroll", () => {
             if (navbar) navbar.classList.toggle("scrolled", window.scrollY > 50);
 
             let current = "";
             sections.forEach((sec) => {
-                if (window.scrollY >= sec.offsetTop - 100) current = sec.id;
+                if (window.scrollY >= sec.offsetTop - 150) current = sec.id;
             });
             navLinks.forEach((link) => {
                 link.classList.toggle("active", link.getAttribute("href") === `#${current}`);
             });
         });
 
-        navLinks.forEach((link) => {
-            link.addEventListener("click", () => {
-                const collapse = $("#navbarContent");
-                if (collapse?.classList.contains("show")) {
-                    bootstrap.Collapse.getInstance(collapse)?.hide();
-                }
+        // Mobile toggle
+        if (navToggle && navLinksContainer) {
+            navToggle.addEventListener("click", () => {
+                navLinksContainer.classList.toggle("open");
             });
-        });
-    }
 
-    /* ── Theme Toggle ──────────────────────────────────────── */
-    function initThemeToggle() {
-        const toggle = $("#themeToggle");
-        if (!toggle) return;
-
-        const saved = localStorage.getItem("portfolio-theme");
-        if (saved) document.documentElement.setAttribute("data-theme", saved);
-
-        toggle.addEventListener("click", () => {
-            const next = (document.documentElement.getAttribute("data-theme") || "dark") === "dark" ? "light" : "dark";
-            document.documentElement.setAttribute("data-theme", next);
-            localStorage.setItem("portfolio-theme", next);
-        });
+            // Close on link click
+            navLinks.forEach((link) => {
+                link.addEventListener("click", () => {
+                    navLinksContainer.classList.remove("open");
+                });
+            });
+        }
     }
 
     /* ── Custom Cursor ─────────────────────────────────────── */
@@ -226,14 +298,14 @@
         });
 
         (function animateRing() {
-            rx += (mx - rx) * 0.15;
-            ry += (my - ry) * 0.15;
+            rx += (mx - rx) * 0.12;
+            ry += (my - ry) * 0.12;
             ring.style.left = rx + "px";
             ring.style.top = ry + "px";
             requestAnimationFrame(animateRing);
         })();
 
-        $$("a, button, input, textarea, .project-card, .skill-card, .stat-card").forEach((el) => {
+        $$("a, button, input, textarea, .project-card, .skill-card, .stat-card, .cert-card, .dashboard-card").forEach((el) => {
             el.addEventListener("mouseenter", () => ring.classList.add("hovered"));
             el.addEventListener("mouseleave", () => ring.classList.remove("hovered"));
         });
@@ -243,13 +315,110 @@
     function initBackToTop() {
         const btn = $("#backToTop");
         if (!btn) return;
-        window.addEventListener("scroll", () => btn.classList.toggle("visible", window.scrollY > 400));
-        btn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+        window.addEventListener("scroll", () => btn.classList.toggle("visible", window.scrollY > 500));
+        btn.addEventListener("click", () => {
+            if (lenis) {
+                lenis.scrollTo(0);
+            } else {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+        });
+    }
+
+    /* ── GSAP Animations ──────────────────────────────────── */
+    function initGSAPAnimations() {
+        if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Reveal animations
+        $$(".reveal-up").forEach((el) => {
+            gsap.to(el, {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 85%",
+                    toggleActions: "play none none none",
+                },
+            });
+        });
+
+        $$(".reveal-left").forEach((el) => {
+            gsap.to(el, {
+                opacity: 1,
+                x: 0,
+                duration: 0.8,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 85%",
+                    toggleActions: "play none none none",
+                },
+            });
+        });
+
+        $$(".reveal-right").forEach((el) => {
+            gsap.to(el, {
+                opacity: 1,
+                x: 0,
+                duration: 0.8,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 85%",
+                    toggleActions: "play none none none",
+                },
+            });
+        });
+
+        $$(".reveal-scale").forEach((el, i) => {
+            gsap.to(el, {
+                opacity: 1,
+                scale: 1,
+                duration: 0.6,
+                delay: (i % 6) * 0.08,
+                ease: "back.out(1.5)",
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 90%",
+                    toggleActions: "play none none none",
+                },
+            });
+        });
+
+        // Parallax on gradient orbs
+        $$(".hero-gradient-orb").forEach((orb) => {
+            gsap.to(orb, {
+                y: -80,
+                scrollTrigger: {
+                    trigger: ".hero-section",
+                    start: "top top",
+                    end: "bottom top",
+                    scrub: 1,
+                },
+            });
+        });
+
+        // Section glow parallax
+        $$(".section-glow").forEach((glow) => {
+            gsap.to(glow, {
+                y: -50,
+                scrollTrigger: {
+                    trigger: glow.parentElement,
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: 1,
+                },
+            });
+        });
     }
 
     /* ── Counter Animation ─────────────────────────────────── */
     function initCounters() {
-        const counters = $$(".stat-number[data-target]");
+        const counters = $$("[data-target]");
         if (!counters.length) return;
 
         const observer = new IntersectionObserver((entries) => {
@@ -271,27 +440,32 @@
 
         (function step(now) {
             const progress = Math.min((now - start) / duration, 1);
-            el.textContent = Math.floor((1 - Math.pow(1 - progress, 3)) * target);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = Math.floor(eased * target);
             if (progress < 1) requestAnimationFrame(step);
+            else el.textContent = target;
         })(start);
     }
 
-    /* ── Skill Bars ────────────────────────────────────────── */
-    function initSkillBars() {
-        const bars = $$(".skill-fill[data-width]");
-        if (!bars.length) return;
+    /* ── Skill Progress Rings ─────────────────────────────── */
+    function initSkillRings() {
+        const rings = $$(".skill-progress-fill[data-percent]");
+        if (!rings.length) return;
+
+        const circumference = 2 * Math.PI * 22; // r=22
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    entry.target.style.setProperty("--w", entry.target.dataset.width + "%");
-                    entry.target.classList.add("animated");
+                    const percent = parseInt(entry.target.dataset.percent, 10);
+                    const offset = circumference - (percent / 100) * circumference;
+                    entry.target.style.strokeDashoffset = offset;
                     observer.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.3 });
 
-        bars.forEach((b) => observer.observe(b));
+        rings.forEach((ring) => observer.observe(ring));
     }
 
     /* ── Skill Tabs ────────────────────────────────────────── */
@@ -324,7 +498,8 @@
                 tag.classList.add("active");
                 const filter = tag.dataset.filter;
                 cards.forEach((card) => {
-                    card.classList.toggle("hidden", filter !== "all" && !card.dataset.category.split(" ").includes(filter));
+                    const cats = card.dataset.category.split(" ");
+                    card.classList.toggle("hidden", filter !== "all" && !cats.includes(filter));
                 });
             });
         });
@@ -344,30 +519,65 @@
         });
     }
 
-    /* ── Smooth Scroll ─────────────────────────────────────── */
+    /* ── Smooth Scroll (anchor links) ─────────────────────── */
     function initSmoothScroll() {
         $$('a[href^="#"]').forEach((anchor) => {
             anchor.addEventListener("click", function (e) {
                 const href = this.getAttribute("href");
                 if (href === "#") return;
                 const target = $(href);
-                if (target) { e.preventDefault(); target.scrollIntoView({ behavior: "smooth" }); }
+                if (target) {
+                    e.preventDefault();
+                    if (lenis) {
+                        lenis.scrollTo(target, { offset: -72 });
+                    } else {
+                        target.scrollIntoView({ behavior: "smooth" });
+                    }
+                }
             });
         });
     }
 
-    /* ── Tilt Effect on Project Cards ──────────────────────── */
+    /* ── Tilt Effect on Cards ─────────────────────────────── */
     function initTiltEffect() {
         if (isTouchDevice()) return;
 
-        $$(".project-card").forEach((card) => {
+        $$(".project-card, .cert-card").forEach((card) => {
             card.addEventListener("mousemove", (e) => {
                 const rect = card.getBoundingClientRect();
                 const x = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
                 const y = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
-                card.style.transform = `perspective(800px) rotateX(${y * -5}deg) rotateY(${x * 5}deg) translateY(-4px)`;
+                card.style.transform = `perspective(800px) rotateX(${y * -4}deg) rotateY(${x * 4}deg) translateY(-8px)`;
             });
-            card.addEventListener("mouseleave", () => { card.style.transform = ""; });
+            card.addEventListener("mouseleave", () => {
+                card.style.transform = "";
+            });
+        });
+    }
+
+    /* ── GSAP Horizontal Timeline ─────────────────────────── */
+    function initTimelineScroll() {
+        const track = $("#timelineTrack");
+        const wrapper = $(".timeline-wrapper");
+        if (!track || !wrapper || typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+
+        // Calculate how far we need to scroll
+        const calculateScroll = () => {
+            const trackWidth = track.scrollWidth;
+            const wrapperWidth = wrapper.offsetWidth;
+            return -(trackWidth - wrapperWidth);
+        };
+
+        gsap.to(track, {
+            x: calculateScroll,
+            ease: "none",
+            scrollTrigger: {
+                trigger: wrapper,
+                start: "top 60%",
+                end: () => `+=${track.scrollWidth - wrapper.offsetWidth}`,
+                scrub: 1,
+                invalidateOnRefresh: true,
+            },
         });
     }
 })();

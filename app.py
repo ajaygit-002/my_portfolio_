@@ -14,6 +14,8 @@ GEMINI_MODEL = "gemini-2.5-flash"
 GEMINI_URL = f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent"
 SYSTEM_PROMPT = (
     "You are '<Ajay.S/>', a friendly AI assistant on Ajay S's portfolio. "
+    "Ajay is an AI Engineer specializing in Agentic AI, RAG architectures, "
+    "and MCP (Model Context Protocol) integrations. "
     "Use the verified context to answer. If info is missing, suggest contacting Ajay. "
     "Keep responses under 3-4 sentences, professional and engaging.\n\n"
 )
@@ -42,7 +44,7 @@ def _build_sections(data):
             f"Focus: {about['focus']}."
         ),
         "Skills & Technologies": "Ajay's Skills: " + "; ".join(
-            f"{cat.capitalize()}: {', '.join(skills)}"
+            f"{cat.replace('_', ' ').capitalize()}: {', '.join(skills)}"
             for cat, skills in data["skills"].items()
         ) + ".",
         "Projects & Portfolio": "Ajay's Projects: " + " ".join(
@@ -115,32 +117,33 @@ def call_gemini(api_key, context, query):
 _FALLBACK_RESPONSES = {
     "skills": (
         "Here's Ajay's technical skillset:\n\n"
-        "• **Languages**: Python, JavaScript, SQL\n"
-        "• **Backend**: Flask, Django, Pandas, NumPy\n"
-        "• **Frontend**: HTML5, CSS3, Bootstrap\n"
-        "• **Tools**: Git, GitHub, MySQL, SQLite\n\n"
-        "He's focused on Full-Stack Web Development and automation."
+        "• **AI/ML**: LangChain, LlamaIndex, CrewAI, AutoGen, OpenAI API, Gemini, PyTorch, HuggingFace\n"
+        "• **Backend**: Python, FastAPI, Flask, Django, Node.js\n"
+        "• **Frontend**: React, Next.js, TypeScript, Tailwind CSS\n"
+        "• **Databases**: PostgreSQL, MongoDB, Pinecone, ChromaDB, Redis\n"
+        "• **DevOps**: Docker, AWS, GCP, GitHub Actions\n\n"
+        "He specializes in Agentic AI, RAG architectures, and MCP development."
     ),
     "projects": (
-        "Ajay's featured projects:\n\n"
-        "1. **Task Management App** – Flask & SQLite full-stack app\n"
-        "2. **Data Analytics Dashboard** – Pandas, NumPy & Chart.js\n"
-        "3. **E-Commerce Platform** – MySQL & JavaScript storefront\n"
-        "4. **Sentiment Analyzer** – Python & Scikit-learn NLP tool\n"
-        "5. **Web Scraping Suite** – BeautifulSoup & Selenium\n"
-        "6. **Real-Time Chat App** – WebSockets & SocketIO\n\n"
+        "Ajay's featured AI projects:\n\n"
+        "1. **Multi-Agent AI System** – CrewAI & AutoGen agent orchestration\n"
+        "2. **RAG Knowledge Engine** – LangChain + ChromaDB pipeline\n"
+        "3. **MCP Server Toolkit** – Model Context Protocol integrations\n"
+        "4. **AI Code Reviewer** – Gemini-powered code analysis\n"
+        "5. **Conversational AI Dashboard** – Real-time agent analytics\n"
+        "6. **Intelligent Document Processor** – Multi-modal understanding\n\n"
         "Scroll to **Projects** to explore them!"
     ),
     "experience": (
         "Ajay's experience:\n\n"
-        "• **Freelance Full-Stack Developer** (2025–Present)\n"
-        "• **Web Development Intern** (2024–2025)\n"
-        "• **Python Training Program** (2023–2024)\n"
-        "• **Open Source Contributor** – Active on GitHub"
+        "• **AI Engineer & Agentic AI Developer** (2025–Present)\n"
+        "• **ML Engineer Intern** (2024–2025)\n"
+        "• **AI/ML Training Program** (2023–2024)\n"
+        "• **Full-Stack Developer** (2022–2023)"
     ),
     "contact": (
         "Reach Ajay via:\n\n"
-        "📧 **Email**: ajay.s@example.com\n"
+        "📧 **Email**: ajay.w@example.com\n"
         "📞 **Phone**: +91 98765 43210\n"
         "📍 **Location**: India\n\n"
         "Also check his GitHub and LinkedIn in the footer!"
@@ -148,17 +151,17 @@ _FALLBACK_RESPONSES = {
 }
 
 _FALLBACK_DEFAULT = (
-    "Ajay is a passionate **Full-Stack Developer** based in India, specializing in "
-    "Python web architectures. He holds a **B.Tech in Computer Science** and loves "
-    "building elegant applications and contributing to open-source. "
+    "Ajay is a passionate **AI Engineer** based in India, specializing in "
+    "Agentic AI systems, RAG architectures, and MCP integrations. He designs "
+    "autonomous multi-agent systems and production AI pipelines. "
     "Ask about his skills, experience, or projects!"
 )
 
 # Mapping: query keywords → fallback keys
 _TOPIC_KEYWORDS = {
-    "skills": ("skills", "technologies", "languages", "tech"),
-    "projects": ("project", "portfolio", "work", "built"),
-    "experience": ("experience", "jobs", "career", "timeline", "intern"),
+    "skills": ("skills", "technologies", "languages", "tech", "tools", "stack"),
+    "projects": ("project", "portfolio", "work", "built", "agent", "rag", "mcp"),
+    "experience": ("experience", "jobs", "career", "timeline", "intern", "role"),
     "contact": ("contact", "email", "phone", "reach", "hire"),
 }
 
