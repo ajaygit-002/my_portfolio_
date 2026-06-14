@@ -325,13 +325,154 @@
         });
     }
 
-    /* ── GSAP Animations ──────────────────────────────────── */
+    /* ── GSAP Cinematic Animation Engine ─────────────────── */
     function initGSAPAnimations() {
         if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
 
         gsap.registerPlugin(ScrollTrigger);
+        if (typeof ScrollToPlugin !== "undefined") gsap.registerPlugin(ScrollToPlugin);
+        if (typeof TextPlugin !== "undefined") gsap.registerPlugin(TextPlugin);
 
-        // Reveal animations
+        // ─── Global GSAP Defaults ────────────────────────────
+        gsap.defaults({ ease: "power3.out", duration: 0.9 });
+
+        // ─── 1. HERO Cinematic Entrance Timeline ─────────────
+        const heroTL = gsap.timeline({ delay: 0.6 });
+
+        heroTL
+            .from(".hero-badge", {
+                opacity: 0,
+                y: 30,
+                scale: 0.8,
+                duration: 0.7,
+                ease: "back.out(1.7)",
+            })
+            .from(".hero-name", {
+                opacity: 0,
+                y: 60,
+                clipPath: "inset(100% 0 0 0)",
+                duration: 1.0,
+                ease: "expo.out",
+            }, "-=0.3")
+            .from(".name-highlight", {
+                backgroundSize: "0% 100%",
+                duration: 0.8,
+                ease: "power2.inOut",
+            }, "-=0.5")
+            .from(".hero-typewriter", {
+                opacity: 0,
+                y: 25,
+                duration: 0.6,
+            }, "-=0.4")
+            .from(".hero-description", {
+                opacity: 0,
+                y: 25,
+                duration: 0.6,
+            }, "-=0.3")
+            .from(".hero-cta .btn-primary-glow", {
+                opacity: 0,
+                x: -40,
+                scale: 0.9,
+                duration: 0.6,
+                ease: "back.out(1.4)",
+            }, "-=0.2")
+            .from(".hero-cta .btn-outline-glow", {
+                opacity: 0,
+                x: 40,
+                scale: 0.9,
+                duration: 0.6,
+                ease: "back.out(1.4)",
+            }, "-=0.5")
+            .from(".social-links .social-icon", {
+                opacity: 0,
+                y: 20,
+                stagger: 0.08,
+                duration: 0.4,
+                ease: "back.out(2)",
+            }, "-=0.3")
+            .from(".hero-stat", {
+                opacity: 0,
+                y: 30,
+                scale: 0.85,
+                stagger: 0.12,
+                duration: 0.5,
+                ease: "back.out(1.6)",
+            }, "-=0.3")
+            .from(".hero-gradient-orb", {
+                opacity: 0,
+                scale: 0,
+                stagger: 0.15,
+                duration: 1.2,
+                ease: "elastic.out(1, 0.5)",
+            }, "-=0.8");
+
+        // ─── 2. Text Split Animation for Section Titles ──────
+        $$(".section-title").forEach((title) => {
+            // Wrap each letter in a span for individual animation
+            const text = title.innerHTML;
+            // Only process text nodes, not nested HTML
+            const words = text.split(/(<[^>]+>)/);
+            let html = "";
+            words.forEach((part) => {
+                if (part.startsWith("<")) {
+                    html += part; // keep HTML tags intact
+                } else {
+                    part.split("").forEach((char) => {
+                        if (char === " ") {
+                            html += " ";
+                        } else {
+                            html += `<span class="gsap-char" style="display:inline-block">${char}</span>`;
+                        }
+                    });
+                }
+            });
+            title.innerHTML = html;
+
+            gsap.from(title.querySelectorAll(".gsap-char"), {
+                opacity: 0,
+                y: 40,
+                rotateX: -90,
+                stagger: 0.025,
+                duration: 0.6,
+                ease: "back.out(1.7)",
+                scrollTrigger: {
+                    trigger: title,
+                    start: "top 85%",
+                    toggleActions: "play none none none",
+                },
+            });
+        });
+
+        // ─── 3. Section Tags — Slide In With Line ────────────
+        $$(".section-tag").forEach((tag) => {
+            gsap.from(tag, {
+                opacity: 0,
+                x: -50,
+                duration: 0.7,
+                ease: "power4.out",
+                scrollTrigger: {
+                    trigger: tag,
+                    start: "top 88%",
+                    toggleActions: "play none none none",
+                },
+            });
+        });
+
+        // ─── 4. Section Dividers — Expand From Center ────────
+        $$(".section-divider").forEach((div) => {
+            gsap.from(div, {
+                scaleX: 0,
+                duration: 0.8,
+                ease: "power4.inOut",
+                scrollTrigger: {
+                    trigger: div,
+                    start: "top 88%",
+                    toggleActions: "play none none none",
+                },
+            });
+        });
+
+        // ─── 5. Reveal Up — Staggered Fade & Slide ──────────
         $$(".reveal-up").forEach((el) => {
             gsap.to(el, {
                 opacity: 1,
@@ -346,11 +487,12 @@
             });
         });
 
+        // ─── 6. Reveal Left / Right — Horizontal Slide ──────
         $$(".reveal-left").forEach((el) => {
             gsap.to(el, {
                 opacity: 1,
                 x: 0,
-                duration: 0.8,
+                duration: 0.9,
                 ease: "power3.out",
                 scrollTrigger: {
                     trigger: el,
@@ -364,7 +506,7 @@
             gsap.to(el, {
                 opacity: 1,
                 x: 0,
-                duration: 0.8,
+                duration: 0.9,
                 ease: "power3.out",
                 scrollTrigger: {
                     trigger: el,
@@ -374,10 +516,12 @@
             });
         });
 
+        // ─── 7. Skill Cards — Staggered 3D Pop-In ───────────
         $$(".reveal-scale").forEach((el, i) => {
             gsap.to(el, {
                 opacity: 1,
                 scale: 1,
+                rotateY: 0,
                 duration: 0.6,
                 delay: (i % 6) * 0.08,
                 ease: "back.out(1.5)",
@@ -389,31 +533,304 @@
             });
         });
 
-        // Parallax on gradient orbs
-        $$(".hero-gradient-orb").forEach((orb) => {
-            gsap.to(orb, {
-                y: -80,
+        // Set initial 3D state for skill cards
+        gsap.set(".reveal-scale", { rotateY: 15 });
+
+        // ─── 8. Project Cards — Cinematic Scroll Reveal ──────
+        $$(".project-card").forEach((card, i) => {
+            const tl = gsap.timeline({
                 scrollTrigger: {
-                    trigger: ".hero-section",
-                    start: "top top",
-                    end: "bottom top",
-                    scrub: 1,
+                    trigger: card,
+                    start: "top 88%",
+                    toggleActions: "play none none none",
+                },
+            });
+
+            tl.from(card, {
+                opacity: 0,
+                y: 60,
+                rotateX: -8,
+                scale: 0.92,
+                duration: 0.8,
+                delay: (i % 3) * 0.15,
+                ease: "power3.out",
+            })
+            .from(card.querySelector(".project-body h4"), {
+                opacity: 0,
+                x: -20,
+                duration: 0.4,
+            }, "-=0.3")
+            .from(card.querySelector(".project-body p"), {
+                opacity: 0,
+                y: 10,
+                duration: 0.3,
+            }, "-=0.2")
+            .from(card.querySelectorAll(".project-tags span"), {
+                opacity: 0,
+                scale: 0,
+                stagger: 0.05,
+                duration: 0.3,
+                ease: "back.out(3)",
+            }, "-=0.15");
+        });
+
+        // ─── 9. Dashboard Cards — Counter Pulse Reveal ───────
+        $$(".dashboard-card").forEach((card, i) => {
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 88%",
+                    toggleActions: "play none none none",
+                },
+            });
+
+            tl.from(card, {
+                opacity: 0,
+                y: 50,
+                scale: 0.85,
+                duration: 0.7,
+                delay: i * 0.12,
+                ease: "back.out(1.4)",
+            })
+            .from(card.querySelector(".dashboard-icon"), {
+                scale: 0,
+                rotation: -180,
+                duration: 0.6,
+                ease: "back.out(2)",
+            }, "-=0.3")
+            .from(card.querySelector(".dashboard-number"), {
+                opacity: 0,
+                y: 20,
+                duration: 0.4,
+            }, "-=0.2");
+        });
+
+        // ─── 10. Certification Cards — Flip Reveal ──────────
+        $$(".cert-card").forEach((card, i) => {
+            gsap.from(card, {
+                opacity: 0,
+                rotateY: 90,
+                scale: 0.8,
+                duration: 0.8,
+                delay: i * 0.15,
+                ease: "power3.out",
+                transformPerspective: 800,
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 88%",
+                    toggleActions: "play none none none",
                 },
             });
         });
 
-        // Section glow parallax
+        // ─── 11. Contact Section — Staggered Details ────────
+        $$(".contact-item").forEach((item, i) => {
+            gsap.from(item, {
+                opacity: 0,
+                x: -40,
+                duration: 0.6,
+                delay: i * 0.1,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top 90%",
+                    toggleActions: "play none none none",
+                },
+            });
+        });
+
+        // Contact form fields slide in
+        $$(".form-group").forEach((group, i) => {
+            gsap.from(group, {
+                opacity: 0,
+                y: 30,
+                duration: 0.5,
+                delay: i * 0.08,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: group,
+                    start: "top 92%",
+                    toggleActions: "play none none none",
+                },
+            });
+        });
+
+        // ─── 12. Footer — Cascade Reveal ────────────────────
+        const footerTL = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".footer-section",
+                start: "top 90%",
+                toggleActions: "play none none none",
+            },
+        });
+
+        if ($(".footer-brand")) {
+            footerTL.from(".footer-brand", {
+                opacity: 0,
+                y: 20,
+                duration: 0.5,
+            });
+        }
+        if ($(".footer-desc")) {
+            footerTL.from(".footer-desc", {
+                opacity: 0,
+                y: 15,
+                duration: 0.4,
+            }, "-=0.2");
+        }
+        if ($$(".footer-links li").length) {
+            footerTL.from(".footer-links li", {
+                opacity: 0,
+                x: -15,
+                stagger: 0.05,
+                duration: 0.3,
+            }, "-=0.2");
+        }
+        if ($$(".footer-socials a").length) {
+            footerTL.from(".footer-socials a", {
+                opacity: 0,
+                scale: 0,
+                stagger: 0.08,
+                duration: 0.3,
+                ease: "back.out(3)",
+            }, "-=0.15");
+        }
+
+        // ─── 13. Parallax on Gradient Orbs ──────────────────
+        $$(".hero-gradient-orb").forEach((orb, i) => {
+            gsap.to(orb, {
+                y: -80 - i * 30,
+                rotation: i % 2 === 0 ? 15 : -15,
+                scrollTrigger: {
+                    trigger: ".hero-section",
+                    start: "top top",
+                    end: "bottom top",
+                    scrub: 1.5,
+                },
+            });
+        });
+
+        // ─── 14. Section Glow Parallax ──────────────────────
         $$(".section-glow").forEach((glow) => {
             gsap.to(glow, {
-                y: -50,
+                y: -60,
+                scale: 1.2,
                 scrollTrigger: {
                     trigger: glow.parentElement,
                     start: "top bottom",
                     end: "bottom top",
-                    scrub: 1,
+                    scrub: 1.5,
                 },
             });
         });
+
+        // ─── 15. Navbar Shrink on Scroll ────────────────────
+        ScrollTrigger.create({
+            start: 50,
+            onToggle: (self) => {
+                const nav = $(".navbar");
+                if (nav) {
+                    gsap.to(nav, {
+                        backdropFilter: self.isActive ? "blur(20px)" : "blur(0px)",
+                        duration: 0.3,
+                    });
+                }
+            },
+        });
+
+        // ─── 16. Magnetic Hover on Interactive Cards ────────
+        if (!isTouchDevice()) {
+            $$(".stat-card, .dashboard-card, .skill-card").forEach((card) => {
+                card.addEventListener("mouseenter", () => {
+                    gsap.to(card, {
+                        scale: 1.05,
+                        boxShadow: "0 20px 60px rgba(0, 229, 255, 0.15)",
+                        duration: 0.3,
+                        ease: "power2.out",
+                    });
+                });
+                card.addEventListener("mouseleave", () => {
+                    gsap.to(card, {
+                        scale: 1,
+                        boxShadow: "0 8px 32px rgba(0, 0, 0, 0.3)",
+                        duration: 0.4,
+                        ease: "power2.inOut",
+                    });
+                });
+            });
+
+            // CTA Buttons magnetic pull
+            $$(".btn-primary-glow, .btn-outline-glow").forEach((btn) => {
+                btn.addEventListener("mousemove", (e) => {
+                    const rect = btn.getBoundingClientRect();
+                    const x = (e.clientX - rect.left - rect.width / 2) * 0.15;
+                    const y = (e.clientY - rect.top - rect.height / 2) * 0.15;
+                    gsap.to(btn, {
+                        x: x,
+                        y: y,
+                        duration: 0.3,
+                        ease: "power2.out",
+                    });
+                });
+                btn.addEventListener("mouseleave", () => {
+                    gsap.to(btn, {
+                        x: 0,
+                        y: 0,
+                        duration: 0.5,
+                        ease: "elastic.out(1, 0.3)",
+                    });
+                });
+            });
+        }
+
+        // ─── 17. Scroll Progress Indicator ──────────────────
+        const progressBar = document.createElement("div");
+        progressBar.id = "gsapScrollProgress";
+        Object.assign(progressBar.style, {
+            position: "fixed",
+            top: "0",
+            left: "0",
+            height: "3px",
+            width: "0%",
+            background: "linear-gradient(90deg, #00E5FF, #8B5CF6, #EC4899)",
+            zIndex: "9999",
+            transition: "none",
+            borderRadius: "0 2px 2px 0",
+        });
+        document.body.appendChild(progressBar);
+
+        gsap.to(progressBar, {
+            width: "100%",
+            ease: "none",
+            scrollTrigger: {
+                trigger: document.body,
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 0.3,
+            },
+        });
+
+        // ─── 18. Chatbot Toggle Bounce ──────────────────────
+        const chatToggle = $("#chatToggle");
+        if (chatToggle) {
+            gsap.from(chatToggle, {
+                scale: 0,
+                rotation: -360,
+                duration: 0.8,
+                delay: 2.5,
+                ease: "elastic.out(1, 0.4)",
+            });
+
+            // Subtle attention pulse every 8 seconds
+            gsap.to(chatToggle, {
+                scale: 1.1,
+                duration: 0.4,
+                yoyo: true,
+                repeat: -1,
+                repeatDelay: 8,
+                ease: "power2.inOut",
+            });
+        }
     }
 
     /* ── Counter Animation ─────────────────────────────────── */
@@ -519,7 +936,7 @@
         });
     }
 
-    /* ── Smooth Scroll (anchor links) ─────────────────────── */
+    /* ── Smooth Scroll (GSAP ScrollToPlugin) ────────────── */
     function initSmoothScroll() {
         $$('a[href^="#"]').forEach((anchor) => {
             anchor.addEventListener("click", function (e) {
@@ -528,7 +945,13 @@
                 const target = $(href);
                 if (target) {
                     e.preventDefault();
-                    if (lenis) {
+                    if (typeof gsap !== "undefined" && typeof ScrollToPlugin !== "undefined") {
+                        gsap.to(window, {
+                            duration: 1.2,
+                            scrollTo: { y: target, offsetY: 72 },
+                            ease: "power3.inOut",
+                        });
+                    } else if (lenis) {
                         lenis.scrollTo(target, { offset: -72 });
                     } else {
                         target.scrollIntoView({ behavior: "smooth" });

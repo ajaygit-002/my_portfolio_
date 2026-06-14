@@ -1898,6 +1898,44 @@ img { max-width: 100%; height: auto; }
     transform: scale(0.9);
 }
 
+/* Character-level text split animation */
+.gsap-char {
+    display: inline-block;
+    will-change: transform, opacity;
+    perspective: 600px;
+}
+
+/* Scroll progress bar */
+#gsapScrollProgress {
+    pointer-events: none;
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.4),
+                0 0 20px rgba(139, 92, 246, 0.2);
+}
+
+/* Magnetic button support */
+.btn-primary-glow,
+.btn-outline-glow {
+    will-change: transform;
+}
+
+/* Section divider GSAP transform origin */
+.section-divider {
+    transform-origin: center;
+}
+
+/* Project card 3D perspective */
+.project-card {
+    perspective: 1000px;
+    will-change: transform, opacity;
+}
+
+/* Cert card flip perspective */
+.cert-card {
+    perspective: 800px;
+    backface-visibility: hidden;
+}
+
+
 /* ═══════════════════════════════════════════════════════════════
    RESPONSIVE
    ═══════════════════════════════════════════════════════════════ */
