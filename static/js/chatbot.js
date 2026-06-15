@@ -14,15 +14,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* ── Toggle Chat Window ────────────────────────────────── */
     chatToggle.addEventListener("click", () => {
-        chatWindow.classList.add("active");
-        chatToggle.classList.add("hidden");
+        chatWindow.classList.toggle("open");
         scrollToBottom();
-        document.getElementById("cursorRing")?.classList.remove("hovered");
     });
 
     chatClose.addEventListener("click", () => {
-        chatWindow.classList.remove("active");
-        chatToggle.classList.remove("hidden");
+        chatWindow.classList.remove("open");
     });
 
     /* ── Suggestion Chips ──────────────────────────────────── */
@@ -89,8 +86,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (document.getElementById("typingIndicator")) return;
         const el = document.createElement("div");
         el.id = "typingIndicator";
-        el.className = "chat-message bot";
-        el.innerHTML = `<div class="message-bubble typing"><span></span><span></span><span></span></div>`;
+        el.className = "chat-message bot typing-indicator";
+        el.innerHTML = `<div class="message-bubble"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span></div>`;
         chatMessages.appendChild(el);
         scrollToBottom();
     }
