@@ -20,34 +20,20 @@
     });
 
     function initAll() {
-        initLenis();
         initTypewriter();
         initNavbar();
         initBackToTop();
         initScrollReveal();
         initCounters();
-        initSkillRings();
-        initSkillTabs();
+        initSkillsMarquee();
         initProjectFilter();
         initProjectSearch();
         initSmoothNavScroll();
         initScrollProgress();
     }
 
-    /* ── Lenis Smooth Scroll ──────────────────────── */
-    let lenis;
-    function initLenis() {
-        if (typeof Lenis === "undefined") return;
-        try {
-            lenis = new Lenis({
-                duration: 1.15,
-                easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-                smoothWheel: true,
-            });
-            function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-            requestAnimationFrame(raf);
-        } catch (e) { /* ignore */ }
-    }
+    /* ── Lenis Smooth Scroll (disabled — using native scroll) ── */
+    let lenis = null;
 
     /* ── Typewriter ──────────────────────────────── */
     function initTypewriter() {
@@ -151,41 +137,130 @@
         counters.forEach(el => observer.observe(el));
     }
 
-    /* ── Skill Progress Rings ─────────────────────── */
-    function initSkillRings() {
-        const fills = $$(".skill-progress-fill");
-        if (!fills.length) return;
+    /* ── Skills Marquee Interactive Flow ───────────── */
+    function initSkillsMarquee() {
+        const wrapper = $("#skillsMarqueeWrapper");
+        const track = $("#skillsMarqueeTrack");
+        const playBtn = $("#marqueePlay");
+        const pauseBtn = $("#marqueePause");
+        const cards = $$(".skill-card", track);
+
+        if (!wrapper || !track || !playBtn || !pauseBtn) return;
+
+        // Initialize skill progress fill properties
         const R = 22;
         const C = 2 * Math.PI * R; // ≈ 138.2
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(e => {
-                if (!e.isIntersecting) return;
-                const fill    = e.target;
-                const percent = +fill.getAttribute("data-percent");
-                const offset  = C - (percent / 100) * C;
-                fill.style.strokeDashoffset = offset;
-                observer.unobserve(fill);
-            });
-        }, { threshold: 0.4 });
-        fills.forEach(f => observer.observe(f));
-    }
+        const progressFills = $$(".skill-progress-fill", track);
+        progressFills.forEach(fill => {
+            fill.style.strokeDasharray = C;
+            fill.style.strokeDashoffset = C;
+        });
 
-    /* ── Skill Tab Filtering ─────────────────────── */
-    function initSkillTabs() {
-        const tabs  = $$(".skill-tab");
-        const cards = $$(".skill-card");
-        if (!tabs.length) return;
-        tabs.forEach(tab => {
-            tab.addEventListener("click", () => {
-                tabs.forEach(t => t.classList.remove("active"));
-                tab.classList.add("active");
-                const cat = tab.getAttribute("data-category");
-                cards.forEach(card => {
-                    const cardCat = card.getAttribute("data-category");
-                    const show    = cat === "all" || cardCat === cat;
-                    card.classList.toggle("hidden", !show);
-                });
+        // Function to animate a single card's progress ring
+        function animateCardRing(card) {
+            const fill = card.querySelector(".skill-progress-fill");
+            if (!fill) return;
+            const percent = +fill.getAttribute("data-percent") || 0;
+            const offset = C - (percent / 100) * C;
+            requestAnimationFrame(() => {
+                fill.style.strokeDashoffset = offset;
             });
+        }
+
+        // Reset progress ring animation
+        function resetCardRing(card) {
+            const fill = card.querySelector(".skill-progress-fill");
+            if (!fill) return;
+            fill.style.strokeDashoffset = C;
+        }
+
+        // Animate all cards when paused/inspecting
+        function animateAllRings() {
+            cards.forEach(card => animateCardRing(card));
+        }
+
+        // Reset all rings
+        function resetAllRings() {
+            cards.forEach(card => resetCardRing(card));
+        }
+
+        // Flow control functions
+        function startFlow() {
+            track.classList.remove("paused");
+            wrapper.classList.remove("inspect-mode");
+            playBtn.classList.add("active");
+            pauseBtn.classList.remove("active");
+            
+            // Remove active highlights
+            cards.forEach(c => c.classList.remove("active"));
+            resetAllRings();
+        }
+
+        function pauseFlow(inspectAll = false) {
+            track.classList.add("paused");
+            playBtn.classList.remove("active");
+            pauseBtn.classList.add("active");
+
+            if (inspectAll) {
+                wrapper.classList.add("inspect-mode");
+                animateAllRings();
+            }
+        }
+
+        // Play/Pause button click events
+        playBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            startFlow();
+        });
+
+        pauseBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            pauseFlow(true); // pause and inspect all
+        });
+
+        // Click a card to pause and inspect that specific card
+        cards.forEach(card => {
+            card.addEventListener("click", (e) => {
+                e.stopPropagation();
+                
+                // If already paused and this card is active, resume flow
+                if (track.classList.contains("paused") && card.classList.contains("active")) {
+                    startFlow();
+                } else {
+                    // Pause the track
+                    pauseFlow(false);
+                    // Deactivate all cards first
+                    cards.forEach(c => {
+                        c.classList.remove("active");
+                        resetCardRing(c);
+                    });
+                    // Activate this card (this will trigger expanding transition via CSS)
+                    card.classList.add("active");
+                    // Animate the clicked card's progress ring
+                    animateCardRing(card);
+                    
+                    // Also trigger animation for duplicate card if they share the same skill name
+                    const skillName = card.getAttribute("data-skill");
+                    if (skillName) {
+                        const isDup = skillName.endsWith("-dup");
+                        const searchName = isDup ? skillName.replace("-dup", "") : skillName + "-dup";
+                        const pairCard = cards.find(c => c.getAttribute("data-skill") === searchName);
+                        if (pairCard) {
+                            pairCard.classList.add("active");
+                            animateCardRing(pairCard);
+                        }
+                    }
+                }
+            });
+        });
+
+        // Click outside wrapper to resume flow
+        document.addEventListener("click", (e) => {
+            if (!wrapper.contains(e.target) && !playBtn.contains(e.target) && !pauseBtn.contains(e.target)) {
+                if (track.classList.contains("paused")) {
+                    startFlow();
+                }
+            }
         });
     }
 

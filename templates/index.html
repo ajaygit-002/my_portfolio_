@@ -298,274 +298,549 @@
             <h2 class="section-title reveal-up">Skills &amp; <span class="text-gradient">Technologies</span></h2>
             <div class="section-divider reveal-up"></div>
         </div>
-        <div class="skill-tabs reveal-up">
-            <button class="skill-tab active" data-category="all">All</button>
-            <button class="skill-tab" data-category="ai_ml">AI / ML</button>
-            <button class="skill-tab" data-category="backend">Backend</button>
-            <button class="skill-tab" data-category="frontend">Frontend</button>
-            <button class="skill-tab" data-category="databases">Databases</button>
-            <button class="skill-tab" data-category="devops">DevOps</button>
+
+        <!-- Skills Marquee Playback Controls -->
+        <div class="skills-marquee-controls reveal-up">
+            <div class="control-buttons">
+                <button class="btn-marquee-control play active" id="marqueePlay" title="Auto-Play flow">
+                    <i class="bi bi-play-fill"></i> Flowing
+                </button>
+                <button class="btn-marquee-control pause" id="marqueePause" title="Pause & Inspect">
+                    <i class="bi bi-pause-fill"></i> Pause &amp; Inspect
+                </button>
+            </div>
+            <span class="marquee-instruction">
+                <i class="bi bi-info-circle"></i> Click any card to pause and inspect proficiency.
+            </span>
         </div>
-        <div class="skills-grid">
-            <!-- AI/ML -->
-            <div class="skill-card reveal-scale" data-category="ai_ml">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/langchain.svg') }}" alt="LangChain"></div>
-                <h4>LangChain</h4>
-                <div class="skill-progress">
-                    <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="92"/></svg>
-                    <span class="skill-percent">92%</span>
+
+        <!-- Marquee Wrapper -->
+        <div class="skills-marquee-wrapper reveal-up" id="skillsMarqueeWrapper">
+            <div class="skills-marquee-track" id="skillsMarqueeTrack">
+                <!-- ==================== FIRST COPY OF SKILLS ==================== -->
+                <!-- AI/ML -->
+                <div class="skill-card" data-category="ai_ml" data-skill="LangChain">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/langchain.svg') }}" alt="LangChain"></div>
+                    <h4>LangChain</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="92"/></svg>
+                        <span class="skill-percent">92%</span>
+                    </div>
                 </div>
-            </div>
-            <div class="skill-card reveal-scale" data-category="ai_ml">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/llamaindex.svg') }}" alt="LlamaIndex"></div>
-                <h4>LlamaIndex</h4>
-                <div class="skill-progress">
-                    <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="88"/></svg>
-                    <span class="skill-percent">88%</span>
+                <div class="skill-card" data-category="ai_ml" data-skill="LlamaIndex">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/llamaindex.svg') }}" alt="LlamaIndex"></div>
+                    <h4>LlamaIndex</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="88"/></svg>
+                        <span class="skill-percent">88%</span>
+                    </div>
                 </div>
-            </div>
-            <div class="skill-card reveal-scale" data-category="ai_ml">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/crewai.svg') }}" alt="CrewAI"></div>
-                <h4>CrewAI</h4>
-                <div class="skill-progress">
-                    <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="90"/></svg>
-                    <span class="skill-percent">90%</span>
+                <div class="skill-card" data-category="ai_ml" data-skill="CrewAI">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/crewai.svg') }}" alt="CrewAI"></div>
+                    <h4>CrewAI</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="90"/></svg>
+                        <span class="skill-percent">90%</span>
+                    </div>
                 </div>
-            </div>
-            <div class="skill-card reveal-scale" data-category="ai_ml">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/autogen.svg') }}" alt="AutoGen"></div>
-                <h4>AutoGen</h4>
-                <div class="skill-progress">
-                    <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="85"/></svg>
-                    <span class="skill-percent">85%</span>
+                <div class="skill-card" data-category="ai_ml" data-skill="AutoGen">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/autogen.svg') }}" alt="AutoGen"></div>
+                    <h4>AutoGen</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="85"/></svg>
+                        <span class="skill-percent">85%</span>
+                    </div>
                 </div>
-            </div>
-            <div class="skill-card reveal-scale" data-category="ai_ml">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/openai.svg') }}" alt="OpenAI API"></div>
-                <h4>OpenAI API</h4>
-                <div class="skill-progress">
-                    <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="93"/></svg>
-                    <span class="skill-percent">93%</span>
+                <div class="skill-card" data-category="ai_ml" data-skill="OpenAI API">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/openai.svg') }}" alt="OpenAI API"></div>
+                    <h4>OpenAI API</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="93"/></svg>
+                        <span class="skill-percent">93%</span>
+                    </div>
                 </div>
-            </div>
-            <div class="skill-card reveal-scale" data-category="ai_ml">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/gemini.svg') }}" alt="Gemini API"></div>
-                <h4>Gemini API</h4>
-                <div class="skill-progress">
-                    <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="90"/></svg>
-                    <span class="skill-percent">90%</span>
+                <div class="skill-card" data-category="ai_ml" data-skill="Gemini API">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/gemini.svg') }}" alt="Gemini API"></div>
+                    <h4>Gemini API</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="90"/></svg>
+                        <span class="skill-percent">90%</span>
+                    </div>
                 </div>
-            </div>
-            <div class="skill-card reveal-scale" data-category="ai_ml">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/huggingface.svg') }}" alt="Hugging Face"></div>
-                <h4>Hugging Face</h4>
-                <div class="skill-progress">
-                    <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="82"/></svg>
-                    <span class="skill-percent">82%</span>
+                <div class="skill-card" data-category="ai_ml" data-skill="Hugging Face">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/huggingface.svg') }}" alt="Hugging Face"></div>
+                    <h4>Hugging Face</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="82"/></svg>
+                        <span class="skill-percent">82%</span>
+                    </div>
                 </div>
-            </div>
-            <div class="skill-card reveal-scale" data-category="ai_ml">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/pytorch.svg') }}" alt="PyTorch"></div>
-                <h4>PyTorch</h4>
-                <div class="skill-progress">
-                    <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="78"/></svg>
-                    <span class="skill-percent">78%</span>
+                <div class="skill-card" data-category="ai_ml" data-skill="PyTorch">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/pytorch.svg') }}" alt="PyTorch"></div>
+                    <h4>PyTorch</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="78"/></svg>
+                        <span class="skill-percent">78%</span>
+                    </div>
                 </div>
-            </div>
-            <div class="skill-card reveal-scale" data-category="ai_ml">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/scikit.svg') }}" alt="Scikit-learn"></div>
-                <h4>Scikit-learn</h4>
-                <div class="skill-progress">
-                    <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="85"/></svg>
-                    <span class="skill-percent">85%</span>
+                <div class="skill-card" data-category="ai_ml" data-skill="Scikit-learn">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/scikit.svg') }}" alt="Scikit-learn"></div>
+                    <h4>Scikit-learn</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="85"/></svg>
+                        <span class="skill-percent">85%</span>
+                    </div>
                 </div>
-            </div>
-            <!-- Backend -->
-            <div class="skill-card reveal-scale" data-category="backend">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/python.svg') }}" alt="Python"></div>
-                <h4>Python</h4>
-                <div class="skill-progress">
-                    <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="95"/></svg>
-                    <span class="skill-percent">95%</span>
+                <!-- Backend -->
+                <div class="skill-card" data-category="backend" data-skill="Python">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/python.svg') }}" alt="Python"></div>
+                    <h4>Python</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="95"/></svg>
+                        <span class="skill-percent">95%</span>
+                    </div>
                 </div>
-            </div>
-            <div class="skill-card reveal-scale" data-category="backend">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/fastapi.svg') }}" alt="FastAPI"></div>
-                <h4>FastAPI</h4>
-                <div class="skill-progress">
-                    <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="90"/></svg>
-                    <span class="skill-percent">90%</span>
+                <div class="skill-card" data-category="backend" data-skill="FastAPI">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/fastapi.svg') }}" alt="FastAPI"></div>
+                    <h4>FastAPI</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="90"/></svg>
+                        <span class="skill-percent">90%</span>
+                    </div>
                 </div>
-            </div>
-            <div class="skill-card reveal-scale" data-category="backend">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/flask.svg') }}" alt="Flask"></div>
-                <h4>Flask</h4>
-                <div class="skill-progress">
-                    <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="88"/></svg>
-                    <span class="skill-percent">88%</span>
+                <div class="skill-card" data-category="backend" data-skill="Flask">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/flask.svg') }}" alt="Flask"></div>
+                    <h4>Flask</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="88"/></svg>
+                        <span class="skill-percent">88%</span>
+                    </div>
                 </div>
-            </div>
-            <div class="skill-card reveal-scale" data-category="backend">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/django.svg') }}" alt="Django"></div>
-                <h4>Django</h4>
-                <div class="skill-progress">
-                    <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="75"/></svg>
-                    <span class="skill-percent">75%</span>
+                <div class="skill-card" data-category="backend" data-skill="Django">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/django.svg') }}" alt="Django"></div>
+                    <h4>Django</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="75"/></svg>
+                        <span class="skill-percent">75%</span>
+                    </div>
                 </div>
-            </div>
-            <div class="skill-card reveal-scale" data-category="backend">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/nodejs.svg') }}" alt="Node.js"></div>
-                <h4>Node.js</h4>
-                <div class="skill-progress">
-                    <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="72"/></svg>
-                    <span class="skill-percent">72%</span>
+                <div class="skill-card" data-category="backend" data-skill="Node.js">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/nodejs.svg') }}" alt="Node.js"></div>
+                    <h4>Node.js</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="72"/></svg>
+                        <span class="skill-percent">72%</span>
+                    </div>
                 </div>
-            </div>
-            <!-- Frontend -->
-            <div class="skill-card reveal-scale" data-category="frontend">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/react.svg') }}" alt="React"></div>
-                <h4>React</h4>
-                <div class="skill-progress">
-                    <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="85"/></svg>
-                    <span class="skill-percent">85%</span>
+                <!-- Frontend -->
+                <div class="skill-card" data-category="frontend" data-skill="React">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/react.svg') }}" alt="React"></div>
+                    <h4>React</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="85"/></svg>
+                        <span class="skill-percent">85%</span>
+                    </div>
                 </div>
-            </div>
-            <div class="skill-card reveal-scale" data-category="frontend">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/nextjs.svg') }}" alt="Next.js"></div>
-                <h4>Next.js</h4>
-                <div class="skill-progress">
-                    <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="80"/></svg>
-                    <span class="skill-percent">80%</span>
+                <div class="skill-card" data-category="frontend" data-skill="Next.js">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/nextjs.svg') }}" alt="Next.js"></div>
+                    <h4>Next.js</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="80"/></svg>
+                        <span class="skill-percent">80%</span>
+                    </div>
                 </div>
-            </div>
-            <div class="skill-card reveal-scale" data-category="frontend">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/typescript.svg') }}" alt="TypeScript"></div>
-                <h4>TypeScript</h4>
-                <div class="skill-progress">
-                    <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="82"/></svg>
-                    <span class="skill-percent">82%</span>
+                <div class="skill-card" data-category="frontend" data-skill="TypeScript">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/typescript.svg') }}" alt="TypeScript"></div>
+                    <h4>TypeScript</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="82"/></svg>
+                        <span class="skill-percent">82%</span>
+                    </div>
                 </div>
-            </div>
-            <div class="skill-card reveal-scale" data-category="frontend">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/javascript.svg') }}" alt="JavaScript"></div>
-                <h4>JavaScript</h4>
-                <div class="skill-progress">
-                    <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="88"/></svg>
-                    <span class="skill-percent">88%</span>
+                <div class="skill-card" data-category="frontend" data-skill="JavaScript">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/javascript.svg') }}" alt="JavaScript"></div>
+                    <h4>JavaScript</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="88"/></svg>
+                        <span class="skill-percent">88%</span>
+                    </div>
                 </div>
-            </div>
-            <div class="skill-card reveal-scale" data-category="frontend">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/html5.svg') }}" alt="HTML5"></div>
-                <h4>HTML5</h4>
-                <div class="skill-progress">
-                    <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="95"/></svg>
-                    <span class="skill-percent">95%</span>
+                <div class="skill-card" data-category="frontend" data-skill="HTML5">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/html5.svg') }}" alt="HTML5"></div>
+                    <h4>HTML5</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="95"/></svg>
+                        <span class="skill-percent">95%</span>
+                    </div>
                 </div>
-            </div>
-            <div class="skill-card reveal-scale" data-category="frontend">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/css3.svg') }}" alt="CSS3"></div>
-                <h4>CSS3</h4>
-                <div class="skill-progress">
-                    <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="92"/></svg>
-                    <span class="skill-percent">92%</span>
+                <div class="skill-card" data-category="frontend" data-skill="CSS3">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/css3.svg') }}" alt="CSS3"></div>
+                    <h4>CSS3</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="92"/></svg>
+                        <span class="skill-percent">92%</span>
+                    </div>
                 </div>
-            </div>
-            <div class="skill-card reveal-scale" data-category="frontend">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/tailwind.svg') }}" alt="Tailwind CSS"></div>
-                <h4>Tailwind CSS</h4>
-                <div class="skill-progress">
-                    <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="85"/></svg>
-                    <span class="skill-percent">85%</span>
+                <div class="skill-card" data-category="frontend" data-skill="Tailwind CSS">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/tailwind.svg') }}" alt="Tailwind CSS"></div>
+                    <h4>Tailwind CSS</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="85"/></svg>
+                        <span class="skill-percent">85%</span>
+                    </div>
                 </div>
-            </div>
-            <!-- Databases -->
-            <div class="skill-card reveal-scale" data-category="databases">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/postgresql.svg') }}" alt="PostgreSQL"></div>
-                <h4>PostgreSQL</h4>
-                <div class="skill-progress">
-                    <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="85"/></svg>
-                    <span class="skill-percent">85%</span>
+                <!-- Databases -->
+                <div class="skill-card" data-category="databases" data-skill="PostgreSQL">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/postgresql.svg') }}" alt="PostgreSQL"></div>
+                    <h4>PostgreSQL</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="85"/></svg>
+                        <span class="skill-percent">85%</span>
+                    </div>
                 </div>
-            </div>
-            <div class="skill-card reveal-scale" data-category="databases">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/mongodb.svg') }}" alt="MongoDB"></div>
-                <h4>MongoDB</h4>
-                <div class="skill-progress">
-                    <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="80"/></svg>
-                    <span class="skill-percent">80%</span>
+                <div class="skill-card" data-category="databases" data-skill="MongoDB">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/mongodb.svg') }}" alt="MongoDB"></div>
+                    <h4>MongoDB</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="80"/></svg>
+                        <span class="skill-percent">80%</span>
+                    </div>
                 </div>
-            </div>
-            <div class="skill-card reveal-scale" data-category="databases">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/pinecone.svg') }}" alt="Pinecone"></div>
-                <h4>Pinecone</h4>
-                <div class="skill-progress">
-                    <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="88"/></svg>
-                    <span class="skill-percent">88%</span>
+                <div class="skill-card" data-category="databases" data-skill="Pinecone">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/pinecone.svg') }}" alt="Pinecone"></div>
+                    <h4>Pinecone</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="88"/></svg>
+                        <span class="skill-percent">88%</span>
+                    </div>
                 </div>
-            </div>
-            <div class="skill-card reveal-scale" data-category="databases">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/chromadb.svg') }}" alt="ChromaDB"></div>
-                <h4>ChromaDB</h4>
-                <div class="skill-progress">
-                    <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="90"/></svg>
-                    <span class="skill-percent">90%</span>
+                <div class="skill-card" data-category="databases" data-skill="ChromaDB">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/chromadb.svg') }}" alt="ChromaDB"></div>
+                    <h4>ChromaDB</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="90"/></svg>
+                        <span class="skill-percent">90%</span>
+                    </div>
                 </div>
-            </div>
-            <div class="skill-card reveal-scale" data-category="databases">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/redis.svg') }}" alt="Redis"></div>
-                <h4>Redis</h4>
-                <div class="skill-progress">
-                    <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="78"/></svg>
-                    <span class="skill-percent">78%</span>
+                <div class="skill-card" data-category="databases" data-skill="Redis">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/redis.svg') }}" alt="Redis"></div>
+                    <h4>Redis</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="78"/></svg>
+                        <span class="skill-percent">78%</span>
+                    </div>
                 </div>
-            </div>
-            <div class="skill-card reveal-scale" data-category="databases">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/weaviate.svg') }}" alt="Weaviate"></div>
-                <h4>Weaviate</h4>
-                <div class="skill-progress">
-                    <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="75"/></svg>
-                    <span class="skill-percent">75%</span>
+                <div class="skill-card" data-category="databases" data-skill="Weaviate">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/weaviate.svg') }}" alt="Weaviate"></div>
+                    <h4>Weaviate</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="75"/></svg>
+                        <span class="skill-percent">75%</span>
+                    </div>
                 </div>
-            </div>
-            <!-- DevOps -->
-            <div class="skill-card reveal-scale" data-category="devops">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/docker.svg') }}" alt="Docker"></div>
-                <h4>Docker</h4>
-                <div class="skill-progress">
-                    <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="85"/></svg>
-                    <span class="skill-percent">85%</span>
+                <!-- DevOps -->
+                <div class="skill-card" data-category="devops" data-skill="Docker">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/docker.svg') }}" alt="Docker"></div>
+                    <h4>Docker</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="85"/></svg>
+                        <span class="skill-percent">85%</span>
+                    </div>
                 </div>
-            </div>
-            <div class="skill-card reveal-scale" data-category="devops">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/git.svg') }}" alt="Git"></div>
-                <h4>Git</h4>
-                <div class="skill-progress">
-                    <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="90"/></svg>
-                    <span class="skill-percent">90%</span>
+                <div class="skill-card" data-category="devops" data-skill="Git">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/git.svg') }}" alt="Git"></div>
+                    <h4>Git</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="90"/></svg>
+                        <span class="skill-percent">90%</span>
+                    </div>
                 </div>
-            </div>
-            <div class="skill-card reveal-scale" data-category="devops">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/github.svg') }}" alt="GitHub Actions"></div>
-                <h4>GitHub Actions</h4>
-                <div class="skill-progress">
-                    <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="82"/></svg>
-                    <span class="skill-percent">82%</span>
+                <div class="skill-card" data-category="devops" data-skill="GitHub Actions">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/github.svg') }}" alt="GitHub Actions"></div>
+                    <h4>GitHub Actions</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="82"/></svg>
+                        <span class="skill-percent">82%</span>
+                    </div>
                 </div>
-            </div>
-            <div class="skill-card reveal-scale" data-category="devops">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/aws.svg') }}" alt="AWS"></div>
-                <h4>AWS</h4>
-                <div class="skill-progress">
-                    <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="78"/></svg>
-                    <span class="skill-percent">78%</span>
+                <div class="skill-card" data-category="devops" data-skill="AWS">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/aws.svg') }}" alt="AWS"></div>
+                    <h4>AWS</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="78"/></svg>
+                        <span class="skill-percent">78%</span>
+                    </div>
                 </div>
-            </div>
-            <div class="skill-card reveal-scale" data-category="devops">
-                <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/linux.svg') }}" alt="Linux"></div>
-                <h4>Linux</h4>
-                <div class="skill-progress">
-                    <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="80"/></svg>
-                    <span class="skill-percent">80%</span>
+                <div class="skill-card" data-category="devops" data-skill="Linux">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/linux.svg') }}" alt="Linux"></div>
+                    <h4>Linux</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="80"/></svg>
+                        <span class="skill-percent">80%</span>
+                    </div>
+                </div>
+
+                <!-- ==================== SECOND COPY OF SKILLS ==================== -->
+                <!-- AI/ML -->
+                <div class="skill-card" data-category="ai_ml" data-skill="LangChain-dup">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/langchain.svg') }}" alt="LangChain"></div>
+                    <h4>LangChain</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="92"/></svg>
+                        <span class="skill-percent">92%</span>
+                    </div>
+                </div>
+                <div class="skill-card" data-category="ai_ml" data-skill="LlamaIndex-dup">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/llamaindex.svg') }}" alt="LlamaIndex"></div>
+                    <h4>LlamaIndex</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="88"/></svg>
+                        <span class="skill-percent">88%</span>
+                    </div>
+                </div>
+                <div class="skill-card" data-category="ai_ml" data-skill="CrewAI-dup">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/crewai.svg') }}" alt="CrewAI"></div>
+                    <h4>CrewAI</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="90"/></svg>
+                        <span class="skill-percent">90%</span>
+                    </div>
+                </div>
+                <div class="skill-card" data-category="ai_ml" data-skill="AutoGen-dup">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/autogen.svg') }}" alt="AutoGen"></div>
+                    <h4>AutoGen</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="85"/></svg>
+                        <span class="skill-percent">85%</span>
+                    </div>
+                </div>
+                <div class="skill-card" data-category="ai_ml" data-skill="OpenAI API-dup">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/openai.svg') }}" alt="OpenAI API"></div>
+                    <h4>OpenAI API</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="93"/></svg>
+                        <span class="skill-percent">93%</span>
+                    </div>
+                </div>
+                <div class="skill-card" data-category="ai_ml" data-skill="Gemini API-dup">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/gemini.svg') }}" alt="Gemini API"></div>
+                    <h4>Gemini API</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="90"/></svg>
+                        <span class="skill-percent">90%</span>
+                    </div>
+                </div>
+                <div class="skill-card" data-category="ai_ml" data-skill="Hugging Face-dup">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/huggingface.svg') }}" alt="Hugging Face"></div>
+                    <h4>Hugging Face</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="82"/></svg>
+                        <span class="skill-percent">82%</span>
+                    </div>
+                </div>
+                <div class="skill-card" data-category="ai_ml" data-skill="PyTorch-dup">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/pytorch.svg') }}" alt="PyTorch"></div>
+                    <h4>PyTorch</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="78"/></svg>
+                        <span class="skill-percent">78%</span>
+                    </div>
+                </div>
+                <div class="skill-card" data-category="ai_ml" data-skill="Scikit-learn-dup">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/scikit.svg') }}" alt="Scikit-learn"></div>
+                    <h4>Scikit-learn</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="85"/></svg>
+                        <span class="skill-percent">85%</span>
+                    </div>
+                </div>
+                <!-- Backend -->
+                <div class="skill-card" data-category="backend" data-skill="Python-dup">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/python.svg') }}" alt="Python"></div>
+                    <h4>Python</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="95"/></svg>
+                        <span class="skill-percent">95%</span>
+                    </div>
+                </div>
+                <div class="skill-card" data-category="backend" data-skill="FastAPI-dup">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/fastapi.svg') }}" alt="FastAPI"></div>
+                    <h4>FastAPI</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="90"/></svg>
+                        <span class="skill-percent">90%</span>
+                    </div>
+                </div>
+                <div class="skill-card" data-category="backend" data-skill="Flask-dup">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/flask.svg') }}" alt="Flask"></div>
+                    <h4>Flask</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="88"/></svg>
+                        <span class="skill-percent">88%</span>
+                    </div>
+                </div>
+                <div class="skill-card" data-category="backend" data-skill="Django-dup">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/django.svg') }}" alt="Django"></div>
+                    <h4>Django</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="75"/></svg>
+                        <span class="skill-percent">75%</span>
+                    </div>
+                </div>
+                <div class="skill-card" data-category="backend" data-skill="Node.js-dup">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/nodejs.svg') }}" alt="Node.js"></div>
+                    <h4>Node.js</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="72"/></svg>
+                        <span class="skill-percent">72%</span>
+                    </div>
+                </div>
+                <!-- Frontend -->
+                <div class="skill-card" data-category="frontend" data-skill="React-dup">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/react.svg') }}" alt="React"></div>
+                    <h4>React</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="85"/></svg>
+                        <span class="skill-percent">85%</span>
+                    </div>
+                </div>
+                <div class="skill-card" data-category="frontend" data-skill="Next.js-dup">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/nextjs.svg') }}" alt="Next.js"></div>
+                    <h4>Next.js</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="80"/></svg>
+                        <span class="skill-percent">80%</span>
+                    </div>
+                </div>
+                <div class="skill-card" data-category="frontend" data-skill="TypeScript-dup">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/typescript.svg') }}" alt="TypeScript"></div>
+                    <h4>TypeScript</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="82"/></svg>
+                        <span class="skill-percent">82%</span>
+                    </div>
+                </div>
+                <div class="skill-card" data-category="frontend" data-skill="JavaScript-dup">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/javascript.svg') }}" alt="JavaScript"></div>
+                    <h4>JavaScript</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="88"/></svg>
+                        <span class="skill-percent">88%</span>
+                    </div>
+                </div>
+                <div class="skill-card" data-category="frontend" data-skill="HTML5-dup">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/html5.svg') }}" alt="HTML5"></div>
+                    <h4>HTML5</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="95"/></svg>
+                        <span class="skill-percent">95%</span>
+                    </div>
+                </div>
+                <div class="skill-card" data-category="frontend" data-skill="CSS3-dup">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/css3.svg') }}" alt="CSS3"></div>
+                    <h4>CSS3</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="92"/></svg>
+                        <span class="skill-percent">92%</span>
+                    </div>
+                </div>
+                <div class="skill-card" data-category="frontend" data-skill="Tailwind CSS-dup">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/tailwind.svg') }}" alt="Tailwind CSS"></div>
+                    <h4>Tailwind CSS</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="85"/></svg>
+                        <span class="skill-percent">85%</span>
+                    </div>
+                </div>
+                <!-- Databases -->
+                <div class="skill-card" data-category="databases" data-skill="PostgreSQL-dup">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/postgresql.svg') }}" alt="PostgreSQL"></div>
+                    <h4>PostgreSQL</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="85"/></svg>
+                        <span class="skill-percent">85%</span>
+                    </div>
+                </div>
+                <div class="skill-card" data-category="databases" data-skill="MongoDB-dup">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/mongodb.svg') }}" alt="MongoDB"></div>
+                    <h4>MongoDB</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="80"/></svg>
+                        <span class="skill-percent">80%</span>
+                    </div>
+                </div>
+                <div class="skill-card" data-category="databases" data-skill="Pinecone-dup">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/pinecone.svg') }}" alt="Pinecone"></div>
+                    <h4>Pinecone</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="88"/></svg>
+                        <span class="skill-percent">88%</span>
+                    </div>
+                </div>
+                <div class="skill-card" data-category="databases" data-skill="ChromaDB-dup">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/chromadb.svg') }}" alt="ChromaDB"></div>
+                    <h4>ChromaDB</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="90"/></svg>
+                        <span class="skill-percent">90%</span>
+                    </div>
+                </div>
+                <div class="skill-card" data-category="databases" data-skill="Redis-dup">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/redis.svg') }}" alt="Redis"></div>
+                    <h4>Redis</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="78"/></svg>
+                        <span class="skill-percent">78%</span>
+                    </div>
+                </div>
+                <div class="skill-card" data-category="databases" data-skill="Weaviate-dup">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/weaviate.svg') }}" alt="Weaviate"></div>
+                    <h4>Weaviate</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="75"/></svg>
+                        <span class="skill-percent">75%</span>
+                    </div>
+                </div>
+                <!-- DevOps -->
+                <div class="skill-card" data-category="devops" data-skill="Docker-dup">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/docker.svg') }}" alt="Docker"></div>
+                    <h4>Docker</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="85"/></svg>
+                        <span class="skill-percent">85%</span>
+                    </div>
+                </div>
+                <div class="skill-card" data-category="devops" data-skill="Git-dup">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/git.svg') }}" alt="Git"></div>
+                    <h4>Git</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="90"/></svg>
+                        <span class="skill-percent">90%</span>
+                    </div>
+                </div>
+                <div class="skill-card" data-category="devops" data-skill="GitHub Actions-dup">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/github.svg') }}" alt="GitHub Actions"></div>
+                    <h4>GitHub Actions</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="82"/></svg>
+                        <span class="skill-percent">82%</span>
+                    </div>
+                </div>
+                <div class="skill-card" data-category="devops" data-skill="AWS-dup">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/aws.svg') }}" alt="AWS"></div>
+                    <h4>AWS</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="78"/></svg>
+                        <span class="skill-percent">78%</span>
+                    </div>
+                </div>
+                <div class="skill-card" data-category="devops" data-skill="Linux-dup">
+                    <div class="skill-icon"><img src="{{ url_for('static', filename='assets/skills/linux.svg') }}" alt="Linux"></div>
+                    <h4>Linux</h4>
+                    <div class="skill-progress">
+                        <svg viewBox="0 0 48 48"><circle class="skill-progress-bg" cx="24" cy="24" r="22"/><circle class="skill-progress-fill" cx="24" cy="24" r="22" data-percent="80"/></svg>
+                        <span class="skill-percent">80%</span>
+                    </div>
                 </div>
             </div>
         </div>
