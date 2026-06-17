@@ -46,7 +46,7 @@ export const Loader = ({ onComplete }) => {
 
   return (
     <motion.div
-      className="fixed inset-0 z-[999] flex flex-col items-center justify-center bg-[#050816]"
+      className="fixed inset-0 z-[999] flex flex-col items-center justify-center bg-[#FFFFFF]"
       exit={{
         clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)",
         transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] }
@@ -63,12 +63,12 @@ export const Loader = ({ onComplete }) => {
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="relative flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-tr from-[#7C3AED] via-[#00E5FF] to-[#00FFA3] p-[2px]"
+          className="relative flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-tr from-[#8B5CF6] via-[#2563EB] to-[#10B981] p-[2px]"
         >
-          <div className="flex items-center justify-center w-full h-full rounded-full bg-[#050816]">
+          <div className="flex items-center justify-center w-full h-full rounded-full bg-[#FFFFFF]">
             {/* Custom SVG Brain / Node Monogram */}
             <svg
-              className="w-12 h-12 text-[#00E5FF] animate-pulse"
+              className="w-12 h-12 text-[#2563EB] animate-pulse"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -82,7 +82,7 @@ export const Loader = ({ onComplete }) => {
               />
             </svg>
           </div>
-          <div className="absolute inset-0 rounded-full bg-[#00E5FF]/20 blur-md -z-10 animate-ping" style={{ animationDuration: '3s' }} />
+          <div className="absolute inset-0 rounded-full bg-[#2563EB]/20 blur-md -z-10 animate-ping" style={{ animationDuration: '3s' }} />
         </motion.div>
 
         {/* Typing text segments */}
@@ -94,7 +94,7 @@ export const Loader = ({ onComplete }) => {
                 initial={{ opacity: 0, y: 10, filter: "blur(3px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 exit={{ opacity: 0, y: -10, filter: "blur(3px)" }}
-                className="font-display font-extrabold text-2xl tracking-wide text-white uppercase"
+                className="font-display font-extrabold text-2xl tracking-wide text-text-primary uppercase"
               >
                 AI
               </motion.span>
@@ -105,7 +105,7 @@ export const Loader = ({ onComplete }) => {
                 initial={{ opacity: 0, y: 10, filter: "blur(3px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 exit={{ opacity: 0, y: -10, filter: "blur(3px)" }}
-                className="font-display font-extrabold text-2xl tracking-wide text-white uppercase"
+                className="font-display font-extrabold text-2xl tracking-wide text-text-primary uppercase"
               >
                 Developer
               </motion.span>
@@ -115,7 +115,7 @@ export const Loader = ({ onComplete }) => {
                 key="portfolio"
                 initial={{ opacity: 0, y: 10, filter: "blur(3px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                className="font-display font-extrabold text-2xl tracking-wide text-[#00E5FF] uppercase glow-text"
+                className="font-display font-extrabold text-2xl tracking-wide text-[#2563EB] uppercase glow-text"
               >
                 Portfolio
               </motion.span>
@@ -125,9 +125,9 @@ export const Loader = ({ onComplete }) => {
 
         {/* Loading Progress Bar */}
         <div className="flex flex-col items-center gap-2">
-          <div className="w-56 h-[3px] rounded-full bg-white/5 overflow-hidden relative border border-white/5">
+          <div className="w-56 h-[3px] rounded-full bg-black/5 overflow-hidden relative border border-black/5">
             <motion.div
-              className="h-full bg-gradient-to-r from-[#7C3AED] via-[#00E5FF] to-[#00FFA3]"
+              className="h-full bg-gradient-to-r from-[#8B5CF6] via-[#2563EB] to-[#10B981]"
               style={{ width: `${progress}%` }}
             />
           </div>

@@ -40,12 +40,12 @@ export const Skills = () => {
   const selectedDetails = getSkillDetails();
 
   return (
-    <SectionWrapper id="skills" className="border-t border-white/5">
+    <SectionWrapper id="skills" className="border-t border-black/5">
       <div className="space-y-4 mb-16 text-center lg:text-left">
         <span className="font-mono text-xs text-primary font-semibold uppercase tracking-[0.3em]">
           TECHNICAL SKILLS
         </span>
-        <h2 className="font-display font-extrabold text-4xl md:text-5xl uppercase tracking-tight text-white">
+        <h2 className="font-display font-extrabold text-4xl md:text-5xl uppercase tracking-tight text-text-primary">
           Expertise & Tech Stack
         </h2>
       </div>
@@ -87,8 +87,8 @@ export const Skills = () => {
                   <GlassCard className="p-4 md:p-5 rounded-2xl border-primary/20 bg-primary/5 flex flex-col gap-2">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <Sparkles size={14} className="text-[#00FFA3]" />
-                        <h4 className="font-display font-bold text-sm text-white uppercase tracking-wider">
+                        <Sparkles size={14} className="text-[#10B981]" />
+                        <h4 className="font-display font-bold text-sm text-text-primary uppercase tracking-wider">
                           {selectedDetails.name}
                         </h4>
                       </div>
@@ -99,7 +99,7 @@ export const Skills = () => {
 
                     <div className="flex items-center gap-4">
                       {/* Animated Progress bar */}
-                      <div className="flex-1 h-2 rounded-full bg-white/5 overflow-hidden border border-white/5">
+                      <div className="flex-1 h-2 rounded-full bg-black/5 overflow-hidden border border-black/5">
                         <motion.div
                           initial={{ width: 0 }}
                           animate={{ width: `${selectedDetails.level}%` }}
@@ -119,7 +119,7 @@ export const Skills = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="w-full h-full flex items-center justify-center border border-dashed border-white/10 rounded-2xl p-4 text-center"
+                  className="w-full h-full flex items-center justify-center border border-dashed border-black/10 rounded-2xl p-4 text-center"
                 >
                   <p className="font-mono text-[10px] text-text-muted uppercase tracking-[0.2em]">
                     Select a floating skill from the 3D globe to reveal details
@@ -136,7 +136,7 @@ export const Skills = () => {
             <GlassCard key={category.title} className="flex flex-col gap-6">
               <div className="flex items-center gap-2">
                 <BarChart2 size={16} className="text-primary" />
-                <h3 className="font-display font-extrabold text-sm uppercase tracking-widest text-white">
+                <h3 className="font-display font-extrabold text-sm uppercase tracking-widest text-text-primary">
                   {category.title}
                 </h3>
               </div>
@@ -149,7 +149,7 @@ export const Skills = () => {
                       <span className="text-primary font-bold">{skill.level}%</span>
                     </div>
                     
-                    <div className="w-full h-2 bg-white/5 rounded-full overflow-hidden relative border border-white/5">
+                    <div className="w-full h-2 bg-black/5 rounded-full overflow-hidden relative border border-black/5">
                       <motion.div
                         initial={{ width: 0 }}
                         whileInView={{ width: `${skill.level}%` }}

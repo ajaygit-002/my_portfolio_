@@ -47,15 +47,15 @@ export const SkillsOrbit = ({ onSelectSkill }) => {
   return (
     <group ref={groupRef}>
       <ambientLight intensity={1.5} />
-      <pointLight position={[8, 8, 8]} intensity={2} color="#00E5FF" />
-      <pointLight position={[-8, -8, -8]} intensity={1} color="#7C3AED" />
+      <pointLight position={[8, 8, 8]} intensity={2} color="#2563EB" />
+      <pointLight position={[-8, -8, -8]} intensity={1} color="#8B5CF6" />
 
       {/* Glowing Central Sphere */}
       <mesh>
         <sphereGeometry args={[0.5, 32, 32]} />
         <meshStandardMaterial
-          color="#00E5FF"
-          emissive="#00E5FF"
+          color="#2563EB"
+          emissive="#2563EB"
           emissiveIntensity={0.7}
           roughness={0.15}
         />
@@ -71,7 +71,7 @@ export const SkillsOrbit = ({ onSelectSkill }) => {
         {/* Ring Guide Line */}
         <mesh rotation={[Math.PI / 2, 0, 0]}>
           <ringGeometry args={[ring1Radius - 0.015, ring1Radius + 0.015, 64]} />
-          <meshBasicMaterial color="#00E5FF" opacity={0.12} transparent={true} side={THREE.DoubleSide} />
+          <meshBasicMaterial color="#2563EB" opacity={0.12} transparent={true} side={THREE.DoubleSide} />
         </mesh>
 
         {orbitSkills.ring1.map((skill, idx) => {
@@ -113,7 +113,7 @@ export const SkillsOrbit = ({ onSelectSkill }) => {
               <Text
                 position={[0, 0.25, 0]}
                 fontSize={textFontSize}
-                color={isHovered ? "#00FFA3" : "#FFFFFF"}
+                color={isHovered ? "#10B981" : "#FFFFFF"}
                 anchorX="center"
                 anchorY="middle"
                 // Standard billboard effect: rotate text opposite to ring
@@ -136,7 +136,7 @@ export const SkillsOrbit = ({ onSelectSkill }) => {
         {/* Ring Guide Line */}
         <mesh rotation={[Math.PI / 2, 0, 0]}>
           <ringGeometry args={[ring2Radius - 0.015, ring2Radius + 0.015, 64]} />
-          <meshBasicMaterial color="#7C3AED" opacity={0.12} transparent={true} side={THREE.DoubleSide} />
+          <meshBasicMaterial color="#8B5CF6" opacity={0.12} transparent={true} side={THREE.DoubleSide} />
         </mesh>
 
         {orbitSkills.ring2.map((skill, idx) => {
@@ -176,7 +176,7 @@ export const SkillsOrbit = ({ onSelectSkill }) => {
               <Text
                 position={[0, 0.28, 0]}
                 fontSize={textFontSize}
-                color={isHovered ? "#00FFA3" : "#FFFFFF"}
+                color={isHovered ? "#10B981" : "#FFFFFF"}
                 anchorX="center"
                 anchorY="middle"
                 rotation={[0, -ring2Ref.current?.rotation?.y || 0, 0]}

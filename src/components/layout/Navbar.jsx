@@ -53,7 +53,7 @@ export const Navbar = () => {
       <header
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 border-b ${
           scrolled
-            ? 'bg-[#050816]/85 backdrop-blur-lg border-white/5 py-4'
+            ? 'bg-[#FFFFFF]/85 backdrop-blur-lg border-black/5 py-4'
             : 'bg-transparent border-transparent py-6'
         }`}
       >
@@ -64,12 +64,12 @@ export const Navbar = () => {
             className="flex items-center gap-3 group text-left hoverable"
           >
             <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-secondary to-primary p-[1.5px] transition-transform duration-300 group-hover:scale-105">
-              <div className="w-full h-full rounded-[10px] bg-[#050816] flex items-center justify-center font-display font-extrabold text-base text-primary tracking-tighter">
+              <div className="w-full h-full rounded-[10px] bg-[#FFFFFF] flex items-center justify-center font-display font-extrabold text-base text-primary tracking-tighter">
                 AS
               </div>
             </div>
             <div className="flex flex-col">
-              <span className="font-display font-extrabold text-sm tracking-widest text-white uppercase group-hover:text-primary transition-colors">
+              <span className="font-display font-extrabold text-sm tracking-widest text-text-primary uppercase group-hover:text-primary transition-colors">
                 Ajay S
               </span>
               <span className="font-mono text-[9px] text-text-secondary uppercase tracking-[0.2em]">
@@ -88,7 +88,7 @@ export const Navbar = () => {
                     <button
                       onClick={() => handleNavClick(link.id)}
                       className={`font-display font-semibold text-sm tracking-wide transition-colors hoverable uppercase ${
-                        isActive ? 'text-primary' : 'text-text-secondary hover:text-white'
+                        isActive ? 'text-primary' : 'text-text-secondary hover:text-text-primary'
                       }`}
                     >
                       {link.label}
@@ -96,7 +96,7 @@ export const Navbar = () => {
                     {isActive && (
                       <motion.span
                         layoutId="underline"
-                        className="absolute left-2 right-2 bottom-0 h-[2px] bg-primary shadow-[0_0_8px_#00E5FF]"
+                        className="absolute left-2 right-2 bottom-0 h-[2px] bg-primary shadow-[0_0_8px_#2563EB]"
                         transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                       />
                     )}
@@ -108,7 +108,7 @@ export const Navbar = () => {
             {/* Hire Me CTA */}
             <MagneticButton onClick={handleHireClick}>
               <button
-                className="px-5 py-2 rounded-xl text-xs font-display font-bold uppercase tracking-wider bg-gradient-to-r from-secondary to-primary text-white hover:shadow-[0_0_15px_#00E5FF] transition-all hover:scale-[1.03]"
+                className="px-5 py-2 rounded-xl text-xs font-display font-bold uppercase tracking-wider bg-gradient-to-r from-secondary to-primary text-white hover:shadow-[0_0_15px_#2563EB] transition-all hover:scale-[1.03]"
                 aria-label="Hire Ajay S"
               >
                 Hire Me
@@ -119,7 +119,7 @@ export const Navbar = () => {
           {/* Mobile Menu Toggle button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden flex items-center justify-center w-10 h-10 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white"
+            className="md:hidden flex items-center justify-center w-10 h-10 rounded-lg border border-black/10 bg-black/5 hover:bg-black/10 text-text-primary"
             aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Menu'}
           >
             {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -135,7 +135,7 @@ export const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="fixed inset-0 bg-[#050816] z-40 flex flex-col justify-center px-8 md:hidden"
+            className="fixed inset-0 bg-[#FFFFFF] z-40 flex flex-col justify-center px-8 md:hidden"
           >
             {/* Ambient glows behind drawer */}
             <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-64 h-64 bg-primary/10 rounded-full filter blur-3xl -z-10" />
@@ -154,7 +154,7 @@ export const Navbar = () => {
                     <button
                       onClick={() => handleNavClick(link.id)}
                       className={`font-display font-extrabold text-2xl uppercase tracking-widest transition-colors ${
-                        isActive ? 'text-primary' : 'text-slate-400 hover:text-white'
+                        isActive ? 'text-primary' : 'text-slate-400 hover:text-text-primary'
                       }`}
                     >
                       {link.label}

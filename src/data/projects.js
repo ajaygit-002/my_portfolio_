@@ -7,9 +7,9 @@ export const projects = [
     technologies: ["Python", "TensorFlow", "OpenCV", "CNN", "Flask"],
     liveLink: "#",
     githubLink: "https://github.com/ajay",
-    color: "from-[#00E5FF] to-[#0084FF]",
+    color: "from-[#2563EB] to-[#0084FF]",
     glowColor: "rgba(0, 229, 255, 0.4)",
-    imagePlaceholder: "linear-gradient(135deg, #00E5FF 0%, #0084FF 100%)"
+    imagePlaceholder: "linear-gradient(135deg, #2563EB 0%, #0084FF 100%)"
   },
   {
     id: "accident-detection",
@@ -19,9 +19,9 @@ export const projects = [
     technologies: ["Python", "PyTorch", "YOLO", "OpenCV", "FastAPI"],
     liveLink: "#",
     githubLink: "https://github.com/ajay",
-    color: "from-[#7C3AED] to-[#4F46E5]",
+    color: "from-[#8B5CF6] to-[#4F46E5]",
     glowColor: "rgba(124, 58, 237, 0.4)",
-    imagePlaceholder: "linear-gradient(135deg, #7C3AED 0%, #4F46E5 100%)"
+    imagePlaceholder: "linear-gradient(135deg, #8B5CF6 0%, #4F46E5 100%)"
   },
   {
     id: "tourist-crowd-predictor",
@@ -31,9 +31,9 @@ export const projects = [
     technologies: ["Python", "Scikit-learn", "React", "Node.js", "MongoDB"],
     liveLink: "#",
     githubLink: "https://github.com/ajay",
-    color: "from-[#00FFA3] to-[#00C896]",
+    color: "from-[#10B981] to-[#00C896]",
     glowColor: "rgba(0, 255, 163, 0.4)",
-    imagePlaceholder: "linear-gradient(135deg, #00FFA3 0%, #00C896 100%)"
+    imagePlaceholder: "linear-gradient(135deg, #10B981 0%, #00C896 100%)"
   },
   {
     id: "study-planner",

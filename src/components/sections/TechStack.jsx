@@ -15,7 +15,7 @@ const TechCard = ({ tech }) => {
   return (
     <div
       style={hoverStyle}
-      className="flex items-center gap-3 px-5 py-3 rounded-2xl border border-white/5 bg-white/5 backdrop-blur-md select-none transition-all duration-300 hover:border-[var(--hover-color)] hover:shadow-[0_0_20px_var(--hover-glow)] hover:-translate-y-1 group"
+      className="flex items-center gap-3 px-5 py-3 rounded-2xl border border-black/5 bg-black/5 backdrop-blur-md select-none transition-all duration-300 hover:border-[var(--hover-color)] hover:shadow-[0_0_20px_var(--hover-glow)] hover:-translate-y-1 group"
     >
       {/* Icon rendering */}
       <div className="w-[22px] h-[22px] flex items-center justify-center transition-colors duration-300 text-slate-400 group-hover:text-[var(--hover-color)] shrink-0">
@@ -33,7 +33,7 @@ const TechCard = ({ tech }) => {
       </div>
       
       {/* Label rendering */}
-      <span className="font-mono text-xs font-bold tracking-wider text-slate-300 group-hover:text-white uppercase transition-colors duration-300">
+      <span className="font-mono text-xs font-bold tracking-wider text-slate-300 group-hover:text-text-primary uppercase transition-colors duration-300">
         {tech.name}
       </span>
     </div>
@@ -46,12 +46,12 @@ export const TechStack = () => {
   const row2Repeated = [...row2Tech, ...row2Tech, ...row2Tech, ...row2Tech];
 
   return (
-    <section id="techstack" className="py-20 md:py-28 relative overflow-hidden bg-gradient-to-b from-transparent to-[#050816] w-full">
+    <section id="techstack" className="py-20 md:py-28 relative overflow-hidden bg-gradient-to-b from-transparent to-[#FFFFFF] w-full">
       <div className="max-w-7xl mx-auto px-6 space-y-4 mb-12 text-center lg:text-left">
         <span className="font-mono text-xs text-primary font-semibold uppercase tracking-[0.3em]">
           CORE SYSTEMS
         </span>
-        <h2 className="font-display font-extrabold text-4xl md:text-5xl uppercase tracking-tight text-white">
+        <h2 className="font-display font-extrabold text-4xl md:text-5xl uppercase tracking-tight text-text-primary">
           Technologies & Tools
         </h2>
       </div>

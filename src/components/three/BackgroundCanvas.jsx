@@ -4,7 +4,7 @@ import { ParticleField } from './ParticleField';
 
 export const BackgroundCanvas = () => {
   return (
-    <div className="fixed inset-0 -z-20 pointer-events-none w-full h-full bg-[#050816] overflow-hidden">
+    <div className="fixed inset-0 -z-20 pointer-events-none w-full h-full bg-[#FFFFFF] overflow-hidden">
       {/* Aurora shimmer glow elements */}
       <div className="aurora-bg">
         <div className="aurora-glow-1" />
@@ -16,7 +16,7 @@ export const BackgroundCanvas = () => {
       <div 
         className="absolute inset-0 opacity-[0.03] pointer-events-none" 
         style={{
-          backgroundImage: `radial-gradient(circle, #00E5FF 1.5px, transparent 1.5px)`,
+          backgroundImage: `radial-gradient(circle, #2563EB 1.5px, transparent 1.5px)`,
           backgroundSize: '40px 40px'
         }}
       />

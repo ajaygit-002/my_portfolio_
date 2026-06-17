@@ -28,8 +28,8 @@ export const orbitSkills = {
     { name: "SQL", color: "#00758F" }
   ],
   ring2: [
-    { name: "AI/ML", color: "#00E5FF" },
-    { name: "Data Science", color: "#00FFA3" },
+    { name: "AI/ML", color: "#2563EB" },
+    { name: "Data Science", color: "#10B981" },
     { name: "Node.js", color: "#339933" },
     { name: "PyTorch", color: "#EE4C2C" },
     { name: "MongoDB", color: "#47A248" },

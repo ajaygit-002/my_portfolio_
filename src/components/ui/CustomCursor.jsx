@@ -83,7 +83,7 @@ export const CustomCursor = () => {
         return (
           <div
             key={index}
-            className="absolute w-2 h-2 rounded-full bg-[#00E5FF] -translate-x-1/2 -translate-y-1/2"
+            className="absolute w-2 h-2 rounded-full bg-[#2563EB] -translate-x-1/2 -translate-y-1/2"
             style={{
               left: point.x,
               top: point.y,
@@ -97,7 +97,7 @@ export const CustomCursor = () => {
 
       {/* Main Inner Dot */}
       <div
-        className="absolute w-2.5 h-2.5 rounded-full bg-[#00E5FF] -translate-x-1/2 -translate-y-1/2 transition-transform duration-100 ease-out"
+        className="absolute w-2.5 h-2.5 rounded-full bg-[#2563EB] -translate-x-1/2 -translate-y-1/2 transition-transform duration-100 ease-out"
         style={{
           left: position.x,
           top: position.y,

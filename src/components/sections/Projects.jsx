@@ -65,9 +65,9 @@ const ProjectCard = ({ project }) => {
         <div className="absolute inset-0 opacity-15 mix-blend-overlay bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:14px_24px]" />
         
         {/* Floating tech nodes graphic */}
-        <div className="absolute w-24 h-24 rounded-full bg-white/10 blur-xl animate-pulse" />
+        <div className="absolute w-24 h-24 rounded-full bg-black/10 blur-xl animate-pulse" />
         
-        <Sparkles className="w-10 h-10 text-white drop-shadow-[0_0_12px_rgba(255,255,255,0.5)] z-10 group-hover:scale-110 transition-transform duration-500" />
+        <Sparkles className="w-10 h-10 text-text-primary drop-shadow-[0_0_12px_rgba(255,255,255,0.5)] z-10 group-hover:scale-110 transition-transform duration-500" />
       </div>
 
       {/* Card Body content */}
@@ -81,7 +81,7 @@ const ProjectCard = ({ project }) => {
         </div>
 
         {/* Project Title */}
-        <h3 className="font-display font-extrabold text-xl text-white uppercase tracking-wide group-hover:text-primary transition-colors">
+        <h3 className="font-display font-extrabold text-xl text-text-primary uppercase tracking-wide group-hover:text-primary transition-colors">
           {project.name}
         </h3>
 
@@ -98,12 +98,12 @@ const ProjectCard = ({ project }) => {
         </div>
 
         {/* Links Footer */}
-        <div className="flex items-center gap-4 border-t border-white/5 pt-4 mt-auto">
+        <div className="flex items-center gap-4 border-t border-black/5 pt-4 mt-auto">
           <a
             href={project.liveLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 font-mono text-[11px] font-bold uppercase tracking-wider text-primary hover:text-white transition-colors duration-300"
+            className="flex items-center gap-1.5 font-mono text-[11px] font-bold uppercase tracking-wider text-primary hover:text-text-primary transition-colors duration-300"
           >
             <Globe size={14} />
             <span>Live Demo</span>
@@ -112,7 +112,7 @@ const ProjectCard = ({ project }) => {
             href={project.githubLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 font-mono text-[11px] font-bold uppercase tracking-wider text-text-secondary hover:text-white transition-colors duration-300 ml-auto"
+            className="flex items-center gap-1.5 font-mono text-[11px] font-bold uppercase tracking-wider text-text-secondary hover:text-text-primary transition-colors duration-300 ml-auto"
           >
             <Github size={14} />
             <span>GitHub</span>
@@ -126,12 +126,12 @@ const ProjectCard = ({ project }) => {
 
 export const Projects = () => {
   return (
-    <SectionWrapper id="projects" className="border-t border-white/5">
+    <SectionWrapper id="projects" className="border-t border-black/5">
       <div className="space-y-4 mb-16 text-center lg:text-left">
         <span className="font-mono text-xs text-primary font-semibold uppercase tracking-[0.3em]">
           MY WORKS
         </span>
-        <h2 className="font-display font-extrabold text-4xl md:text-5xl uppercase tracking-tight text-white">
+        <h2 className="font-display font-extrabold text-4xl md:text-5xl uppercase tracking-tight text-text-primary">
           Featured AI Projects
         </h2>
       </div>

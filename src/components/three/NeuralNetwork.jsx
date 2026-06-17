@@ -80,16 +80,16 @@ export const NeuralNetwork = () => {
     <group ref={groupRef}>
       {/* Lights */}
       <ambientLight intensity={1.6} />
-      <pointLight position={[10, 10, 10]} intensity={2.5} color="#00E5FF" />
-      <pointLight position={[-10, -10, -10]} intensity={1.2} color="#7C3AED" />
+      <pointLight position={[10, 10, 10]} intensity={2.5} color="#2563EB" />
+      <pointLight position={[-10, -10, -10]} intensity={1.2} color="#8B5CF6" />
 
       {/* Render Node Spheres */}
       {nodePositions.map((pos, idx) => (
         <mesh key={idx} position={pos}>
           <sphereGeometry args={[0.075, 16, 16]} />
           <meshStandardMaterial
-            color="#00E5FF"
-            emissive="#00E5FF"
+            color="#2563EB"
+            emissive="#2563EB"
             emissiveIntensity={0.5}
             roughness={0.1}
             metalness={0.2}
@@ -109,7 +109,7 @@ export const NeuralNetwork = () => {
           />
         </bufferGeometry>
         <lineBasicMaterial
-          color="#00E5FF"
+          color="#2563EB"
           transparent={true}
           opacity={0.3}
           depthWrite={false}
@@ -125,7 +125,7 @@ export const NeuralNetwork = () => {
         >
           <sphereGeometry args={[0.038, 8, 8]} />
           <meshBasicMaterial
-            color="#00FFA3"
+            color="#10B981"
             transparent={true}
             opacity={0.8}
             blending={THREE.AdditiveBlending}

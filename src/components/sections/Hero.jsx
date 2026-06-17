@@ -57,7 +57,7 @@ export const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="font-display font-extrabold text-6xl md:text-8xl tracking-tight text-white uppercase"
+              className="font-display font-extrabold text-6xl md:text-8xl tracking-tight text-text-primary uppercase"
             >
               Ajay S
             </motion.h1>
@@ -128,7 +128,7 @@ export const Hero = () => {
             </GlassCard>
 
             <GlassCard className="p-4 md:p-4 rounded-2xl flex flex-col items-center justify-center text-center">
-              <span className="text-2xl md:text-3xl font-display font-extrabold text-white">
+              <span className="text-2xl md:text-3xl font-display font-extrabold text-text-primary">
                 <Counter end={100} suffix="%" />
               </span>
               <span className="text-[10px] font-mono uppercase tracking-widest text-text-secondary mt-1">
@@ -146,7 +146,7 @@ export const Hero = () => {
           >
             <MagneticButton onClick={handleScrollToProjects} className="w-full sm:w-auto">
               <button
-                className="w-full sm:w-auto px-8 py-4 rounded-2xl font-display font-bold uppercase tracking-wider text-sm bg-gradient-to-r from-secondary to-primary text-white flex items-center justify-center gap-2 hover:shadow-[0_0_20px_#00E5FF] transition-all duration-300"
+                className="w-full sm:w-auto px-8 py-4 rounded-2xl font-display font-bold uppercase tracking-wider text-sm bg-gradient-to-r from-secondary to-primary text-white flex items-center justify-center gap-2 hover:shadow-[0_0_20px_#2563EB] transition-all duration-300"
                 aria-label="View Projects"
               >
                 View My Work
@@ -158,7 +158,7 @@ export const Hero = () => {
               <a
                 href="/resume.pdf"
                 download
-                className="w-full sm:w-auto px-8 py-4 rounded-2xl border border-white/10 hover:border-primary/40 bg-white/5 text-white flex items-center justify-center gap-2 text-sm font-display font-bold uppercase tracking-wider transition-colors duration-300"
+                className="w-full sm:w-auto px-8 py-4 rounded-2xl border border-black/10 hover:border-primary/40 bg-black/5 text-text-primary flex items-center justify-center gap-2 text-sm font-display font-bold uppercase tracking-wider transition-colors duration-300"
                 aria-label="Download CV"
               >
                 Download CV

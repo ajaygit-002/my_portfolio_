@@ -75,7 +75,7 @@ export const Contact = () => {
   };
 
   return (
-    <SectionWrapper id="contact" className="border-t border-white/5 pb-24">
+    <SectionWrapper id="contact" className="border-t border-black/5 pb-24">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
         
         {/* Left Column - Contact Details */}
@@ -84,7 +84,7 @@ export const Contact = () => {
             <span className="font-mono text-xs text-primary font-semibold uppercase tracking-[0.3em]">
               GET IN TOUCH
             </span>
-            <h2 className="font-display font-extrabold text-4xl md:text-5xl uppercase tracking-tight text-white leading-tight">
+            <h2 className="font-display font-extrabold text-4xl md:text-5xl uppercase tracking-tight text-text-primary leading-tight">
               Let's Build Something Incredible
             </h2>
           </div>
@@ -139,7 +139,7 @@ export const Contact = () => {
                 href="https://github.com/ajay"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-xl border border-white/5 bg-white/5 flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary/20 transition-all"
+                className="w-10 h-10 rounded-xl border border-black/5 bg-black/5 flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary/20 transition-all"
                 aria-label="GitHub Profile"
               >
                 <FaGithub size={16} />
@@ -148,7 +148,7 @@ export const Contact = () => {
                 href="https://linkedin.com/in/ajay"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-xl border border-white/5 bg-white/5 flex items-center justify-center text-slate-400 hover:text-secondary hover:border-secondary/20 transition-all"
+                className="w-10 h-10 rounded-xl border border-black/5 bg-black/5 flex items-center justify-center text-slate-400 hover:text-secondary hover:border-secondary/20 transition-all"
                 aria-label="LinkedIn Profile"
               >
                 <FaLinkedin size={16} />
@@ -157,7 +157,7 @@ export const Contact = () => {
                 href="https://twitter.com/ajay"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-xl border border-white/5 bg-white/5 flex items-center justify-center text-slate-400 hover:text-accent hover:border-accent/20 transition-all"
+                className="w-10 h-10 rounded-xl border border-black/5 bg-black/5 flex items-center justify-center text-slate-400 hover:text-accent hover:border-accent/20 transition-all"
                 aria-label="Twitter Profile"
               >
                 <FaTwitter size={16} />
@@ -166,7 +166,7 @@ export const Contact = () => {
                 href="https://kaggle.com/ajay"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-xl border border-white/5 bg-white/5 flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary/20 transition-all"
+                className="w-10 h-10 rounded-xl border border-black/5 bg-black/5 flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary/20 transition-all"
                 aria-label="Kaggle Profile"
               >
                 <FaKaggle size={16} />
@@ -191,7 +191,7 @@ export const Contact = () => {
                   onBlur={() => handleBlur('name')}
                   placeholder=" "
                   required
-                  className="block py-3 px-0 w-full text-sm text-white bg-transparent border-0 border-b border-white/10 appearance-none focus:outline-none focus:ring-0 focus:border-primary peer transition-colors"
+                  className="block py-3 px-0 w-full text-sm text-text-primary bg-transparent border-0 border-b border-black/10 appearance-none focus:outline-none focus:ring-0 focus:border-primary peer transition-colors"
                 />
                 <label
                   htmlFor="name"
@@ -218,7 +218,7 @@ export const Contact = () => {
                   onBlur={() => handleBlur('email')}
                   placeholder=" "
                   required
-                  className="block py-3 px-0 w-full text-sm text-white bg-transparent border-0 border-b border-white/10 appearance-none focus:outline-none focus:ring-0 focus:border-primary peer transition-colors"
+                  className="block py-3 px-0 w-full text-sm text-text-primary bg-transparent border-0 border-b border-black/10 appearance-none focus:outline-none focus:ring-0 focus:border-primary peer transition-colors"
                 />
                 <label
                   htmlFor="email"
@@ -245,7 +245,7 @@ export const Contact = () => {
                   onBlur={() => handleBlur('subject')}
                   placeholder=" "
                   required
-                  className="block py-3 px-0 w-full text-sm text-white bg-transparent border-0 border-b border-white/10 appearance-none focus:outline-none focus:ring-0 focus:border-primary peer transition-colors"
+                  className="block py-3 px-0 w-full text-sm text-text-primary bg-transparent border-0 border-b border-black/10 appearance-none focus:outline-none focus:ring-0 focus:border-primary peer transition-colors"
                 />
                 <label
                   htmlFor="subject"
@@ -272,7 +272,7 @@ export const Contact = () => {
                   onBlur={() => handleBlur('message')}
                   placeholder=" "
                   required
-                  className="block py-3 px-0 w-full text-sm text-white bg-transparent border-0 border-b border-white/10 appearance-none focus:outline-none focus:ring-0 focus:border-primary peer transition-colors resize-none"
+                  className="block py-3 px-0 w-full text-sm text-text-primary bg-transparent border-0 border-b border-black/10 appearance-none focus:outline-none focus:ring-0 focus:border-primary peer transition-colors resize-none"
                 />
                 <label
                   htmlFor="message"
@@ -294,7 +294,7 @@ export const Contact = () => {
                   <button
                     type="submit"
                     disabled={status === 'sending' || status === 'success'}
-                    className="w-full py-4 rounded-2xl font-display font-bold uppercase tracking-wider text-sm bg-gradient-to-r from-secondary to-primary text-white flex items-center justify-center gap-2 hover:shadow-[0_0_20px_#00E5FF] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full py-4 rounded-2xl font-display font-bold uppercase tracking-wider text-sm bg-gradient-to-r from-secondary to-primary text-white flex items-center justify-center gap-2 hover:shadow-[0_0_20px_#2563EB] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                     aria-label="Send message"
                   >
                     {status === 'idle' && (
@@ -312,7 +312,7 @@ export const Contact = () => {
                     {status === 'success' && (
                       <>
                         <span>Message Sent!</span>
-                        <CheckCircle2 size={15} className="text-[#00FFA3]" />
+                        <CheckCircle2 size={15} className="text-[#10B981]" />
                       </>
                     )}
                   </button>

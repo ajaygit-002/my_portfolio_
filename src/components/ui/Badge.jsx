@@ -13,7 +13,7 @@ export const Badge = ({ text, className = "", color = "" }) => {
 
   return (
     <span
-      className={`inline-flex items-center px-3.5 py-1 rounded-full text-xs font-mono font-semibold tracking-wider transition-all duration-300 border border-white/5 bg-white/5 text-slate-300 hover:text-white ${className}`}
+      className={`inline-flex items-center px-3.5 py-1 rounded-full text-xs font-mono font-semibold tracking-wider transition-all duration-300 border border-black/5 bg-black/5 text-slate-300 hover:text-text-primary ${className}`}
       style={style}
     >
       {text}

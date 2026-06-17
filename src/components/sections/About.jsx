@@ -40,7 +40,7 @@ export const About = () => {
   });
 
   return (
-    <SectionWrapper id="about" className="border-t border-white/5">
+    <SectionWrapper id="about" className="border-t border-black/5">
       <div ref={ref} className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
         {/* Left - Rotating profile image + Orbiting badges */}
@@ -68,7 +68,7 @@ export const About = () => {
             transition={{ duration: 0.8, ease: 'easeOut' }}
             className="w-64 h-64 relative overflow-hidden bg-gradient-to-tr from-secondary to-primary p-[3px] shadow-[0_0_30px_rgba(0,229,255,0.2)] rounded-[32px]"
           >
-            <div className="w-full h-full rounded-[30px] overflow-hidden bg-[#050816]">
+            <div className="w-full h-full rounded-[30px] overflow-hidden bg-[#FFFFFF]">
               <img
                 src="/assets/images/profile.png"
                 alt="Ajay S Profile Avatar"
@@ -105,7 +105,7 @@ export const About = () => {
           <motion.div
             variants={badgeVariants(90, 90, 3.5)}
             animate="animate"
-            className="absolute px-3 py-1.5 rounded-xl border border-white/20 bg-bg-primary/90 text-white font-mono text-[10px] uppercase font-bold tracking-widest shadow-lg pointer-events-none"
+            className="absolute px-3 py-1.5 rounded-xl border border-white/20 bg-bg-primary/90 text-text-primary font-mono text-[10px] uppercase font-bold tracking-widest shadow-lg pointer-events-none"
           >
             🧩 Problem Solver
           </motion.div>
@@ -117,7 +117,7 @@ export const About = () => {
             <span className="font-mono text-xs text-primary font-semibold uppercase tracking-[0.3em]">
               ABOUT ME
             </span>
-            <h2 className="font-display font-extrabold text-4xl md:text-5xl uppercase tracking-tight text-white leading-tight">
+            <h2 className="font-display font-extrabold text-4xl md:text-5xl uppercase tracking-tight text-text-primary leading-tight">
               Passionate About Building Intelligent Systems
             </h2>
           </div>
@@ -152,7 +152,7 @@ export const About = () => {
                 <GraduationCap size={20} />
               </div>
               <div>
-                <h4 className="font-display font-extrabold text-xs uppercase tracking-widest text-white">
+                <h4 className="font-display font-extrabold text-xs uppercase tracking-widest text-text-primary">
                   Education
                 </h4>
                 <p className="text-xs text-text-secondary mt-1 font-semibold">
@@ -169,7 +169,7 @@ export const About = () => {
                 <MapPin size={20} />
               </div>
               <div>
-                <h4 className="font-display font-extrabold text-xs uppercase tracking-widest text-white">
+                <h4 className="font-display font-extrabold text-xs uppercase tracking-widest text-text-primary">
                   Location
                 </h4>
                 <p className="text-xs text-text-secondary mt-1 font-semibold">
@@ -186,7 +186,7 @@ export const About = () => {
                 <Briefcase size={20} />
               </div>
               <div>
-                <h4 className="font-display font-extrabold text-xs uppercase tracking-widest text-white">
+                <h4 className="font-display font-extrabold text-xs uppercase tracking-widest text-text-primary">
                   Status
                 </h4>
                 <p className="text-xs text-text-secondary mt-1 font-semibold">
@@ -199,11 +199,11 @@ export const About = () => {
             </GlassCard>
 
             <GlassCard variants={cardVariants} className="p-4 md:p-5 flex items-start gap-4">
-              <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-white shrink-0">
+              <div className="w-10 h-10 rounded-xl bg-black/10 flex items-center justify-center text-text-primary shrink-0">
                 <Languages size={20} />
               </div>
               <div>
-                <h4 className="font-display font-extrabold text-xs uppercase tracking-widest text-white">
+                <h4 className="font-display font-extrabold text-xs uppercase tracking-widest text-text-primary">
                   Languages
                 </h4>
                 <p className="text-xs text-text-secondary mt-1 font-semibold">

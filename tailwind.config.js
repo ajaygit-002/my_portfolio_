@@ -8,21 +8,21 @@ export default {
     extend: {
       colors: {
         bg: {
-          primary: "#050816",
-          secondary: "#0A0F2C",
-          card: "rgba(255, 255, 255, 0.04)",
+          primary: "var(--bg-primary)",
+          secondary: "var(--bg-secondary)",
+          card: "var(--bg-card)",
         },
-        primary: "#00E5FF",
-        secondary: "#7C3AED",
-        accent: "#00FFA3",
+        primary: "var(--primary)",
+        secondary: "var(--secondary)",
+        accent: "var(--accent)",
         text: {
-          primary: "#FFFFFF",
-          secondary: "#94A3B8",
-          muted: "#4A5568",
+          primary: "var(--text-primary)",
+          secondary: "var(--text-secondary)",
+          muted: "var(--text-muted)",
         },
         glow: {
-          primary: "rgba(0, 229, 255, 0.3)",
-          secondary: "rgba(124, 58, 237, 0.3)",
+          primary: "var(--glow-primary)",
+          secondary: "var(--glow-secondary)",
         }
       },
       fontFamily: {
