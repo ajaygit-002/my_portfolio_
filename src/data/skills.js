@@ -1,41 +1,52 @@
 export const skillCategories = [
   {
-    title: "AI & Machine Learning",
+    title: "Frontend",
     skills: [
-      { name: "TensorFlow", level: 80 },
-      { name: "PyTorch", level: 70 },
-      { name: "OpenAI API", level: 90 },
-      { name: "HuggingFace", level: 85 }
+      { name: "React", level: 95 },
+      { name: "JavaScript", level: 90 },
+      { name: "Tailwind CSS", level: 95 },
+      { name: "Three.js", level: 85 },
+      { name: "Framer Motion", level: 90 },
+      { name: "GSAP", level: 85 }
     ]
   },
   {
-    title: "Web Development",
+    title: "Backend",
     skills: [
-      { name: "React", level: 90 },
-      { name: "JavaScript", level: 85 },
-      { name: "Node.js", level: 75 },
-      { name: "FastAPI", level: 80 }
+      { name: "Node.js", level: 85 },
+      { name: "Express.js", level: 80 },
+      { name: "MongoDB", level: 85 }
+    ]
+  },
+  {
+    title: "AI & ML",
+    skills: [
+      { name: "Python", level: 95 },
+      { name: "TensorFlow", level: 90 },
+      { name: "PyTorch", level: 85 },
+      { name: "OpenCV", level: 80 },
+      { name: "Hugging Face", level: 85 }
     ]
   }
 ];
 
 export const orbitSkills = {
   ring1: [
-    { name: "Python", color: "#3776AB" },
-    { name: "React", color: "#61DAFB" },
-    { name: "FastAPI", color: "#009688" },
+    { name: "Python", color: "#38BDF8" },
+    { name: "React", color: "#00F5FF" },
+    { name: "Node.js", color: "#7C3AED" },
     { name: "TensorFlow", color: "#FF6F00" },
-    { name: "SQL", color: "#00758F" }
+    { name: "Three.js", color: "#ffffff" }
   ],
   ring2: [
-    { name: "AI/ML", color: "#2563EB" },
-    { name: "Data Science", color: "#10B981" },
-    { name: "Node.js", color: "#339933" },
+    { name: "Tailwind CSS", color: "#38BDF8" },
+    { name: "Framer Motion", color: "#E11D48" },
+    { name: "GSAP", color: "#84CC16" },
     { name: "PyTorch", color: "#EE4C2C" },
     { name: "MongoDB", color: "#47A248" },
-    { name: "JavaScript", color: "#F7DF1E" },
-    { name: "Flask", color: "#FFFFFF" },
-    { name: "OpenAI API", color: "#74A114" },
-    { name: "HuggingFace", color: "#FFD21E" }
+    { name: "JavaScript", color: "#FDE047" },
+    { name: "Express.js", color: "#FFFFFF" },
+    { name: "OpenCV", color: "#10B981" },
+    { name: "Hugging Face", color: "#FFD21E" }
   ]
 };

@@ -18,6 +18,7 @@ import { Skills } from './components/sections/Skills';
 import { Experience } from './components/sections/Experience';
 import { Projects } from './components/sections/Projects';
 import { TechStack } from './components/sections/TechStack';
+import { Statistics } from './components/sections/Statistics';
 import { Contact } from './components/sections/Contact';
 
 // Register GSAP ScrollTrigger globally
@@ -119,6 +120,7 @@ function AppContent() {
             <Experience />
             <Projects />
             <TechStack />
+            <Statistics />
             <Contact />
             <Footer />
           </main>

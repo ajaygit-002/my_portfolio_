@@ -65,13 +65,13 @@ export const ParticleField = () => {
         />
       </bufferGeometry>
       <pointsMaterial
-        color="#2563EB"
+        color="#00F5FF"
         size={isMobile ? 0.035 : 0.05}
         sizeAttenuation={true}
         transparent={true}
         opacity={0.6}
         depthWrite={false}
-        blending={THREE.NormalBlending}
+        blending={THREE.AdditiveBlending}
       />
     </points>
   );

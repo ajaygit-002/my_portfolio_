@@ -1,124 +1,150 @@
 import React, { useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { SectionWrapper } from '../ui/SectionWrapper';
 import { projects } from '../../data/projects';
 import { Badge } from '../ui/Badge';
-import { Globe, Github, Sparkles } from 'lucide-react';
+import { Globe, Github, Sparkles, Activity, Zap, Cpu } from 'lucide-react';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
 
-const ProjectCard = ({ project }) => {
+const ProjectCard = ({ project, index }) => {
   const cardRef = useRef(null);
   const isMobile = useMediaQuery('(max-width: 1024px)');
   const [rotate, setRotate] = useState({ x: 0, y: 0 });
-  const [shine, setShine] = useState({ x: 0, y: 0, opacity: 0 });
+  const [isHovered, setIsHovered] = useState(false);
+
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start end", "end start"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
 
   const handleMouseMove = (e) => {
     if (isMobile || !cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
     
-    // Relative coordinates of the mouse on the card
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-    
-    // Compute rotations (-7 to 7 degrees max tilt)
-    const rotateX = -((mouseY - height / 2) / (height / 2)) * 7;
-    const rotateY = ((mouseX - width / 2) / (width / 2)) * 7;
+    const rotateX = -((y - rect.height / 2) / (rect.height / 2)) * 5;
+    const rotateY = ((x - rect.width / 2) / (rect.width / 2)) * 5;
     
     setRotate({ x: rotateX, y: rotateY });
-    // SPECULAR SHINE overlay position
-    setShine({ x: mouseX, y: mouseY, opacity: 0.15 });
   };
 
   const handleMouseLeave = () => {
     setRotate({ x: 0, y: 0 });
-    setShine({ x: 0, y: 0, opacity: 0 });
+    setIsHovered(false);
   };
 
   return (
     <motion.div
       ref={cardRef}
       onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={handleMouseLeave}
-      className="glass-card flex flex-col h-full overflow-hidden relative transition-all duration-300 hover:border-primary/40 hover:shadow-[0_12px_40px_rgba(0,229,255,0.15)] group"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      className="relative group rounded-[2.5rem] p-[1px] bg-gradient-to-b from-white/10 to-transparent overflow-visible"
       style={!isMobile ? {
-        transform: `perspective(1000px) rotateX(${rotate.x}deg) rotateY(${rotate.y}deg) scale(1.02)`,
-        transition: 'transform 0.1s ease-out, border-color 0.3s ease, box-shadow 0.3s ease'
+        transform: `perspective(1000px) rotateX(${rotate.x}deg) rotateY(${rotate.y}deg)`,
+        transition: 'transform 0.1s ease-out'
       } : {}}
     >
-      {/* Specular Shine Overlay */}
-      {!isMobile && (
-        <div
-          className="absolute inset-0 pointer-events-none mix-blend-overlay z-10 transition-opacity duration-300"
-          style={{
-            background: `radial-gradient(circle 180px at ${shine.x}px ${shine.y}px, rgba(255, 255, 255, ${shine.opacity}), transparent 80%)`
-          }}
-        />
-      )}
+      {/* Glow Effect behind card */}
+      <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-20 blur-3xl transition-opacity duration-700 -z-10 rounded-[2.5rem]`} />
 
-      {/* Project Image Header / Custom Brand Gradient */}
-      <div 
-        className={`w-full h-44 relative bg-gradient-to-tr ${project.color} overflow-hidden flex items-center justify-center`}
-      >
-        {/* Decorative Grid Mesh */}
-        <div className="absolute inset-0 opacity-15 mix-blend-overlay bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:14px_24px]" />
+      <div className="bg-bg-dark/80 backdrop-blur-3xl rounded-[2.5rem] overflow-hidden border border-white/5 h-full flex flex-col relative z-10 shadow-glass">
         
-        {/* Floating tech nodes graphic */}
-        <div className="absolute w-24 h-24 rounded-full bg-black/10 blur-xl animate-pulse" />
-        
-        <Sparkles className="w-10 h-10 text-text-primary drop-shadow-[0_0_12px_rgba(255,255,255,0.5)] z-10 group-hover:scale-110 transition-transform duration-500" />
-      </div>
+        {/* Media Container */}
+        <div className="relative w-full h-56 md:h-64 overflow-hidden bg-black/50">
+          <div className={`absolute inset-0 bg-gradient-to-tr ${project.color} opacity-40 mix-blend-overlay z-10`} />
+          
+          <video 
+            src={project.videoUrl} 
+            autoPlay 
+            loop 
+            muted 
+            playsInline
+            className={`w-full h-full object-cover transition-transform duration-700 ${isHovered ? 'scale-105' : 'scale-100'} opacity-60 group-hover:opacity-100`}
+          />
 
-      {/* Card Body content */}
-      <div className="p-6 md:p-6 flex flex-col flex-grow gap-4">
-        
-        {/* Category Label */}
-        <div className="flex">
-          <span className="font-mono text-[10px] font-extrabold tracking-widest text-primary uppercase bg-primary/5 border border-primary/20 px-2.5 py-1 rounded-md">
-            {project.category}
-          </span>
+          {/* Floating Performance Metrics Overlays */}
+          <div className="absolute top-4 left-4 z-20 flex flex-col gap-2">
+            {Object.entries(project.performance).map(([key, value], i) => (
+              <motion.div 
+                key={key}
+                initial={{ opacity: 0, x: -20 }}
+                animate={isHovered ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                transition={{ duration: 0.3, delay: i * 0.1 }}
+                className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10 shadow-lg"
+              >
+                {i === 0 ? <Activity size={12} className="text-primary" /> : 
+                 i === 1 ? <Zap size={12} className="text-secondary" /> : 
+                 <Cpu size={12} className="text-info" />}
+                <span className="text-[10px] font-mono text-white/80 uppercase tracking-wider">
+                  <span className="text-white font-bold">{value}</span> {key}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Hover Play Indicator */}
+          <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+            <div className={`w-16 h-16 rounded-full bg-gradient-to-br ${project.color} flex items-center justify-center backdrop-blur-xl shadow-neon`}>
+              <Sparkles className="text-white w-6 h-6 animate-pulse" />
+            </div>
+          </div>
         </div>
 
-        {/* Project Title */}
-        <h3 className="font-display font-extrabold text-xl text-text-primary uppercase tracking-wide group-hover:text-primary transition-colors">
-          {project.name}
-        </h3>
+        {/* Content Container */}
+        <div className="p-8 flex flex-col flex-grow relative bg-gradient-to-b from-transparent to-bg-dark/90">
+          <div className="flex items-center justify-between mb-4">
+            <span className="font-mono text-[10px] font-extrabold tracking-widest text-primary uppercase bg-primary/10 border border-primary/20 px-3 py-1 rounded-full shadow-inner">
+              {project.category}
+            </span>
+          </div>
 
-        {/* Description */}
-        <p className="text-text-secondary text-xs md:text-sm font-medium leading-relaxed flex-grow">
-          {project.description}
-        </p>
+          <h3 className="font-display font-black text-2xl text-white uppercase tracking-wide mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-primary transition-all duration-300">
+            {project.name}
+          </h3>
 
-        {/* Technologies badges */}
-        <div className="flex flex-wrap gap-1.5 py-2">
-          {project.technologies.map((tech) => (
-            <Badge key={tech} text={tech} />
-          ))}
+          <p className="text-text-secondary text-sm leading-relaxed mb-6 flex-grow">
+            {project.description}
+          </p>
+
+          <div className="flex flex-wrap gap-2 mb-8">
+            {project.technologies.map((tech) => (
+              <Badge key={tech} text={tech} />
+            ))}
+          </div>
+
+          {/* Links Footer */}
+          <div className="flex items-center justify-between pt-4 border-t border-white/5">
+            <a
+              href={project.liveLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-primary hover:text-white transition-colors duration-300 group/link"
+            >
+              <Globe size={16} />
+              <span className="relative overflow-hidden">
+                <span className="inline-block transition-transform duration-300 group-hover/link:-translate-y-full">Live Demo</span>
+                <span className="absolute left-0 top-0 inline-block transition-transform duration-300 translate-y-full group-hover/link:translate-y-0 text-white">Live Demo</span>
+              </span>
+            </a>
+            <a
+              href={project.githubLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-text-muted hover:text-white transition-colors duration-300"
+            >
+              <Github size={16} />
+              <span>Source</span>
+            </a>
+          </div>
         </div>
-
-        {/* Links Footer */}
-        <div className="flex items-center gap-4 border-t border-black/5 pt-4 mt-auto">
-          <a
-            href={project.liveLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1.5 font-mono text-[11px] font-bold uppercase tracking-wider text-primary hover:text-text-primary transition-colors duration-300"
-          >
-            <Globe size={14} />
-            <span>Live Demo</span>
-          </a>
-          <a
-            href={project.githubLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1.5 font-mono text-[11px] font-bold uppercase tracking-wider text-text-secondary hover:text-text-primary transition-colors duration-300 ml-auto"
-          >
-            <Github size={14} />
-            <span>GitHub</span>
-          </a>
-        </div>
-
       </div>
     </motion.div>
   );
@@ -126,20 +152,19 @@ const ProjectCard = ({ project }) => {
 
 export const Projects = () => {
   return (
-    <SectionWrapper id="projects" className="border-t border-black/5">
-      <div className="space-y-4 mb-16 text-center lg:text-left">
+    <SectionWrapper id="projects" className="border-t border-white/5 relative">
+      <div className="space-y-4 mb-24 text-center">
         <span className="font-mono text-xs text-primary font-semibold uppercase tracking-[0.3em]">
-          MY WORKS
+          PREMIUM SHOWCASE
         </span>
-        <h2 className="font-display font-extrabold text-4xl md:text-5xl uppercase tracking-tight text-text-primary">
-          Featured AI Projects
+        <h2 className="font-display font-black text-5xl md:text-7xl uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white to-text-muted">
+          Featured Projects
         </h2>
       </div>
 
-      {/* Projects Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-        {projects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-6xl mx-auto px-4 md:px-0">
+        {projects.map((project, index) => (
+          <ProjectCard key={project.id} project={project} index={index} />
         ))}
       </div>
     </SectionWrapper>
