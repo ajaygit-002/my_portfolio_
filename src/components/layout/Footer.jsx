@@ -41,7 +41,7 @@ export const Footer = () => {
             href="https://github.com/ajay"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-10 h-10 rounded-xl border border-black/10 bg-black/5 flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary/30 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_10px_rgba(0,229,255,0.2)]"
+            className="w-10 h-10 rounded-2xl border border-black/10 bg-black/5 flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary/30 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_10px_rgba(0,229,255,0.2)]"
             aria-label="GitHub Profile"
           >
             <FaGithub size={18} />
@@ -50,7 +50,7 @@ export const Footer = () => {
             href="https://linkedin.com/in/ajay"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-10 h-10 rounded-xl border border-black/10 bg-black/5 flex items-center justify-center text-slate-400 hover:text-secondary hover:border-secondary/30 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_10px_rgba(124,58,237,0.2)]"
+            className="w-10 h-10 rounded-2xl border border-black/10 bg-black/5 flex items-center justify-center text-slate-400 hover:text-secondary hover:border-secondary/30 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_10px_rgba(124,58,237,0.2)]"
             aria-label="LinkedIn Profile"
           >
             <FaLinkedin size={18} />
@@ -59,7 +59,7 @@ export const Footer = () => {
             href="https://twitter.com/ajay"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-10 h-10 rounded-xl border border-black/10 bg-black/5 flex items-center justify-center text-slate-400 hover:text-accent hover:border-accent/30 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_10px_rgba(0,255,163,0.2)]"
+            className="w-10 h-10 rounded-2xl border border-black/10 bg-black/5 flex items-center justify-center text-slate-400 hover:text-accent hover:border-accent/30 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_10px_rgba(0,255,163,0.2)]"
             aria-label="Twitter Profile"
           >
             <FaTwitter size={18} />
@@ -68,7 +68,7 @@ export const Footer = () => {
             href="https://kaggle.com/ajay"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-10 h-10 rounded-xl border border-black/10 bg-black/5 flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary/30 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_10px_rgba(0,229,255,0.2)]"
+            className="w-10 h-10 rounded-2xl border border-black/10 bg-black/5 flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary/30 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_10px_rgba(0,229,255,0.2)]"
             aria-label="Kaggle Profile"
           >
             <FaKaggle size={18} />

@@ -95,7 +95,7 @@ export const Contact = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`w-12 h-12 rounded-xl border border-white/10 bg-black/40 flex items-center justify-center text-text-muted transition-all duration-300 backdrop-blur-md ${social.color}`}
+                  className={`w-12 h-12 rounded-2xl border border-white/10 bg-black/40 flex items-center justify-center text-text-muted transition-all duration-300 backdrop-blur-md ${social.color}`}
                 >
                   {social.icon}
                 </a>
@@ -133,7 +133,7 @@ export const Contact = () => {
                         value={form[field]}
                         onChange={handleChange}
                         required={field !== 'subject'}
-                        className="flex-1 bg-black/30 border border-white/5 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-primary focus:bg-primary/5 focus:shadow-[0_0_15px_rgba(0,245,255,0.1)] transition-all placeholder:text-white/20"
+                        className="flex-1 bg-black/30 border border-white/5 rounded-2xl px-4 py-3 text-sm text-white focus:outline-none focus:border-primary focus:bg-primary/5 focus:shadow-[0_0_15px_rgba(0,245,255,0.1)] transition-all placeholder:text-white/20"
                         placeholder={`Enter ${field}...`}
                       />
                     </div>
@@ -150,7 +150,7 @@ export const Contact = () => {
                       value={form.message}
                       onChange={handleChange}
                       required
-                      className="w-full bg-black/30 border border-white/5 rounded-lg px-4 py-4 text-sm text-white focus:outline-none focus:border-primary focus:bg-primary/5 focus:shadow-[0_0_15px_rgba(0,245,255,0.1)] transition-all resize-none placeholder:text-white/20"
+                      className="w-full bg-black/30 border border-white/5 rounded-2xl px-4 py-4 text-sm text-white focus:outline-none focus:border-primary focus:bg-primary/5 focus:shadow-[0_0_15px_rgba(0,245,255,0.1)] transition-all resize-none placeholder:text-white/20"
                       placeholder="Transmission contents..."
                     />
                   </div>
@@ -161,7 +161,7 @@ export const Contact = () => {
                     <button
                       type="submit"
                       disabled={status === 'sending' || status === 'success'}
-                      className="group relative px-8 py-4 bg-white/5 border border-white/10 rounded-xl overflow-hidden disabled:opacity-50"
+                      className="group relative px-8 py-4 bg-white/5 border border-white/10 rounded-full overflow-hidden disabled:opacity-50"
                     >
                       {/* Hover gradient background */}
                       <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

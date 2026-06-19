@@ -63,7 +63,7 @@ export const Navbar = () => {
             onClick={() => handleNavClick('home')}
             className="flex items-center gap-3 group text-left hoverable"
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-secondary to-primary p-[1.5px] transition-transform duration-300 group-hover:scale-105">
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-secondary to-primary p-[1.5px] transition-transform duration-300 group-hover:scale-105">
               <div className="w-full h-full rounded-[10px] bg-[#FFFFFF] flex items-center justify-center font-display font-extrabold text-base text-primary tracking-tighter">
                 AS
               </div>
@@ -108,7 +108,7 @@ export const Navbar = () => {
             {/* Hire Me CTA */}
             <MagneticButton onClick={handleHireClick}>
               <button
-                className="px-5 py-2 rounded-xl text-xs font-display font-bold uppercase tracking-wider bg-gradient-to-r from-secondary to-primary text-white hover:shadow-[0_0_15px_#2563EB] transition-all hover:scale-[1.03]"
+                className="px-5 py-2 rounded-full text-xs font-display font-bold uppercase tracking-wider bg-gradient-to-r from-secondary to-primary text-white hover:shadow-[0_0_15px_#2563EB] transition-all hover:scale-[1.03]"
                 aria-label="Hire Ajay S"
               >
                 Hire Me
@@ -119,7 +119,7 @@ export const Navbar = () => {
           {/* Mobile Menu Toggle button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden flex items-center justify-center w-10 h-10 rounded-lg border border-black/10 bg-black/5 hover:bg-black/10 text-text-primary"
+            className="md:hidden flex items-center justify-center w-10 h-10 rounded-full border border-black/10 bg-black/5 hover:bg-black/10 text-text-primary"
             aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Menu'}
           >
             {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -172,7 +172,7 @@ export const Navbar = () => {
             >
               <button
                 onClick={handleHireClick}
-                className="w-full max-w-xs py-4 rounded-xl font-display font-bold uppercase tracking-wider bg-gradient-to-r from-secondary to-primary text-white text-sm"
+                className="w-full max-w-xs py-4 rounded-full font-display font-bold uppercase tracking-wider bg-gradient-to-r from-secondary to-primary text-white text-sm"
               >
                 Hire Me
               </button>

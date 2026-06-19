@@ -89,7 +89,7 @@ export const Experience = () => {
                       <div className="flex items-center gap-3 font-mono text-sm">
                         <Building2 size={16} className="text-secondary" />
                         <span className="font-bold text-text-primary">{exp.company}</span>
-                        <span className="text-[10px] text-text-muted px-2 py-1 rounded bg-white/5 border border-white/10 uppercase tracking-widest">
+                        <span className="text-[10px] text-text-muted px-2 py-1 rounded-full bg-white/5 border border-white/10 uppercase tracking-widest">
                           {exp.type}
                         </span>
                       </div>
